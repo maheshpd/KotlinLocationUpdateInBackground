@@ -10,16 +10,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:contentDescription="DEFAULT_AVATAR"
+        android:visibility="gone"
         android:src="@drawable/icon_default_avatar"
-        android:visibility="gone"/>
+        android:contentDescription="DEFAULT_AVATAR"/>
 
     <ImageView
         android:id="@+id/indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/video_indicator_bottom_margin"
         android:contentDescription="VIDEO_INDICATOR"/>
 
@@ -28,18 +28,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="24dp"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/video_info_metadata"
-            style="@style/NotificationUIText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:singleLine="true" />
+            android:singleLine="true"
+            style="@style/NotificationUIText" />
     </LinearLayout>
 
 </RelativeLayout>

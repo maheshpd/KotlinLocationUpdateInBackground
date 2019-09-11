@@ -6,12 +6,7 @@
     android:orientation="vertical"
     >
 
-    <ImageView
-        android:id="@+id/imageview_1"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        />
+
 
     <TextView
         android:id="@+id/textview_1"
@@ -20,5 +15,12 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:textColor="@color/textcolor"
+        />
+
+    <ImageView
+        android:id="@+id/imageview_1"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         />
 </LinearLayout>

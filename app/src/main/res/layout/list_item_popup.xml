@@ -60,13 +60,13 @@
             android:layout_marginRight="10dp"
             android:background="@color/GrayLight3"></View>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"></android.support.v7.widget.RecyclerView>
+            android:layout_marginBottom="10dp"></androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 </LinearLayout><!--
 </android.support.v7.widget.CardView>-->

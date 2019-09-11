@@ -13,10 +13,10 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="0dp"
         android:background="@color/White"
         android:elevation="10dp"
         android:orientation="vertical"
@@ -28,13 +28,52 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imageview_1"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/ic_addcolor" />
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/edittext_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_edittext"
+                        android:drawableLeft="@drawable/ic_search"
+                        android:drawablePadding="10dp"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="5dp" />
+
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/GrayLight3">
+                </View>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,10 +97,10 @@
                         android:background="@drawable/rounded_edittext"
                         android:drawableLeft="@drawable/ic_search"
                         android:drawablePadding="10dp"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
-                        android:paddingTop="5dp"
                         android:paddingRight="10dp"
-                        android:paddingBottom="5dp" />
+                        android:paddingTop="5dp" />
 
 
                 </LinearLayout>
@@ -70,64 +109,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
                     android:background="@color/GrayLight3"></View>
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerview_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"></android.support.v7.widget.RecyclerView>
+                    android:layout_marginRight="10dp"></androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/imageview_1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-
-                    <EditText
-                        android:id="@+id/edittext_1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_edittext"
-                        android:drawableLeft="@drawable/ic_search"
-                        android:drawablePadding="10dp"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="5dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="5dp" />
-
-
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/GrayLight3">
-                </View>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerview_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp">
-                </android.support.v7.widget.RecyclerView>
-            </LinearLayout>
+                android:layout_gravity="top"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_addcolor" />
         </LinearLayout>
 
     </LinearLayout>

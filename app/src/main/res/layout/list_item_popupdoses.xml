@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -14,15 +12,22 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="0dp"
         android:background="@color/White"
         android:elevation="10dp"
         android:orientation="vertical"
         android:padding="10dp"
         android:paddingTop="0dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="Add Doses"
+            android:layout_gravity="center"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,30 +39,42 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/textview_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Morning" />
+
                 <EditText
                     android:id="@+id/edittext_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_edittext"
                     android:gravity="center"
-                   android:inputType="numberDecimal"
-                    android:minHeight="40dp"
+                    android:inputType="numberDecimal"
                     android:padding="10dp"
+                    android:minHeight="40dp"
 
                     />
-
-                <TextView
-                    android:id="@+id/textview_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Morning" />
             </LinearLayout>
 
+            <View
+                android:layout_width="10dp"
+                android:layout_height="2dp"
+                android:background="@color/red"
+                android:layout_gravity="center_vertical"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textview_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Afternoon" />
 
                 <EditText
                     android:id="@+id/edittext_2"
@@ -66,21 +83,27 @@
                     android:background="@drawable/rounded_edittext"
                     android:gravity="center"
                     android:inputType="numberDecimal"
+                    android:padding="10dp"
                     android:minHeight="40dp"
-android:padding="10dp"
                     />
-
-                <TextView
-                    android:id="@+id/textview_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Afternoon" />
             </LinearLayout>
+            <View
+                android:layout_width="10dp"
+                android:layout_height="2dp"
+                android:background="@color/red"
+                android:layout_gravity="center_vertical"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textview_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Evening" />
 
                 <EditText
                     android:id="@+id/edittext_3"
@@ -89,22 +112,29 @@ android:padding="10dp"
                     android:background="@drawable/rounded_edittext"
                     android:gravity="center"
                     android:inputType="numberDecimal"
-                    android:minHeight="40dp"
                     android:padding="10dp"
+                    android:minHeight="40dp"
 
                     />
-
-                <TextView
-                    android:id="@+id/textview_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Evening" />
             </LinearLayout>
+            <View
+                android:layout_width="10dp"
+                android:layout_height="2dp"
+                android:background="@color/red"
+                android:layout_gravity="center_vertical"
+
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textview_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Neight" />
 
                 <EditText
                     android:id="@+id/edittext_4"
@@ -113,53 +143,21 @@ android:padding="10dp"
                     android:background="@drawable/rounded_edittext"
                     android:gravity="center"
                     android:inputType="numberDecimal"
-                    android:minHeight="40dp"
                     android:padding="10dp"
+                    android:minHeight="40dp"
 
                     />
-
-                <TextView
-                    android:id="@+id/textview_4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Neight" />
             </LinearLayout>
-            <View
-                android:layout_width="10dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center_vertical"
-                android:background="@color/red"
-                />
-            <View
-                android:layout_width="10dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center_vertical"
-                android:background="@color/red"
-
-                />
-            <View
-                android:layout_width="10dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center_vertical"
-                android:background="@color/red"
-                />
         </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Add Doses"
-            android:textColor="@color/red"
-            />
         <!--  </LinearLayout>-->
         <TextView
             android:id="@+id/textview_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="5dp"
             android:text="Add"
             android:textColor="@color/red"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="right"
             />
     </LinearLayout>
 </LinearLayout><!--

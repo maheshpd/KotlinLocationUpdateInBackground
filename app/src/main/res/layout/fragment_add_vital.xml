@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.healthbank.AddVitalsActivity">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -15,54 +16,34 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
-            <Button
-                android:id="@+id/button_1"
+            <TextView
+                android:id="@+id/textview_1"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="right"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_cal"
+                android:drawablePadding="5dp"
+                android:drawableRight="@drawable/ic_editdates"
+                android:text="Date: "
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/textcolor"
                 android:layout_marginTop="10dp"
-                android:background="@color/colorPrimary"
-                android:text="Save"
-                android:textColor="@color/white"
                 />
-            <EditText
-                android:id="@+id/edittext_3"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textview_2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/edittextshape_grayborder"
-                android:padding="10dp" />
-            <EditText
-                android:id="@+id/edittext_4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/edittextshape_grayborder"
-                android:padding="10dp" />
+                android:drawableLeft="@drawable/ic_time"
+                android:drawablePadding="5dp"
+                android:drawableRight="@drawable/ic_editdates"
+                android:text="12:15 AM"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/textcolor" />
+            <TextView
 
-            <EditText
-                android:id="@+id/edittext_5"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/edittextshape_grayborder"
-                android:padding="10dp" />
-
-            <EditText
-                android:id="@+id/edittext_6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/edittextshape_grayborder"
-                android:padding="10dp" />
-
-            <EditText
-                android:id="@+id/edittext_7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/edittextshape_grayborder"
-                android:padding="10dp"/>
+                android:layout_marginTop="10dp"
+                android:text="Blood Pressure (mmHg)" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -92,6 +73,80 @@
                     android:padding="10dp" />
             </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Pulse (per minute) :"/>
+
+            <EditText
+                android:id="@+id/edittext_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edittextshape_grayborder"
+                android:padding="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Temperature (°c) " />
+
+            <EditText
+                android:id="@+id/edittext_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edittextshape_grayborder"
+                android:padding="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Respiration Rate(bpm )" />
+
+            <EditText
+                android:id="@+id/edittext_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edittextshape_grayborder"
+                android:padding="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight(Kg)"/>
+
+            <EditText
+                android:id="@+id/edittext_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edittextshape_grayborder"
+                android:padding="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Height" />
+
+            <EditText
+                android:id="@+id/edittext_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edittextshape_grayborder"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Measure By "/>
+
             <Spinner
                 android:id="@+id/spinner_1"
                 android:layout_width="match_parent"
@@ -100,70 +155,16 @@
                 android:background="@drawable/edittextshape_grayborder"
                 android:entries="@array/doctors"
                 android:padding="10dp"/>
-
-            <TextView
-                android:id="@+id/textview_1"
+            <Button
+                android:id="@+id/button_1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:text="Save"
                 android:layout_marginTop="10dp"
-                android:drawableLeft="@drawable/ic_cal"
-                android:drawableRight="@drawable/ic_editdates"
-                android:drawablePadding="5dp"
-                android:text="Date: "
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textColor="@color/textcolor"
+                android:layout_gravity="right"
                 />
-
-            <TextView
-                android:id="@+id/textview_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_time"
-                android:drawableRight="@drawable/ic_editdates"
-                android:drawablePadding="5dp"
-                android:text="12:15 AM"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textColor="@color/textcolor" />
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Blood Pressure (mmHg)" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Pulse (per minute) :"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Temperature (°c) " />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Respiration Rate(bpm )" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Weight(Kg)"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Height" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Measure By "/>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

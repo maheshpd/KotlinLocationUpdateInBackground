@@ -7,6 +7,9 @@
     android:orientation="vertical"
     tools:context=".TemplateQuestionActivity">
 
+
+    <include layout="@layout/toolbar"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,15 +29,6 @@
             android:visibility="gone" />
 
 
-        <ImageButton
-                android:id="@+id/imageview_1"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0.2"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_addcolor" />
 
            <!-- <TextView
                 style="@style/Base.TextAppearance.AppCompat.Medium"
@@ -59,18 +53,29 @@
          </LinearLayout>
 
         <Spinner
+            android:id="@+id/spinner_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6" />
+
+        <Spinner
             android:id="@+id/spinner_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.3"/>
 
-
-
-         <Spinner
-            android:id="@+id/spinner_1"
-            android:layout_width="0dp"
+        <ImageButton
+            android:id="@+id/imageview_1"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.6" />
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.2"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_addcolor" />
+
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -120,5 +125,5 @@
             android:paddingBottom="10dp"/>
     </ScrollView>
 
-    <include layout="@layout/toolbar"/>
+
 </LinearLayout>

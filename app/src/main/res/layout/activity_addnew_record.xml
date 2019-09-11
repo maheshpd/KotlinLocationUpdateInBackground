@@ -4,37 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".AddnewRecordActivity"
+    android:background="@color/white"
     >
-<LinearLayout
+    <include
+        layout="@layout/toolbar"
+        />
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:orientation="horizontal"
+        android:layout_marginTop="10dp"
         >
-    <AutoCompleteTextView
-        android:id="@+id/autotxt_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="1"
-        android:background="@drawable/rounded_edittext"
-        android:padding="10dp"
-        />
+        <AutoCompleteTextView
+            android:id="@+id/autotxt_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            />
 
-    <Button
-        android:id="@+id/button_1"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:background="@drawable/rounded_button"
-        android:gravity="right"
-        android:text="Browse"
-        android:textColor="@color/white"
-        android:visibility="gone"
-        />
+        <Button
+            android:id="@+id/button_1"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Browse"
+            android:background="@drawable/rounded_button"
+            android:textColor="@color/white"
+            android:gravity="right"
+            android:visibility="gone"
+            />
 
         <ImageView
             android:id="@+id/imageview_1"
@@ -43,15 +46,12 @@
             android:layout_gravity="center"
             android:src="@drawable/ic_attachfile" />
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         >
-    </android.support.v7.widget.RecyclerView>
-    <include
-    layout="@layout/toolbar"
-    ></include>
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

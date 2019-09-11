@@ -15,6 +15,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Morning"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textSize="12dp" />
+
             <EditText
                 android:id="@+id/edittext_1"
                 android:layout_width="27dp"
@@ -24,19 +31,26 @@
                 android:background="@drawable/edittextshape_grayborder"
                 android:padding="5dp"
                 android:textSize="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Morning"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textSize="12dp" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="-" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Afternoon"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textSize="12dp" />
 
             <EditText
                 android:id="@+id/edittext_2"
@@ -46,19 +60,26 @@
                 android:background="@drawable/edittextshape_grayborder"
                 android:padding="5dp"
                 android:textSize="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Afternoon"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textSize="12dp" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="-" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Evening"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textSize="12dp" />
 
             <EditText
                 android:id="@+id/edittext_3"
@@ -68,19 +89,25 @@
                 android:background="@drawable/edittextshape_grayborder"
                 android:padding="5dp"
                 android:textSize="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Evening"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textSize="12dp" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="-" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Night"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
             <EditText
                 android:id="@+id/edittext_4"
@@ -89,33 +116,6 @@
                 android:background="@drawable/edittextshape_grayborder"
                 android:padding="5dp"
                 android:textSize="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Night"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:text="-" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:text="-" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:text="-" />
     </LinearLayout>
 </LinearLayout>

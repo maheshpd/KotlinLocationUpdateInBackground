@@ -6,7 +6,9 @@
     android:orientation="vertical"
     tools:context="com.healthbank.PaymentActivity">
 
-    <android.support.v4.widget.NestedScrollView
+    <include layout="@layout/toolbar"></include>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -14,18 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <Button
-                android:id="@+id/button_1"
-                android:layout_width="50dp"
-                android:layout_height="20dp"
-                android:layout_gravity="right"
-                android:layout_margin="10dp"
-                android:background="@color/colorPrimary"
-                android:gravity="center"
-                android:paddingRight="10dp"
-                android:text="Pay"
-                android:textColor="@color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,8 +35,8 @@
                     android:id="@+id/textview_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_text_color"
-                    android:textSize="@dimen/textsize" />
+                    android:textSize="@dimen/textsize"
+                    android:textColor="@color/light_text_color" />
 
             </LinearLayout>
 
@@ -60,15 +50,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Bill Book"
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/textsize" />
+                    android:textSize="@dimen/textsize"
+                    android:textColor="@color/textcolor" />
 
                 <TextView
                     android:id="@+id/textview_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_text_color"
-                    android:textSize="@dimen/textsize" />
+                    android:textSize="@dimen/textsize"
+                    android:textColor="@color/light_text_color" />
             </LinearLayout>
 
             <LinearLayout
@@ -85,14 +75,14 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:text="Treatment"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/textsize" />
+                    android:textSize="@dimen/textsize"
+                    android:textColor="@color/colorPrimary" />
 
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerview_1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                    android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
 
             <LinearLayout
@@ -106,14 +96,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Total Price :"
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/textsize" />
+                    android:textSize="@dimen/textsize"
+                    android:textColor="@color/textcolor" />
 
                 <TextView
                     android:id="@+id/textview_3"
+                    android:textSize="@dimen/textsize"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/textsize" />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout
@@ -126,15 +116,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textSize="@dimen/textsize"
                     android:text="Advance Amount :"
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/textsize" />
+                    android:textColor="@color/textcolor" />
 
                 <TextView
                     android:id="@+id/textview_4"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/textsize" />
+                    android:textSize="@dimen/textsize"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout
@@ -142,6 +132,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/textsize"
+                    android:text="Pay From Advance :"
+                    android:textColor="@color/textcolor" />
 
                 <EditText
                     android:id="@+id/edittext_1"
@@ -149,17 +147,9 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittextshape_grayborder"
                     android:inputType="numberDecimal"
-                    android:padding="5dp"
                     android:textSize="@dimen/textsize"
+                    android:padding="5dp"
                     />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Pay From Advance :"
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/textsize" />
             </LinearLayout>
 
             <LinearLayout
@@ -167,25 +157,24 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/edittext_2"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edittextshape_grayborder"
-                    android:inputType="numberDecimal"
-                    android:padding="5dp"
-                    android:textSize="@dimen/textsize" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Pay Now "
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/textsize" />
-            </LinearLayout>
+                    android:textSize="@dimen/textsize"
+                    android:textColor="@color/textcolor" />
 
+                <EditText
+                    android:id="@+id/edittext_2"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textsize"
+                    android:padding="5dp"
+                    android:background="@drawable/edittextshape_grayborder"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -197,16 +186,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textSize="@dimen/textsize"
                     android:text="Pay From Advance + Pay Now "
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/textsize" />
+                    android:textColor="@color/textcolor" />
 
                 <TextView
                     android:id="@+id/textview_5"
+                    android:textSize="@dimen/textsize"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/textsize" />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -219,14 +209,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text=" Due After Payment "
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/textsize" />
+                    android:textSize="@dimen/textsize"
+                    android:textColor="@color/textcolor" />
 
                 <TextView
                     android:id="@+id/textview_6"
+                    android:textSize="@dimen/textsize"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/textsize" />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout
@@ -234,23 +224,23 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/textsize"
+                    android:text="Narration "
+                    android:textColor="@color/textcolor" />
 
                 <EditText
                     android:id="@+id/edittext_3"
                     android:layout_width="100dp"
+                    android:textSize="@dimen/textsize"
+                    android:padding="5dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittextshape_grayborder"
-                    android:inputType="numberDecimal"
-                    android:padding="5dp"
-                    android:textSize="@dimen/textsize" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Narration "
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/textsize" />
+                    android:inputType="numberDecimal" />
             </LinearLayout>
 
             <LinearLayout
@@ -259,25 +249,35 @@
                 android:layout_margin="10dp"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/edittext_4"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edittextshape_grayborder"
-                    android:inputType="numberDecimal"
-                    android:padding="5dp"
-                    android:textSize="@dimen/textsize"/>
-
                 <TextView
+                    android:textSize="@dimen/textsize"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Remark "
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/textsize" />
-            </LinearLayout>
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+                    android:textColor="@color/textcolor" />
 
-    <include layout="@layout/toolbar"></include>
+                <EditText
+                    android:textSize="@dimen/textsize"
+                    android:id="@+id/edittext_4"
+                    android:layout_width="100dp"
+                    android:padding="5dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittextshape_grayborder"
+                    android:inputType="numberDecimal"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_1"
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:layout_gravity="right"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:paddingRight="10dp"
+                android:text="Pay"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

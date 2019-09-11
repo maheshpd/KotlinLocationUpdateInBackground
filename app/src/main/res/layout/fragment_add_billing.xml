@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="com.healthbank.PaymentActivity">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp">
@@ -27,29 +27,19 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <Button
-                        android:id="@+id/button_1"
-                        android:layout_width="50dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="right"
-                        android:layout_margin="10dp"
-                        android:background="@color/colorPrimary"
-                        android:gravity="center"
-                        android:text="Pay"
-                        android:textColor="@color/white" />
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
 
-                        <Spinner
-                            android:id="@+id/spinner_1"
-                            android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:entries="@array/doctors">
-                        </Spinner>
+                            android:layout_weight="1"
+                            android:text="Ref By:"
+                            android:textColor="@color/textcolor"
+                            android:textSize="@dimen/textsize" />
 
                         <TextView
                             android:id="@+id/textview_1"
@@ -59,14 +49,19 @@
                             android:textSize="@dimen/textsize"
                             android:visibility="gone" />
 
-                        <TextView
-                            android:layout_width="match_parent"
+                        <Spinner
+                            android:id="@+id/spinner_1"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Ref By:"
-                            android:textColor="@color/textcolor"
-                            android:textSize="@dimen/textsize" />
+                            android:entries="@array/doctors">
+                        </Spinner>
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray">
+                    </View>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -74,11 +69,13 @@
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
 
-                        <Spinner
-                            android:id="@+id/spinner_5"
-                            android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:entries="@array/doctors"></Spinner>
+                            android:layout_weight="1"
+                            android:text="Bill Book"
+                            android:textColor="@color/textcolor"
+                            android:textSize="@dimen/textsize" />
 
                         <TextView
                             android:id="@+id/textview_2"
@@ -88,13 +85,11 @@
                             android:textSize="@dimen/textsize"
                             android:visibility="gone" />
 
-                        <TextView
-                            android:layout_width="match_parent"
+                        <Spinner
+                            android:id="@+id/spinner_5"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Bill Book"
-                            android:textColor="@color/textcolor"
-                            android:textSize="@dimen/textsize" />
+                            android:entries="@array/doctors"></Spinner>
 
                     </LinearLayout>
 
@@ -119,11 +114,11 @@
                             android:textColor="@color/textcolor"
                             android:textSize="@dimen/textsize"/>
 
-                        <android.support.v7.widget.RecyclerView
+                        <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerview_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                        </android.support.v7.widget.RecyclerView>
+                        </androidx.recyclerview.widget.RecyclerView>
                     </LinearLayout>
 
                     <LinearLayout
@@ -148,11 +143,32 @@
                             android:textStyle="bold"/>
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray">
+                    </View>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Discount :"
+                            android:textColor="@color/textcolor"
+                            android:textSize="@dimen/textsize" />
+
+                        <Spinner
+                            android:id="@+id/spinner_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/discounttype">
+                        </Spinner>
 
                         <EditText
                             android:id="@+id/edittext_5"
@@ -162,28 +178,33 @@
                             android:inputType="numberDecimal"
                             android:padding="5dp"
                             android:textSize="@dimen/textsize"/>
-
-                        <Spinner
-                            android:id="@+id/spinner_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:entries="@array/discounttype">
-                        </Spinner>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Discount :"
-                            android:textColor="@color/textcolor"
-                            android:textSize="@dimen/textsize" />
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray">
+                    </View>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Tax :"
+                            android:textColor="@color/textcolor"
+                            android:textSize="@dimen/textsize" />
+
+                        <Spinner
+                            android:id="@+id/spinner_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/discounttype"></Spinner>
 
                         <EditText
                             android:id="@+id/edittext_6"
@@ -194,22 +215,13 @@
                             android:padding="5dp"
                             android:textSize="@dimen/textsize" />
 
-                        <Spinner
-                            android:id="@+id/spinner_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:entries="@array/discounttype"></Spinner>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Tax :"
-                            android:textColor="@color/textcolor"
-                            android:textSize="@dimen/textsize" />
-
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray"></View>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -232,6 +244,11 @@
                             android:textSize="@dimen/textsize"
                             android:textStyle="bold" />
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray"></View>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -256,6 +273,13 @@
                             android:textSize="@dimen/textsize" />
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray"
+                        android:visibility="gone"
+                        ></View>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -263,6 +287,14 @@
                         android:orientation="horizontal"
                         android:visibility="gone"
                         >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Pay From Advance :"
+                            android:textColor="@color/textcolor"
+                            android:textSize="@dimen/textsize" />
 
                         <EditText
                             android:id="@+id/edittext_1"
@@ -274,21 +306,28 @@
                             android:textSize="@dimen/textsize"
                             android:visibility="gone"
                             />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Pay From Advance :"
-                            android:textColor="@color/textcolor"
-                            android:textSize="@dimen/textsize" />
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray"
+                        android:visibility="gone"
+                        ></View>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Pay Now "
+                            android:textColor="@color/textcolor"
+                            android:textSize="@dimen/textsize" />
 
                         <EditText
                             android:id="@+id/edittext_2"
@@ -298,15 +337,12 @@
                             android:inputType="numberDecimal"
                             android:padding="5dp"
                             android:textSize="@dimen/textsize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Pay Now "
-                            android:textColor="@color/textcolor"
-                            android:textSize="@dimen/textsize" />
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray"></View>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -331,6 +367,13 @@
                             android:textSize="@dimen/textsize" />
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray"
+                        android:visibility="gone"
+                        ></View>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -353,17 +396,16 @@
                             android:textSize="@dimen/textsize" />
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray"></View>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
-
-                        <Spinner
-                            android:id="@+id/spinner_4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:entries="@array/paymentmode"></Spinner>
 
                         <TextView
                             android:layout_width="match_parent"
@@ -372,21 +414,24 @@
                             android:text="Payment Mode :"
                             android:textColor="@color/textcolor"
                             android:textSize="@dimen/textsize" />
+
+                        <Spinner
+                            android:id="@+id/spinner_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/paymentmode"></Spinner>
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray"></View>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
-
-                        <EditText
-                            android:id="@+id/edittext_8"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/edittextshape_grayborder"
-                            android:padding="5dp"
-                            android:textSize="@dimen/textsize" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -395,21 +440,26 @@
                             android:text="Date"
                             android:textColor="@color/textcolor"
                             android:textSize="@dimen/textsize" />
+
+                        <EditText
+                            android:id="@+id/edittext_8"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edittextshape_grayborder"
+                            android:padding="5dp"
+                            android:textSize="@dimen/textsize" />
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray"></View>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
-
-                        <EditText
-                            android:id="@+id/edittext_9"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/edittextshape_grayborder"
-                            android:padding="5dp"
-                            android:textSize="@dimen/textsize" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -418,21 +468,26 @@
                             android:text="Bank Name"
                             android:textColor="@color/textcolor"
                             android:textSize="@dimen/textsize" />
+
+                        <EditText
+                            android:id="@+id/edittext_9"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edittextshape_grayborder"
+                            android:padding="5dp"
+                            android:textSize="@dimen/textsize" />
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray"></View>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
-
-                        <EditText
-                            android:id="@+id/edittext_10"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/edittextshape_grayborder"
-                            android:padding="5dp"
-                            android:textSize="@dimen/textsize" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -441,7 +496,20 @@
                             android:text="DD No"
                             android:textColor="@color/textcolor"
                             android:textSize="@dimen/textsize" />
+
+                        <EditText
+                            android:id="@+id/edittext_10"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edittextshape_grayborder"
+                            android:padding="5dp"
+                            android:textSize="@dimen/textsize" />
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray"></View>
 
                     <LinearLayout
                         android:id="@+id/layout_2"
@@ -455,14 +523,6 @@
                             android:layout_margin="10dp"
                             android:orientation="horizontal">
 
-                            <EditText
-                                android:id="@+id/edittext_3"
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/edittextshape_grayborder"
-                                android:padding="5dp"
-                                android:textSize="@dimen/textsize" />
-
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -470,22 +530,27 @@
                                 android:text="Narration "
                                 android:textColor="@color/textcolor"
                                 android:textSize="@dimen/textsize" />
+
+                            <EditText
+                                android:id="@+id/edittext_3"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/edittextshape_grayborder"
+                                android:padding="5dp"
+                                android:textSize="@dimen/textsize" />
                         </LinearLayout>
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray"></View>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
-
-                        <EditText
-                            android:id="@+id/edittext_7"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/edittextshape_grayborder"
-                            android:padding="5dp"
-                            android:textSize="@dimen/textsize" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -494,21 +559,26 @@
                             android:text="Description"
                             android:textColor="@color/textcolor"
                             android:textSize="@dimen/textsize" />
+
+                        <EditText
+                            android:id="@+id/edittext_7"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edittextshape_grayborder"
+                            android:padding="5dp"
+                            android:textSize="@dimen/textsize" />
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightgray"></View>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
-
-                        <EditText
-                            android:id="@+id/edittext_4"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/edittextshape_grayborder"
-                            android:padding="5dp"
-                            android:textSize="@dimen/textsize" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -517,99 +587,29 @@
                             android:text="Remark "
                             android:textColor="@color/textcolor"
                             android:textSize="@dimen/textsize" />
+
+                        <EditText
+                            android:id="@+id/edittext_4"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edittextshape_grayborder"
+                            android:padding="5dp"
+                            android:textSize="@dimen/textsize" />
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray">
-                    </View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray">
-                    </View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray">
-                    </View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray"></View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray"></View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray"
-                        android:visibility="gone"
-                        ></View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray"
-                        android:visibility="gone"
-                        ></View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray"></View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray"
-                        android:visibility="gone"
-                        ></View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray"></View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray"></View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray"></View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray"></View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray"></View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray"></View>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightgray"></View>
+                    <Button
+                        android:id="@+id/button_1"
+                        android:layout_width="50dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="right"
+                        android:layout_margin="10dp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:text="Pay"
+                        android:textColor="@color/white" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

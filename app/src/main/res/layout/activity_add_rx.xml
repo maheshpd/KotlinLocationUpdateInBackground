@@ -4,7 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v4.widget.NestedScrollView
+    <include
+        layout="@layout/toolbar">
+    </include>
+
+    <androidx.core.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,23 +26,42 @@
                 android:id="@+id/layout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:orientation="vertical"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:scrollbars="vertical"
+                android:layout_weight="1"
                 >
 
-                <Button
-                    android:id="@+id/button_1"
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_gravity="right"
-                    android:layout_margin="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/colorPrimary"
-                    android:gravity="center"
-                    android:text="Add"
-                    android:textColor="@color/white"/>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Add Prescription"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/textview_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@drawable/ic_cal"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@drawable/ic_editdates"
+                    android:text="Date: "
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/textcolor" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:text="Drug Name/Generic"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/textcolor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -52,8 +75,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-                        android:focusable="false"
                         android:padding="5dp"
+                        android:focusable="false"
                         />
 
                     <ImageView
@@ -65,6 +88,18 @@
                         android:visibility="gone"
                         />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:text="Brand"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/textcolor"
+                    android:visibility="gone"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -90,6 +125,17 @@
                         android:src="@drawable/ic_microphone" />
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:text="Dosage"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/textcolor"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -101,8 +147,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/edittextshape_grayborder"
-                        android:focusable="false"
                         android:padding="5dp"
+                        android:focusable="false"
                         />
 
                     <ImageView
@@ -116,6 +162,23 @@
                         />
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/GrayLight3"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:text="Frequency"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/textcolor" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -127,8 +190,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/edittextshape_grayborder"
-                        android:focusable="false"
                         android:padding="5dp"
+                        android:focusable="false"
                         />
 
                     <ImageView
@@ -145,8 +208,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="10dp"
-                    android:visibility="gone"
                     android:weightSum="2"
+                    android:visibility="gone"
                     >
                     <Spinner
                         android:id="@+id/spinner1"
@@ -163,6 +226,47 @@
                         android:visibility="gone"/>
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/GrayLight3"
+                    android:text=""/>
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:text="Instructions"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/textcolor"/>
+
+                <RadioGroup
+                    android:id="@+id/radioGroup1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:visibility="gone">
+
+                    <RadioButton
+                        android:id="@+id/radioButton1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Before Food"
+                        android:textColor="@color/textcolor" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="After Food"
+                        android:textColor="@color/textcolor"/>
+                </RadioGroup>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -176,9 +280,9 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-                        android:focusable="false"
                         android:minWidth="100dp"
                         android:padding="5dp"
+                        android:focusable="false"
                         />
 
                     <ImageView
@@ -190,6 +294,19 @@
                         android:visibility="gone"
                         />
                 </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:text="Quantity/Unit"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/textcolor"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -223,6 +340,17 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Route"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/textcolor" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -236,8 +364,8 @@
                             android:layout_marginBottom="10dp"
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
-                            android:focusable="false"
                             android:padding="10dp"
+                            android:focusable="false"
                             />
 
                         <ImageView
@@ -249,18 +377,20 @@
                             android:visibility="gone"
                             />
                     </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/textView7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="10dp"
-                        android:text="Route"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="@color/textcolor" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:text="LifeStyle"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/textcolor"
+                    android:visibility="gone"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -290,6 +420,17 @@
                         />
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:text="Lab"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/textcolor"
+                    android:visibility="gone" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -317,168 +458,27 @@
                         />
                 </LinearLayout>
 
-                <RadioGroup
-                    android:id="@+id/radioGroup1"
+                <Button
+                    android:id="@+id/button_1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
+                    android:layout_margin="10dp"
                     android:layout_marginRight="10dp"
-                    android:visibility="gone">
-
-                    <RadioButton
-                        android:id="@+id/radioButton1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:text="Before Food"
-                        android:textColor="@color/textcolor" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="After Food"
-                        android:textColor="@color/textcolor"/>
-                </RadioGroup>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Add Prescription"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/colorPrimary" />
-
-                <TextView
-                    android:id="@+id/textview_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:drawableLeft="@drawable/ic_cal"
-                    android:drawableRight="@drawable/ic_editdates"
-                    android:drawablePadding="5dp"
-                    android:text="Date: "
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/textcolor" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="10dp"
-                    android:text="Drug Name/Generic"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/textcolor" />
-
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="10dp"
-                    android:text="Brand"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/textcolor"
-                    android:visibility="gone"/>
-
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="10dp"
-                    android:text="Dosage"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/textcolor"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/GrayLight3"
-                    android:text="" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="10dp"
-                    android:text="Frequency"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/textcolor" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/GrayLight3"
-                    android:text=""/>
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="10dp"
-                    android:text="Instructions"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/textcolor"/>
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="10dp"
-                    android:text="Quantity/Unit"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/textcolor"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="10dp"
-                    android:text="LifeStyle"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/textcolor"
-                    android:visibility="gone"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="10dp"
-                    android:text="Lab"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/textcolor"
-                    android:visibility="gone" />
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:text="Add"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
 
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-
-    <include
-        layout="@layout/toolbar">
-    </include>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

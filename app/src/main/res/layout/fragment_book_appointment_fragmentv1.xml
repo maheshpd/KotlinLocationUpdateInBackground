@@ -9,7 +9,7 @@
     android:orientation="vertical"
     tools:context=".AppointmentActivity">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/White">
@@ -21,15 +21,12 @@
             android:layout_margin="10dp"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/button_1"
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_margin="10dp"
-                android:background="@drawable/rounded_button"
-                android:text="Book"
-                android:textColor="@color/white"/>
+                android:layout_marginTop="10dp"
+                android:text="Date"
+                android:textColor="@color/textcolor" />
 
             <EditText
                 android:id="@+id/edittext_1"
@@ -40,6 +37,13 @@
                 android:focusable="false"
                 android:padding="10dp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Time"
+                android:textColor="@color/textcolor" />
+
             <EditText
                 android:id="@+id/edittext_2"
                 android:layout_width="match_parent"
@@ -48,34 +52,6 @@
                 android:editable="false"
                 android:focusable="false"
                 android:padding="10dp" />
-
-            <EditText
-                android:id="@+id/edittext_3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edittext"
-                android:padding="10dp" />
-
-            <Spinner
-                android:id="@+id/spinner_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edittext"
-                android:padding="10dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Date"
-                android:textColor="@color/textcolor" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Time"
-                android:textColor="@color/textcolor" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -89,12 +65,36 @@
                 android:text="Remark"
                 android:textColor="@color/textcolor" />
 
+            <EditText
+                android:id="@+id/edittext_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
+                android:padding="10dp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Purpose"
                 android:textColor="@color/textcolor"/>
+
+            <Spinner
+                android:id="@+id/spinner_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
+                android:padding="10dp"/>
+
+            <Button
+                android:id="@+id/button_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_margin="10dp"
+                android:background="@drawable/rounded_button"
+                android:text="Book"
+                android:textColor="@color/white"/>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

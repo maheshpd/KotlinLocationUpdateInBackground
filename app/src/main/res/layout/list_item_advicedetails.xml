@@ -39,25 +39,25 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/textcolor"
+        android:text="Advice"
         android:drawableLeft="@drawable/ic_filledsquare"
         android:drawablePadding="5dp"
-        android:text="Advice"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:textColor="@color/textcolor"
         />
     <TextView
         android:id="@+id/textview_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/lighttextcolor"
         android:layout_marginLeft="24dp"
         android:text="24 aug 2018"
-        android:textColor="@color/lighttextcolor"
         />
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:id="@+id/recyclerview_1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content">
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

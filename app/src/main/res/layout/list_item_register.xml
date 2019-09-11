@@ -5,13 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edittext_remark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_edittext"
-        android:padding="10dp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,13 +17,6 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/spinner_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/title"
-                android:minWidth="200dp"></Spinner>
-
             <TextView
                 android:id="@+id/textview_title"
                 android:layout_width="match_parent"
@@ -38,6 +24,13 @@
                 android:layout_marginBottom="5dp"
                 android:text="Title"
                 android:textColor="@color/textcolor" />
+
+            <Spinner
+                android:id="@+id/spinner_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/title"
+                android:minWidth="200dp"></Spinner>
         </LinearLayout>
 
         <LinearLayout
@@ -47,13 +40,6 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/edittext_fname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edittext"
-                android:padding="10dp" />
-
             <TextView
                 android:id="@+id/textview_fname"
                 android:layout_width="match_parent"
@@ -61,6 +47,13 @@
                 android:layout_marginBottom="5dp"
                 android:text="First Name"
                 android:textColor="@color/textcolor" />
+
+            <EditText
+                android:id="@+id/edittext_fname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
+                android:padding="10dp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -76,21 +69,21 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textview_mname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Middle Name"
+                android:textColor="@color/textcolor" />
+
             <EditText
                 android:id="@+id/edittext_mname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
                 android:padding="10dp" />
-
-            <TextView
-                android:id="@+id/textview_mname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="Middle Name"
-                android:textColor="@color/textcolor" />
         </LinearLayout>
 
         <LinearLayout
@@ -100,21 +93,21 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textview_lname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Last Name"
+                android:textColor="@color/textcolor" />
+
             <EditText
                 android:id="@+id/edittext_lname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
                 android:padding="10dp" />
-
-            <TextView
-                android:id="@+id/textview_lname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="Last Name"
-                android:textColor="@color/textcolor" />
         </LinearLayout>
     </LinearLayout>
 
@@ -128,6 +121,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Date of Registration"
+                android:textColor="@color/textcolor" />
 
             <EditText
                 android:id="@+id/edittext_regdate"
@@ -138,14 +139,6 @@
                 android:focusable="false"
                 android:padding="10dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="Date of Registration"
-                android:textColor="@color/textcolor" />
-
         </LinearLayout>
 
 
@@ -156,6 +149,15 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textview_dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Birth Date"
+                android:textColor="@color/textcolor" />
+
             <EditText
                 android:id="@+id/edittext_dob"
                 android:layout_width="match_parent"
@@ -163,15 +165,6 @@
                 android:background="@drawable/rounded_edittext"
                 android:focusable="false"
                 android:padding="10dp" />
-
-            <TextView
-                android:id="@+id/textview_dob"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="Birth Date"
-                android:textColor="@color/textcolor" />
         </LinearLayout>
     </LinearLayout>
 
@@ -185,6 +178,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textview_ageyear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Age Year"
+                android:textColor="@color/textcolor" />
 
             <EditText
                 android:id="@+id/edittext_ageyear"
@@ -194,15 +196,6 @@
                 android:inputType="number"
                 android:padding="10dp"
                 android:singleLine="true" />
-
-            <TextView
-                android:id="@+id/textview_ageyear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="Age Year"
-                android:textColor="@color/textcolor" />
         </LinearLayout>
 
         <LinearLayout
@@ -211,6 +204,15 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textview_agemonth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Age Month"
+                android:textColor="@color/textcolor" />
 
             <EditText
                 android:id="@+id/edittext_agemonth"
@@ -220,15 +222,6 @@
                 android:inputType="number"
                 android:padding="10dp"
                 android:singleLine="true" />
-
-            <TextView
-                android:id="@+id/textview_agemonth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="Age Month"
-                android:textColor="@color/textcolor" />
         </LinearLayout>
     </LinearLayout>
 
@@ -242,6 +235,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textview_bloodgroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Blood Group"
+                android:textColor="@color/textcolor" />
 
             <Spinner
                 android:id="@+id/spinner_bloodgroup"
@@ -250,15 +252,6 @@
                 android:background="@drawable/rounded_edittext"
                 android:entries="@array/bloodgroup_arrays"
                 android:padding="10dp" />
-
-            <TextView
-                android:id="@+id/textview_bloodgroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="Blood Group"
-                android:textColor="@color/textcolor" />
         </LinearLayout>
 
         <LinearLayout
@@ -268,6 +261,15 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textview_maritalstatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Marital Status"
+                android:textColor="@color/textcolor" />
+
             <Spinner
                 android:id="@+id/spinner_maritalstatus"
                 android:layout_width="match_parent"
@@ -275,15 +277,6 @@
                 android:background="@drawable/rounded_edittext"
                 android:entries="@array/marritialstatus"
                 android:padding="10dp" />
-
-            <TextView
-                android:id="@+id/textview_maritalstatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="Marital Status"
-                android:textColor="@color/textcolor" />
         </LinearLayout>
     </LinearLayout>
 
@@ -297,6 +290,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textview_aadharno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Aadhar No"
+                android:textColor="@color/textcolor" />
 
             <EditText
                 android:id="@+id/edittext_aadharno"
@@ -305,15 +307,6 @@
                 android:background="@drawable/rounded_edittext"
                 android:inputType="number"
                 android:padding="10dp" />
-
-            <TextView
-                android:id="@+id/textview_aadharno"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="Aadhar No"
-                android:textColor="@color/textcolor" />
         </LinearLayout>
 
         <LinearLayout
@@ -323,21 +316,21 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textview_panno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="PAN No"
+                android:textColor="@color/textcolor" />
+
             <EditText
                 android:id="@+id/edittext_panno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
                 android:padding="10dp" />
-
-            <TextView
-                android:id="@+id/textview_panno"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="PAN No"
-                android:textColor="@color/textcolor" />
         </LinearLayout>
     </LinearLayout>
 
@@ -351,6 +344,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textview_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="SEX"
+                android:textColor="@color/textcolor" />
 
             <Spinner
                 android:id="@+id/spinner_sex"
@@ -359,15 +361,6 @@
                 android:background="@drawable/rounded_edittext"
                 android:entries="@array/Gender"
                 android:padding="10dp" />
-
-            <TextView
-                android:id="@+id/textview_sex"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="SEX"
-                android:textColor="@color/textcolor" />
         </LinearLayout>
 
         <LinearLayout
@@ -377,6 +370,15 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textview_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Language"
+                android:textColor="@color/textcolor" />
+
             <Spinner
                 android:id="@+id/spinner_language"
                 android:layout_width="match_parent"
@@ -384,15 +386,6 @@
                 android:background="@drawable/rounded_edittext"
                 android:entries="@array/language"
                 android:padding="10dp" />
-
-            <TextView
-                android:id="@+id/textview_language"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="Language"
-                android:textColor="@color/textcolor" />
         </LinearLayout>
     </LinearLayout>
 
@@ -407,6 +400,15 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textview_religion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Religion"
+                android:textColor="@color/textcolor" />
+
             <Spinner
                 android:id="@+id/spinner_religion"
                 android:layout_width="match_parent"
@@ -414,15 +416,6 @@
                 android:background="@drawable/rounded_edittext"
                 android:entries="@array/Religion"
                 android:padding="10dp" />
-
-            <TextView
-                android:id="@+id/textview_religion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="Religion"
-                android:textColor="@color/textcolor" />
         </LinearLayout>
 
         <LinearLayout
@@ -432,6 +425,15 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textview_weddingdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Wedding Date"
+                android:textColor="@color/textcolor" />
+
             <EditText
                 android:id="@+id/edittext_weddingdate"
                 android:layout_width="match_parent"
@@ -439,15 +441,59 @@
                 android:background="@drawable/rounded_edittext"
                 android:focusable="false"
                 android:padding="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textview_weddingdate"
+                android:id="@+id/textview_idmark1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Wedding Date"
+                android:layout_marginTop="10dp"
+                android:text="Identification Marks 1 "
                 android:textColor="@color/textcolor" />
+
+            <EditText
+                android:id="@+id/edittext_idmark1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textview_idmark2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Identification Marks 2 "
+                android:textColor="@color/textcolor" />
+
+            <EditText
+                android:id="@+id/edittext_idmark2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
+                android:padding="10dp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -459,54 +505,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textview_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Address"
+            android:textColor="@color/textcolor" />
 
-            <EditText
-                android:id="@+id/edittext_idmark1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edittext"
-                android:padding="10dp" />
-
-            <TextView
-                android:id="@+id/textview_idmark1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="Identification Marks 1 "
-                android:textColor="@color/textcolor" />
-        </LinearLayout>
-
-        <LinearLayout
+        <EditText
+            android:id="@+id/edittext_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/edittext_idmark2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edittext"
-                android:padding="10dp" />
-
-            <TextView
-                android:id="@+id/textview_idmark2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="Identification Marks 2 "
-                android:textColor="@color/textcolor" />
-        </LinearLayout>
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -515,21 +531,23 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/textview_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Area"
+            android:textColor="@color/textcolor" />
+
         <EditText
-            android:id="@+id/edittext_address"
+            android:id="@+id/edittext_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
-            android:padding="10dp" />
+            android:focusable="false"
 
-        <TextView
-            android:id="@+id/textview_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="Address"
-            android:textColor="@color/textcolor" />
+            android:padding="10dp" />
     </LinearLayout>
     <!--    </LinearLayout>-->
 
@@ -544,30 +562,14 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edittext_area"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edittext"
-            android:focusable="false"
-
-            android:padding="10dp" />
-
         <TextView
-            android:id="@+id/textview_area"
+            android:id="@+id/textview_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
-            android:text="Area"
+            android:layout_marginTop="10dp"
+            android:text="City"
             android:textColor="@color/textcolor" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
 
         <EditText
             android:id="@+id/edittext_city"
@@ -576,15 +578,30 @@
             android:background="@drawable/rounded_edittext"
             android:focusable="false"
             android:padding="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textview_city"
+            android:id="@+id/textview_pincode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
-            android:text="City"
+            android:layout_marginTop="10dp"
+            android:text="Pincode"
             android:textColor="@color/textcolor" />
+
+        <EditText
+            android:id="@+id/edittext_pincode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:inputType="number"
+            android:padding="10dp" />
     </LinearLayout>
     <!-- </LinearLayout>-->
 
@@ -599,29 +616,14 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edittext_pincode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edittext"
-            android:inputType="number"
-            android:padding="10dp" />
-
         <TextView
-            android:id="@+id/textview_pincode"
+            android:id="@+id/textview_state"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
-            android:text="Pincode"
+            android:layout_marginTop="10dp"
+            android:text="State"
             android:textColor="@color/textcolor" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
 
         <EditText
             android:id="@+id/edittext_state"
@@ -631,15 +633,31 @@
             android:editable="false"
             android:focusable="false"
             android:padding="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textview_state"
+            android:id="@+id/textview_country"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
-            android:text="State"
+            android:layout_marginTop="10dp"
+            android:text="Country"
             android:textColor="@color/textcolor" />
+
+        <EditText
+            android:id="@+id/edittext_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+
+            android:focusable="false"
+            android:padding="10dp" />
     </LinearLayout>
     <!--    </LinearLayout>-->
 
@@ -654,23 +672,22 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/textview_phno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:inputType="number"
+            android:text="Phone No"
+            android:textColor="@color/textcolor" />
+
         <EditText
-            android:id="@+id/edittext_country"
+            android:id="@+id/edittext_phno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
-
-            android:focusable="false"
             android:padding="10dp" />
-
-        <TextView
-            android:id="@+id/textview_country"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="Country"
-            android:textColor="@color/textcolor" />
     </LinearLayout>
 
     <LinearLayout
@@ -679,22 +696,21 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/textview_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Mobile"
+            android:textColor="@color/textcolor" />
+
         <EditText
-            android:id="@+id/edittext_phno"
+            android:id="@+id/edittext_mobile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
             android:padding="10dp" />
-
-        <TextView
-            android:id="@+id/textview_phno"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:inputType="number"
-            android:text="Phone No"
-            android:textColor="@color/textcolor" />
     </LinearLayout>
     <!--  </LinearLayout>-->
 
@@ -710,28 +726,14 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edittext_mobile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edittext"
-            android:padding="10dp" />
-
         <TextView
-            android:id="@+id/textview_mobile"
+            android:id="@+id/textview_alternatemobile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
-            android:text="Mobile"
+            android:layout_marginTop="10dp"
+            android:text="Alternate Mobile"
             android:textColor="@color/textcolor" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
 
         <EditText
             android:id="@+id/edittext_alternatemobile"
@@ -739,15 +741,30 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
             android:padding="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textview_alternatemobile"
+            android:id="@+id/textview_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
-            android:text="Alternate Mobile"
+            android:layout_marginTop="10dp"
+            android:text="Email"
             android:textColor="@color/textcolor" />
+
+        <EditText
+            android:id="@+id/edittext_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp" />
     </LinearLayout>
     <!--</LinearLayout>-->
 
@@ -759,32 +776,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_weight="1"
         android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/edittext_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edittext"
-            android:padding="10dp" />
 
         <TextView
-            android:id="@+id/textview_email"
+            android:id="@+id/textview_alternateemail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
-            android:text="Email"
+            android:layout_marginTop="10dp"
+            android:text="Alternate Email"
             android:textColor="@color/textcolor" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
 
         <EditText
             android:id="@+id/edittext_alternateemail"
@@ -792,15 +794,33 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
             android:padding="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textview_alternateemail"
+            android:id="@+id/textview_occupation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
-            android:text="Alternate Email"
+            android:layout_marginTop="10dp"
+            android:text="Occupation"
             android:textColor="@color/textcolor" />
+
+        <EditText
+            android:id="@+id/edittext_iccupation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:focusable="false"
+            android:padding="10dp"
+
+            />
     </LinearLayout>
     <!--  </LinearLayout>-->
 
@@ -812,35 +832,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_weight="1"
         android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/edittext_iccupation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edittext"
-            android:focusable="false"
-            android:padding="10dp"
-
-            />
 
         <TextView
-            android:id="@+id/textview_occupation"
+            android:id="@+id/textview_employeeno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
-            android:text="Occupation"
+            android:layout_marginTop="10dp"
+            android:text="Employee No"
             android:textColor="@color/textcolor" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
 
         <EditText
             android:id="@+id/edittext_employeeno"
@@ -850,17 +852,7 @@
             android:padding="10dp"
 
             />
-
-        <TextView
-            android:id="@+id/textview_employeeno"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="Employee No"
-            android:textColor="@color/textcolor" />
     </LinearLayout>
-    <!-- </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -868,6 +860,15 @@
 
         android:layout_weight="1"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textview_employeename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Emplyee Name"
+            android:textColor="@color/textcolor" />
 
         <EditText
             android:id="@+id/edittext_employeename"
@@ -878,22 +879,21 @@
             android:padding="10dp"
 
             />
-
-        <TextView
-            android:id="@+id/textview_employeename"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="Emplyee Name"
-            android:textColor="@color/textcolor" />
     </LinearLayout>
+    <!-- </LinearLayout>-->
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
         android:text="Remark"
         android:textColor="@color/textcolor" />
+
+    <EditText
+        android:id="@+id/edittext_remark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
+        android:padding="10dp" />
 </LinearLayout>

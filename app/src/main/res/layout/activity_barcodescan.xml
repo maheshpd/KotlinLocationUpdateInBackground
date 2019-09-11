@@ -5,9 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BarcodescanActivity"
-   >
+    >
 
     <!-- Barcode Reader fragment -->
+    <fragment
+        android:name="com.healthbank.BarcodeReader"
+        android:id="@+id/barcode_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:auto_focus="true"
+        app:use_flash="false"/>
+
+    <!-- Scanner overlay animation -->
     <com.healthbank.ScannerOverlay
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,14 +26,5 @@
         app:line_width="4"
         app:square_height="200"
         app:square_width="200" />
-
-    <!-- Scanner overlay animation -->
-    <fragment
-        android:id="@+id/barcode_fragment"
-        android:name="com.healthbank.BarcodeReader"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:auto_focus="true"
-        app:use_flash="false"/>
 
 </RelativeLayout>

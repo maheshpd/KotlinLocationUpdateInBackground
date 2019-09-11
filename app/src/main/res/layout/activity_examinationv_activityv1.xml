@@ -7,13 +7,15 @@
     android:orientation="vertical"
     tools:context=".ExaminationvActivityv1">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
-
     <include
         layout="@layout/toolbar">
     </include>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </androidx.recyclerview.widget.RecyclerView>
+
+
 </LinearLayout>

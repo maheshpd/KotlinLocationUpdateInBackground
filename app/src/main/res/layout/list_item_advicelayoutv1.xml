@@ -12,16 +12,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:dropDownVerticalOffset="-15dp"
             android:hint="Advice"
+            android:dropDownVerticalOffset="-15dp"
+            />
+        <TextView
+            android:id="@+id/textview_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             />
         <AutoCompleteTextView
             android:id="@+id/autocompletetextview_2"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:dropDownVerticalOffset="-15dp"
             android:hint="Cost"
+            android:dropDownVerticalOffset="-15dp"
             />
         <ImageView
             android:id="@+id/imageview_1"
@@ -29,10 +34,5 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/ic_addcolor" />
-        <TextView
-            android:id="@+id/textview_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
     </LinearLayout>
 </LinearLayout>

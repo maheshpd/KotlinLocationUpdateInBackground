@@ -7,7 +7,8 @@
     android:orientation="vertical"
     tools:context=".TemplateQuestionActivity"
     >
-
+    <include layout="@layout/toolbar">
+    </include>
     <ScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
@@ -97,8 +98,7 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>-->
-    <include layout="@layout/toolbar">
-    </include>
+
   <!--  <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

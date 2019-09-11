@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -13,22 +13,107 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/button_1"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="right"
-                android:layout_margin="10dp"
-                android:background="@color/colorPrimary"
-                android:text="save"
-                android:textColor="@color/white"
-                />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="UCVA" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="PGP" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="MR" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="CR" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="PUPIL" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="IOP" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="EXT EXAM "
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="ANT SEGMENT" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="FUNDUS" />
+                </LinearLayout>
 
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
@@ -75,19 +160,19 @@
                                 android:layout_height="@dimen/eye_gridheight"
                                 android:background="@drawable/cell_shape">
 
+                                <TextView
+                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="D" />
+
                                 <EditText
                                     android:id="@+id/editText_1"
                                     android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
 
                                     android:layout_height="@dimen/eye_gridheight"
                                     android:imeOptions="flagNoExtractUi" />
-
-                                <TextView
-                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
-                                    android:layout_height="@dimen/eye_gridheight"
-                                    android:gravity="left"
-                                    android:padding="10dp"
-                                    android:text="D" />
                             </LinearLayout>
 
 
@@ -95,31 +180,25 @@
                                 android:layout_width="@dimen/eye_layout_width"
                                 android:layout_height="@dimen/eye_gridheight"
                                 android:background="@drawable/cell_shape">
+
+                                <TextView
+                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="N" />
 
                                 <EditText
                                     android:id="@+id/editText_2"
                                     android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
                                     android:layout_height="@dimen/eye_gridheight"
                                     android:imeOptions="flagNoExtractUi" />
-
-                                <TextView
-                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
-                                    android:layout_height="@dimen/eye_gridheight"
-                                    android:gravity="left"
-                                    android:padding="10dp"
-                                    android:text="N" />
                             </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="@dimen/eye_layout_width"
                                 android:layout_height="@dimen/eye_gridheight"
                                 android:background="@drawable/cell_shape">
-
-                                <EditText
-                                    android:id="@+id/editText_3"
-                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
-                                    android:layout_height="@dimen/eye_gridheight"
-                                    android:imeOptions="flagNoExtractUi" />
 
                                 <TextView
                                     android:layout_width="@dimen/eye_textviewwithinlayout_width"
@@ -127,18 +206,18 @@
                                     android:gravity="left"
                                     android:padding="10dp"
                                     android:text="PH" />
+
+                                <EditText
+                                    android:id="@+id/editText_3"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
                             </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="@dimen/eye_layout_width"
                                 android:layout_height="@dimen/eye_gridheight"
                                 android:background="@drawable/cell_shape">
-
-                                <EditText
-                                    android:id="@+id/editText_4"
-                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
-                                    android:layout_height="@dimen/eye_gridheight"
-                                    android:imeOptions="flagNoExtractUi" />
 
                                 <TextView
                                     android:layout_width="@dimen/eye_textviewwithinlayout_width"
@@ -146,6 +225,12 @@
                                     android:gravity="left"
                                     android:padding="10dp"
                                     android:text="VN" />
+
+                                <EditText
+                                    android:id="@+id/editText_4"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
                             </LinearLayout>
 
 
@@ -153,12 +238,6 @@
                                 android:layout_width="@dimen/eye_layout_width"
                                 android:layout_height="@dimen/eye_gridheight"
                                 android:background="@drawable/cell_shape">
-
-                                <EditText
-                                    android:id="@+id/editText_5"
-                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
-                                    android:layout_height="@dimen/eye_gridheight"
-                                    android:imeOptions="flagNoExtractUi" />
 
                                 <TextView
                                     android:layout_width="@dimen/eye_textviewwithinlayout_width"
@@ -166,6 +245,12 @@
                                     android:gravity="left"
                                     android:padding="10dp"
                                     android:text="Add" />
+
+                                <EditText
+                                    android:id="@+id/editText_5"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
                             </LinearLayout>
 
 
@@ -173,12 +258,6 @@
                                 android:layout_width="@dimen/eye_layout_width"
                                 android:layout_height="@dimen/eye_gridheight"
                                 android:background="@drawable/cell_shape">
-
-                                <EditText
-                                    android:id="@+id/editText_6"
-                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
-                                    android:layout_height="@dimen/eye_gridheight"
-                                    android:imeOptions="flagNoExtractUi" />
 
                                 <TextView
                                     android:layout_width="@dimen/eye_textviewwithinlayout_width"
@@ -186,18 +265,18 @@
                                     android:gravity="left"
                                     android:padding="10dp"
                                     android:text="NV" />
+
+                                <EditText
+                                    android:id="@+id/editText_6"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
                             </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="@dimen/eye_layout_width"
                                 android:layout_height="@dimen/eye_gridheight"
                                 android:background="@drawable/cell_shape">
-
-                                <EditText
-                                    android:id="@+id/editText_7"
-                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
-                                    android:layout_height="@dimen/eye_gridheight"
-                                    android:imeOptions="flagNoExtractUi" />
 
                                 <TextView
                                     android:layout_width="@dimen/eye_textviewwithinlayout_width"
@@ -205,6 +284,12 @@
                                     android:gravity="left"
                                     android:padding="10dp"
                                     android:text="D" />
+
+                                <EditText
+                                    android:id="@+id/editText_7"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
                             </LinearLayout>
 
 
@@ -212,12 +297,6 @@
                                 android:layout_width="@dimen/eye_layout_width"
                                 android:layout_height="@dimen/eye_gridheight"
                                 android:background="@drawable/cell_shape">
-
-                                <EditText
-                                    android:id="@+id/editText_8"
-                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
-                                    android:layout_height="@dimen/eye_gridheight"
-                                    android:imeOptions="flagNoExtractUi" />
 
                                 <TextView
                                     android:layout_width="@dimen/eye_textviewwithinlayout_width"
@@ -225,18 +304,18 @@
                                     android:gravity="left"
                                     android:padding="10dp"
                                     android:text="N" />
+
+                                <EditText
+                                    android:id="@+id/editText_8"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
                             </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="@dimen/eye_layout_width"
                                 android:layout_height="@dimen/eye_gridheight"
                                 android:background="@drawable/cell_shape">
-
-                                <EditText
-                                    android:id="@+id/editText_9"
-                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
-                                    android:layout_height="@dimen/eye_gridheight"
-                                    android:imeOptions="flagNoExtractUi" />
 
                                 <TextView
                                     android:layout_width="@dimen/eye_textviewwithinlayout_width"
@@ -244,18 +323,18 @@
                                     android:gravity="left"
                                     android:padding="10dp"
                                     android:text="PH" />
+
+                                <EditText
+                                    android:id="@+id/editText_9"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
                             </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="@dimen/eye_layout_width"
                                 android:layout_height="@dimen/eye_gridheight"
                                 android:background="@drawable/cell_shape">
-
-                                <EditText
-                                    android:id="@+id/editText_10"
-                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
-                                    android:layout_height="@dimen/eye_gridheight"
-                                    android:imeOptions="flagNoExtractUi" />
 
                                 <TextView
                                     android:layout_width="@dimen/eye_textviewwithinlayout_width"
@@ -263,6 +342,12 @@
                                     android:gravity="left"
                                     android:padding="10dp"
                                     android:text="VN" />
+
+                                <EditText
+                                    android:id="@+id/editText_10"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
                             </LinearLayout>
 
 
@@ -270,12 +355,6 @@
                                 android:layout_width="@dimen/eye_layout_width"
                                 android:layout_height="@dimen/eye_gridheight"
                                 android:background="@drawable/cell_shape">
-
-                                <EditText
-                                    android:id="@+id/editText_11"
-                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
-                                    android:layout_height="@dimen/eye_gridheight"
-                                    android:imeOptions="flagNoExtractUi" />
 
                                 <TextView
                                     android:layout_width="@dimen/eye_textviewwithinlayout_width"
@@ -283,6 +362,12 @@
                                     android:gravity="left"
                                     android:padding="10dp"
                                     android:text="Add" />
+
+                                <EditText
+                                    android:id="@+id/editText_11"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
                             </LinearLayout>
 
 
@@ -291,18 +376,18 @@
                                 android:layout_height="@dimen/eye_gridheight"
                                 android:background="@drawable/cell_shape">
 
-                                <EditText
-                                    android:id="@+id/editText_12"
-                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
-                                    android:layout_height="@dimen/eye_gridheight"
-                                    android:imeOptions="flagNoExtractUi" />
-
                                 <TextView
                                     android:layout_width="@dimen/eye_textviewwithinlayout_width"
                                     android:layout_height="@dimen/eye_gridheight"
                                     android:gravity="left"
                                     android:padding="10dp"
                                     android:text="NV" />
+
+                                <EditText
+                                    android:id="@+id/editText_12"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
                             </LinearLayout>
                         </LinearLayout>
 
@@ -1057,105 +1142,20 @@
                     </LinearLayout>
                 </HorizontalScrollView>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="230dp"
-                        android:layout_height="@dimen/eye_gridheight"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:text="" />
-
-                    <TextView
-                        android:layout_width="230dp"
-                        android:layout_height="@dimen/eye_gridheight"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="10dp"
-                        android:text="UCVA" />
-
-                    <TextView
-                        android:layout_width="230dp"
-                        android:layout_height="@dimen/eye_gridheight"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="10dp"
-                        android:text="" />
-
-                    <TextView
-                        android:layout_width="230dp"
-                        android:layout_height="@dimen/eye_gridheight"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="10dp"
-                        android:text="PGP" />
-
-                    <TextView
-                        android:layout_width="230dp"
-                        android:layout_height="@dimen/eye_gridheight"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="10dp"
-                        android:text="MR" />
-
-                    <TextView
-                        android:layout_width="230dp"
-                        android:layout_height="@dimen/eye_gridheight"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="10dp"
-                        android:text="CR" />
-
-                    <TextView
-                        android:layout_width="230dp"
-                        android:layout_height="@dimen/eye_gridheight"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="10dp"
-                        android:text="PUPIL" />
-
-                    <TextView
-                        android:layout_width="230dp"
-                        android:layout_height="@dimen/eye_gridheight"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="10dp"
-                        android:text="IOP" />
-
-                    <TextView
-                        android:layout_width="230dp"
-                        android:layout_height="@dimen/eye_gridheight"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="5dp"
-                        android:text="EXT EXAM "
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        />
-
-                    <TextView
-                        android:layout_width="230dp"
-                        android:layout_height="@dimen/eye_gridheight"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="10dp"
-                        android:text="ANT SEGMENT" />
-
-                    <TextView
-                        android:layout_width="230dp"
-                        android:layout_height="@dimen/eye_gridheight"
-                        android:background="@drawable/cell_shape"
-                        android:gravity="left"
-                        android:padding="10dp"
-                        android:text="FUNDUS" />
-                </LinearLayout>
-
             </LinearLayout>
+
+            <Button
+                android:id="@+id/button_1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:background="@color/colorPrimary"
+                android:text="save"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                />
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 </LinearLayout>
