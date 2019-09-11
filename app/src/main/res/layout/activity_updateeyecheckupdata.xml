@@ -1,0 +1,1149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimary"
+                android:text="save"
+                android:textColor="@color/white"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:imeOptions="flagNoExtractUi">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/eye_gridheight"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/eye_gridwidth"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="OD"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:layout_width="@dimen/eye_gridwidth"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="OS"
+                                android:textColor="@color/colorPrimary" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/eye_gridheight"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_1"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+
+                                <TextView
+                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="D" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_2"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+
+                                <TextView
+                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="N" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_3"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+
+                                <TextView
+                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="PH" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_4"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+
+                                <TextView
+                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="VN" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_5"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+
+                                <TextView
+                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="Add" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_6"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+
+                                <TextView
+                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="NV" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_7"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+
+                                <TextView
+                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="D" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_8"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+
+                                <TextView
+                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="N" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_9"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+
+                                <TextView
+                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="PH" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_10"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+
+                                <TextView
+                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="VN" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_11"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+
+                                <TextView
+                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="Add" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_12"
+                                    android:layout_width="@dimen/eye_edittexttextviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+
+                                <TextView
+                                    android:layout_width="@dimen/eye_textviewwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:gravity="left"
+                                    android:padding="10dp"
+                                    android:text="NV" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/eye_gridheight"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="Sph" />
+
+                            <TextView
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="Cyl" />
+
+                            <TextView
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="Axis" />
+
+                            <TextView
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="Vn" />
+
+                            <TextView
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="Add" />
+
+                            <TextView
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="NV" />
+
+                            <TextView
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="Sph" />
+
+                            <TextView
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="Cyl" />
+
+                            <TextView
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="Axis" />
+
+                            <TextView
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="Vn" />
+
+                            <TextView
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="Add" />
+
+                            <TextView
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="NV" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/eye_gridheight"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_13"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_14"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_15"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_16"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_17"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_18"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_19"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_20"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_21"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_22"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_23"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_24"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/eye_gridheight"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_25"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_26"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_27"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_28"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_29"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_30"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_31"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_32"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_33"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_34"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_35"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_36"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/eye_gridheight"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_37"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_38"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_39"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_40"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_41"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_42"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_43"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_44"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_45"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_46"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+
+                                <EditText
+                                    android:id="@+id/editText_47"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_layout_width"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_48"
+                                    android:layout_width="@dimen/eye_eidttextwithinlayout_width"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/eye_gridheight"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_gridwidth"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_49"
+                                    android:layout_width="@dimen/eye_gridwidth"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_gridwidth"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_50"
+                                    android:layout_width="@dimen/eye_gridwidth"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/eye_gridheight"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_gridwidth"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_51"
+                                    android:layout_width="@dimen/eye_gridwidth"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_gridwidth"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_52"
+                                    android:layout_width="@dimen/eye_gridwidth"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/eye_gridheight"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_gridwidth"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_53"
+                                    android:layout_width="@dimen/eye_gridwidth"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi"/>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_gridwidth"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_54"
+                                    android:layout_width="@dimen/eye_gridwidth"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/eye_gridheight"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_gridwidth"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_55"
+                                    android:layout_width="@dimen/eye_gridwidth"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_gridwidth"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_56"
+                                    android:layout_width="@dimen/eye_gridwidth"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/eye_gridheight"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_gridwidth"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+
+                                <EditText
+                                    android:id="@+id/editText_57"
+                                    android:layout_width="@dimen/eye_gridwidth"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/eye_gridwidth"
+                                android:layout_height="@dimen/eye_gridheight"
+                                android:background="@drawable/cell_shape">
+                                <EditText
+                                    android:id="@+id/editText_58"
+                                    android:layout_width="@dimen/eye_gridwidth"
+                                    android:layout_height="@dimen/eye_gridheight"
+                                    android:imeOptions="flagNoExtractUi"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="UCVA" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="PGP" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="MR" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="CR" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="PUPIL" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="IOP" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="5dp"
+                        android:text="EXT EXAM "
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="ANT SEGMENT" />
+
+                    <TextView
+                        android:layout_width="230dp"
+                        android:layout_height="@dimen/eye_gridheight"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="FUNDUS" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

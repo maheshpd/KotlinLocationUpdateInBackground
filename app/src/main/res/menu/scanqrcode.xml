@@ -1,0 +1,40 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_action_appointmentview"
+        android:orderInCategory="100"
+        android:title="Appointment View"
+        app:showAsAction="collapseActionView|withText" />
+
+    <item
+        android:id="@+id/menu_action_calanderview"
+        android:orderInCategory="100"
+        android:title="Calendar View"
+        app:showAsAction="collapseActionView|withText" />
+    <item
+        android:id="@+id/menu_action_scan"
+        android:orderInCategory="100"
+        android:title="Scanner"
+        app:showAsAction="collapseActionView|withText" />
+    <item
+        android:id="@+id/menu_action_refresh"
+        android:icon="@drawable/ic_refresh"
+        android:orderInCategory="100"
+        android:title="Refresh"
+        app:showAsAction="always"></item>
+    <item
+        android:id="@+id/menu_action_addpt"
+        android:orderInCategory="100"
+        android:title="Add Patient"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/menu_action_setting"
+        android:orderInCategory="100"
+        android:title="Setting"
+        app:showAsAction="collapseActionView|withText" />
+    <item
+        android:id="@+id/menu_action_waitingroom"
+        android:orderInCategory="100"
+        android:title="Waiting Room"
+        app:showAsAction="collapseActionView|withText" />
+</menu>

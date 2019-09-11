@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.healthbank">
+
+    <application
+        android:name=".groupvideocall.openvcall.AGApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".HomeActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".AppointmentActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".AppointmentListActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".PatientDetailsActivity"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".AddPrescriptionActivity" />
+        <activity android:name=".AddVitalsActivity" />
+        <activity android:name=".AvailabilityActivity" />
+        <activity android:name=".AddAppointmentActivity" />
+        <activity android:name=".TimelineActivity" />
+        <activity android:name=".AddDemographicActivity" />
+        <activity android:name=".PaymentActivity" />
+        <activity
+            android:name=".RxActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".VitalsActivity" />
+        <activity android:name=".GraphActivity" />
+        <activity android:name=".AddLabsActivity" />
+        <activity android:name=".MedicalHistoryActivity" />
+        <activity android:name=".BloodReportActivity" />
+        <activity android:name=".SearchReportActivity" />
+        <activity android:name=".OtherReportActivity" />
+        <activity android:name=".DatesReportActivity" />
+        <activity android:name=".CategorisedotherReportActivity" />
+        <activity android:name=".ImageViewActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".AddBillBookActivity" />
+        <activity android:name=".AddProcedureActivity" />
+        <activity android:name=".TreatmentActivity" />
+        <activity android:name=".PayBillActivity" />
+        <activity android:name=".UploadReportActivity" />
+        <activity android:name=".NotesActivity" />
+        <activity android:name=".MasterActivity" />
+        <activity android:name=".AllAppointment" />
+
+        <activity android:name=".BookAppointmentActivity" />
+
+        <activity android:name=".Lab" />
+
+        <activity android:name=".Examination" />
+        <activity android:name=".AdviceActivity" />
+        <activity android:name=".RxActivityv1" />
+        <activity android:name=".Vital" />
+        <activity android:name=".RadiologyActivity" />
+        <activity android:name=".BillingActivity" />
+        <activity android:name=".PartialPaymentActivity" />
+        <activity android:name=".ExaminationvActivityv1" />
+        <activity android:name=".EyeSpecialistActivity" />
+        <activity android:name=".UpdateeyecheckupdataActivity" />
+        <activity android:name=".AssignBranchActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".TemplateQuestionActivity" />
+        <activity android:name=".AddRxActivity" />
+        <activity android:name=".DoctorActivity" />
+        <activity android:name=".VisitsActivity" />
+        <activity android:name=".PatientlistActivity" />
+        <activity android:name=".PathalogyActivity" />
+        <activity android:name=".ActivityShowFile" />
+        <activity android:name=".AddnewRecordActivity" />
+        <activity android:name=".WebViewActivity" />
+        <activity android:name=".ScannedBarcodeActivity" />
+        <activity android:name=".BarcodescanActivity" />
+        <activity android:name=".Barcodescanv1Activity" />
+        <activity android:name=".OfflineDataActivity" />
+
+        <activity android:name=".PrintActivity" />
+
+        <activity android:name=".AddnewRecordActivityv1" />
+
+        <activity android:name=".AddPathologyActivity" />
+
+        <activity android:name=".groupvideocall.openvcall.ui.MainActivity" />
+
+        <activity
+            android:name=".groupvideocall.openvcall.ui.ChatActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/FullscreenTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".LiveDoctorsActivity" />
+        <activity android:name=".IncomingcallActivity" />
+        <activity android:name=".splashactivityv1Activity" />
+        <activity android:name=".PlannerActivity"></activity>
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.healthbank.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.healthbank.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+        <receiver android:name=".Networkchange">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".firebasemessageservice">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.nukleap.ida.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+</manifest>

@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.healthbank"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.github.clans:fab:1.6.4'
+    implementation 'com.itextpdf:itextg:5.5.10'
+    implementation 'com.google.code.gson:gson:2.2.4'
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
+    implementation files('libs/okhttp-2.5.0.jar')
+    implementation 'com.android.support:multidex:1.0.0'
+    implementation files('libs/apache-commons-net.jar')
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.google.android.gms:play-services-vision:11.8.0'
+    implementation files('libs/slf4j-android-1.5.8.jar')
+    implementation 'io.agora.rtc:full-sdk:2.3.3'
+    implementation files('libs/agora-sig-sdk.jar')
+    implementation 'com.google.firebase:firebase-messaging:11.8.0'
+    implementation 'com.google.zxing:core:3.2.1'
+    implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+}
+apply plugin: 'com.google.gms.google-services'

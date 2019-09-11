@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:background="@color/white"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ExpandableListView
+            android:id="@+id/expandableListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"></ExpandableListView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/button_action_previous"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@android:color/transparent"
+                android:scaleType="center"
+                android:src="@drawable/ic_arr_left"/>
+
+            <ImageButton
+                android:id="@+id/button_action_next"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@android:color/transparent"
+                android:scaleType="center"
+                android:src="@drawable/ic_arr_right" />
+
+            <TextView
+                android:id="@+id/textview_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@color/header_text_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp">
+
+            <TextView
+                android:id="@+id/textViewname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kirti"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/Green" />
+
+            <TextView
+                android:id="@+id/textViewemail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="kirti@gmail.com"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/light_text_color"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  |  " />
+
+            <TextView
+                android:id="@+id/textViewmobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7058068535"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/header_text_color" />
+        </LinearLayout>
+
+        <include layout="@layout/toolbar"/>
+    </LinearLayout>
+</RelativeLayout>

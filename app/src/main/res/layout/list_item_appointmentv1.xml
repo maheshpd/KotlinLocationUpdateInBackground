@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textview_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_cal"
+            android:drawablePadding="10dp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@color/textcolor"
+            />
+
+        <TextView
+            android:id="@+id/textview_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            />
+<!--
+        <TextView
+            android:id="@+id/textview_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textview_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginRight="10dp"
+            android:drawableLeft="@drawable/timer"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="05:00 AM"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/textcolor"
+            android:textSize="11dp"/>
+
+        <TextView
+            android:id="@+id/textview_2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:text="kirti Sonawane/25"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@color/Gray500" />
+
+        <TextView
+            android:id="@+id/textview_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/24"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@color/Gray500"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textview_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/redish_axis" />
+
+        <ImageView
+            android:id="@+id/imageview_1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary"
+            android:padding="5dp"
+            android:src="@drawable/icon_rx"
+            android:visibility="gone"
+            />-->
+    </LinearLayout>
+
+    <!-- <View
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:background="@color/Whitesmoke"
+         android:layout_marginTop="10dp"
+         android:layout_marginLeft="80dp"
+         ></View>-->
+</LinearLayout>

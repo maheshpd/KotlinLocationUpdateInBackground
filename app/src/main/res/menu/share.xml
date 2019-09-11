@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_action_print"
+        android:icon="@drawable/ic_print"
+        android:orderInCategory="100"
+        android:title="Print"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_action_whatsapp"
+        android:icon="@drawable/ic_whatsapp"
+        android:orderInCategory="100"
+        android:title="Whatsapp"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_action_mail"
+        android:icon="@drawable/ic_mail"
+        android:orderInCategory="100"
+        android:title="Mail"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_action_setting"
+        android:icon="@drawable/ic_setting"
+        android:orderInCategory="100"
+        android:title="Setting"
+        app:showAsAction="always" />
+</menu>

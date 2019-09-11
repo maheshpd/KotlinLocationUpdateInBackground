@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    >
+
+    <Button
+        android:id="@+id/button_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:text="Submit"
+        android:textColor="@color/White"
+        android:visibility="gone"
+        />
+
+    <EditText
+        android:id="@+id/edittext_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittextshape_grayborder"
+        android:editable="false"
+        android:focusable="false"
+        android:padding="10dp"
+        />
+    <EditText
+        android:id="@+id/edittext_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittextshape_grayborder"
+        android:editable="false"
+        android:focusable="false"
+        android:padding="10dp"
+        />
+    <EditText
+        android:id="@+id/edittext_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittextshape_grayborder"
+        android:padding="10dp"
+        />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:entries="@array/days_arrays"
+        android:visibility="gone"
+        ></Spinner>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="To"
+        android:textColor="@color/textcolor"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="From"
+        android:textColor="@color/textcolor"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Shift"
+        android:textColor="@color/textcolor"
+        />
+</LinearLayout>

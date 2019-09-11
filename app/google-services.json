@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "500936765506",
+    "firebase_url": "https://healthbank-867e1.firebaseio.com",
+    "project_id": "healthbank-867e1",
+    "storage_bucket": "healthbank-867e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500936765506:android:6ebfec95cb4f3122",
+        "android_client_info": {
+          "package_name": "com.healthbank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500936765506-cnaarqspvm1p44p67qd5563mqbq23tqf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.healthbank",
+            "certificate_hash": "06b24e02f24ff5b835bb2194ed29e55984185e1c"
+          }
+        },
+        {
+          "client_id": "500936765506-oemiaaefogomfgof26eqgk9nf5q87oas.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsiTxKShgYoUPYOEUGva8_17zTnM-th0U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500936765506-oemiaaefogomfgof26eqgk9nf5q87oas.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
