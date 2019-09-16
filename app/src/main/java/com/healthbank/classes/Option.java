@@ -19,8 +19,9 @@ public class Option {
     ArrayList<Questions> SubQuestions = new ArrayList<>();
     String OptionName = "";
     boolean isselected = false;
-    String Answer = "";
+    String OptionValue = "";
     JSONObject XmlObj = new JSONObject();
+
 
     public Option() {
 
@@ -64,11 +65,11 @@ public class Option {
             if (obj.has("OptionName")) {
                 this.OptionName = obj.getString("OptionName");
             }
-            if (obj.has("Answer")) {
-                this.Answer = obj.getString("Answer");
-                Log.e("Answer available ", this.Answer);
+            if (obj.has("OptionValue")) {
+                this.OptionValue = obj.getString("OptionValue");
+                Log.e("OptionValue available ", this.OptionValue);
             } else {
-                Log.e("Answer not available ", this.Answer);
+                Log.e("OptionValue not available ", this.OptionValue);
 
             }
             if (obj.has("isselected")) {
@@ -199,12 +200,12 @@ public class Option {
         this.isselected = isselected;
     }
 
-    public String getAnswer() {
-        return Answer;
+    public String getOptionValue() {
+        return OptionValue;
     }
 
-    public void setAnswer(String answer) {
-        this.Answer = answer;
+    public void setOptionValue(String optionValue) {
+        this.OptionValue = optionValue;
     }
 
     public String getOptionName() {

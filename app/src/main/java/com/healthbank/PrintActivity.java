@@ -402,19 +402,19 @@ public class PrintActivity extends ActivityCommon {
                 ArrayList<Option> optdata = questions.get(j).getOption();
                 for (int k = 0; k < optdata.size(); k++) {
                     Log.e("optid ", "optid " + optdata.get(k).getOptionType() + "  " + OptionAnswer.getAnswer(optans, Integer.toString(optdata.get(k).getOptionId())));
-                    optdata.get(k).setAnswer(OptionAnswer.getAnswer(optans, Integer.toString(optdata.get(k).getOptionId())));
+                    optdata.get(k).setOptionValue(OptionAnswer.getAnswer(optans, Integer.toString(optdata.get(k).getOptionId())));
                     if (optdata.get(k).getOptionType().equalsIgnoreCase("CheckBox")) {
 
-                        if (optdata.get(k).getOptionName().equalsIgnoreCase(optdata.get(k).getAnswer())) {
+                        if (optdata.get(k).getOptionName().equalsIgnoreCase(optdata.get(k).getOptionValue())) {
                             optdata.get(k).setIsselected(true);
                         }
 
                         addCheckBox(optdata.get(k));
                     } else if (optdata.get(k).getOptionType().equalsIgnoreCase("CheckBoxList")) {
-                        Log.e("anscheckboxlist ", "" + optdata.get(k).getAnswer());
+                        Log.e("anscheckboxlist ", "" + optdata.get(k).getOptionValue());
                         String[] ansarray = new String[0];
-                        if (optdata.get(k).getAnswer().length() > 0) {
-                            ansarray = optdata.get(k).getAnswer().split(",");
+                        if (optdata.get(k).getOptionValue().length() > 0) {
+                            ansarray = optdata.get(k).getOptionValue().split(",");
 
                         }
                         String[] splitarray = optdata.get(k).getOptionList().split(",");
@@ -430,7 +430,7 @@ public class PrintActivity extends ActivityCommon {
                             opt.setQid(optdata.get(k).getQid());
                             opt.setOptionName(splitarray[l]);
                             opt.setSortorder(optdata.get(k).getSortorder());
-                            opt.setAnswer(optdata.get(k).getAnswer());
+                            opt.setOptionValue(optdata.get(k).getOptionValue());
                             if (ansarray != null) {
                                 for (int m = 0; m < ansarray.length; m++) {
                                     Log.e("anscheckboxlist data", "data " + ansarray[m] + "" + splitarray[l]);
@@ -661,7 +661,7 @@ public class PrintActivity extends ActivityCommon {
         }
         for (int j = 0; j < questions.size(); j++) {
             boolean isradiobtadded = false;
-            String ans = SaveAnswerdata.getAnswer(data, Integer.toString(questions.get(j).getQid()));
+            String ans = SaveAnswerdata.getOptionValue(data, Integer.toString(questions.get(j).getQid()));
             ArrayList<OptionAnswer> optans = new ArrayList<>();
             if (ans != null)
                 if (!ans.equalsIgnoreCase("null") || !ans.equalsIgnoreCase("")) {
@@ -683,8 +683,8 @@ public class PrintActivity extends ActivityCommon {
             addtextview((j + 1) + "." + questions.get(j).getName(), questions.get(j));
             ArrayList<Option> optdata = questions.get(j).getOption();
             for (int k = 0; k < optdata.size(); k++) {
-                Log.e("optid ", "optid " + optdata.get(k).getOptionType() + "  " + OptionAnswer.getAnswer(optans, Integer.toString(optdata.get(k).getOptionId())));
-                optdata.get(k).setAnswer(OptionAnswer.getAnswer(optans, Integer.toString(optdata.get(k).getOptionId())));
+                Log.e("optid ", "optid " + optdata.get(k).getOptionType() + "  " + OptionAnswer.getOptionValue(optans, Integer.toString(optdata.get(k).getOptionId())));
+                optdata.get(k).setOptionValue(OptionAnswer.getOptionValue(optans, Integer.toString(optdata.get(k).getOptionId())));
                 if (optdata.get(k).getOptionType().equalsIgnoreCase("CheckBox")) {
                     addCheckBox(optdata.get(k));
                 } else if (optdata.get(k).getOptionType().equalsIgnoreCase("CheckBoxList")) {
@@ -701,7 +701,7 @@ public class PrintActivity extends ActivityCommon {
                         opt.setQid(optdata.get(k).getQid());
                         opt.setOptionName(splitarray[l]);
                         opt.setSortorder(optdata.get(k).getSortorder());
-                        opt.setAnswer(optdata.get(k).getAnswer());
+                        opt.setOptionValue(optdata.get(k).getOptionValue());
                         optdata1.add(opt);
                         addCheckBox(opt);
                     }
@@ -1021,7 +1021,7 @@ public class PrintActivity extends ActivityCommon {
 
            Gson gson = new Gson();
            String ans = gson.toJson(selectedmasterdata);
-           opt.setAnswer(ans);
+           opt.setOptionValue(ans);
            q.setAnswer(ans);
 
            RecyclerView mRecyclerview = new RecyclerView(PrintActivity.this);
@@ -1163,7 +1163,7 @@ public class PrintActivity extends ActivityCommon {
     }
 
     private void addradioGroup(final ArrayList<Option> dataset, final Questions que, final Option opt1) {
-        addtextviewblack(opt1.getAnswer());
+        addtextviewblack(opt1.getOptionValue());
     /*    try {
             RadioGroup rg = new RadioGroup(this);
             rg.setOrientation(LinearLayout.VERTICAL);
@@ -1182,12 +1182,12 @@ public class PrintActivity extends ActivityCommon {
                                 dataset.get(i).setIsselected(false);
                             }
                             opt.setIsselected(((RadioButton) view).isChecked());
-                            opt1.setAnswer(opt.getOptionId() + "^" + opt.getOptionName());
-                            que.setAnswer(opt.getOptionId() + "^" + opt.getOptionName());
+                            opt1.setOptionValue(opt.getOptionId() + "^" + opt.getOptionName());
+                            que.setOptionValue(opt.getOptionId() + "^" + opt.getOptionName());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        //  Log.e("data","data "+que.getAnswer());
+                        //  Log.e("data","data "+que.getOptionValue());
                     }
                 });
             }
@@ -1200,7 +1200,7 @@ public class PrintActivity extends ActivityCommon {
 
     private void addEditText(final int position, final String hint, final Option opt, boolean isno, final Questions q) {
         try {
-            if (opt.getAnswer().length() > 0) {
+            if (opt.getOptionValue().length() > 0) {
                 EditText e1 = new EditText(getApplicationContext());
                 e1.setTextSize(fontsize);
                 e1.setTypeface(typeface);
@@ -1226,7 +1226,7 @@ public class PrintActivity extends ActivityCommon {
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                         q.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
-                        opt.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
+                        opt.setOptionValue(opt.getOptionId() + "^" + charSequence.toString());
                     }
 
                     @Override
@@ -1236,7 +1236,7 @@ public class PrintActivity extends ActivityCommon {
                 });
 
                 layout.addView(e1);
-                e1.setText(opt.getAnswer());
+                e1.setText(opt.getOptionValue());
             }
             } catch(Exception e){
                 e.printStackTrace();
@@ -1271,7 +1271,7 @@ public class PrintActivity extends ActivityCommon {
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    opt.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
+                    opt.setOptionValue(opt.getOptionId() + "^" + charSequence.toString());
                     q.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
 
                 }
@@ -1320,7 +1320,7 @@ public class PrintActivity extends ActivityCommon {
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    opt.setAnswer(charSequence.toString());
+                    opt.setOptionValue(charSequence.toString());
                 }
 
                 @Override
@@ -1373,7 +1373,7 @@ public class PrintActivity extends ActivityCommon {
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     q.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
-                    opt.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
+                    opt.setOptionValue(opt.getOptionId() + "^" + charSequence.toString());
                 }
 
                 @Override
@@ -1424,7 +1424,7 @@ public class PrintActivity extends ActivityCommon {
                     }
                 }
             });
-            e1.setText(opt.getAnswer());
+            e1.setText(opt.getOptionValue());
         } catch (Exception e) {
             e.printStackTrace();
             //  reporterror(tag, e.toString());
@@ -1453,7 +1453,7 @@ public class PrintActivity extends ActivityCommon {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("called ", "setOnItemSelectedListener");
                 q.setAnswer(opt.getOptionId() + "^" + autotxt.getText().toString());
-                opt.setAnswer(opt.getOptionId() + "^" + autotxt.getText().toString());
+                opt.setOptionValue(opt.getOptionId() + "^" + autotxt.getText().toString());
             }
 
             @Override
@@ -1466,7 +1466,7 @@ public class PrintActivity extends ActivityCommon {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("called ", "setOnItemClickListener");
                 q.setAnswer(opt.getOptionId() + "^" + autotxt.getText().toString());
-                opt.setAnswer(opt.getOptionId() + "^" + autotxt.getText().toString());
+                opt.setOptionValue(opt.getOptionId() + "^" + autotxt.getText().toString());
             }
         });
         autotxt.addTextChangedListener(new TextWatcher() {
@@ -1484,7 +1484,7 @@ public class PrintActivity extends ActivityCommon {
             public void afterTextChanged(Editable s) {
                 Log.e("called ", "addTextChangedListener");
                 q.setAnswer(opt.getOptionId() + "^" + s.toString());
-                opt.setAnswer(opt.getOptionId() + "^" + s.toString());
+                opt.setOptionValue(opt.getOptionId() + "^" + s.toString());
             }
         });
     }
@@ -1519,7 +1519,7 @@ public class PrintActivity extends ActivityCommon {
             public void afterTextChanged(Editable s) {
                 Log.e("called ", "addTextChangedListener");
                 q.setAnswer(opt.getOptionId() + "^" + s.toString());
-                opt.setAnswer(opt.getOptionId() + "^" + s.toString());
+                opt.setOptionValue(opt.getOptionId() + "^" + s.toString());
             }
         });
 
@@ -1611,8 +1611,8 @@ public class PrintActivity extends ActivityCommon {
 
     public void addcustomautocompletetextview(final Option opt, final Questions q, final ArrayList<Master> mdataset, final String masterkey) {
         final ArrayList<Master> selectedmasterdata = new ArrayList<>();
-        String[] ansdata = opt.getAnswer().split("^");
-        Log.e("testanswer ", "answer " + opt.getAnswer());
+        String[] ansdata = opt.getOptionValue().split("^");
+        Log.e("testanswer ", "answer " + opt.getOptionValue());
         if (ansdata.length > 1) {
             String[] ans = ansdata[1].split(",");
             for (int i = 0; i < ans.length; i++) {
@@ -1622,7 +1622,7 @@ public class PrintActivity extends ActivityCommon {
 
         Gson gson = new Gson();
         String ans = gson.toJson(selectedmasterdata);
-        opt.setAnswer(ans);
+        opt.setOptionValue(ans);
         q.setAnswer(ans);
 
         RecyclerView mRecyclerview = new RecyclerView(PrintActivity.this);
@@ -1663,7 +1663,7 @@ public class PrintActivity extends ActivityCommon {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("textchange ", "setOnItemClickListener");
-                opt.setAnswer(opt.getOptionId() + "^" + autotxt.getText().toString());
+                opt.setOptionValue(opt.getOptionId() + "^" + autotxt.getText().toString());
                 q.setAnswer(opt.getOptionId() + "^" + autotxt.getText().toString());
             }
         });
@@ -1671,7 +1671,7 @@ public class PrintActivity extends ActivityCommon {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // Log.e("textchange ", "setOnItemSelectedListener");
-                opt.setAnswer(opt.getOptionId() + "^" + autotxt.getText().toString());
+                opt.setOptionValue(opt.getOptionId() + "^" + autotxt.getText().toString());
                 q.setAnswer(opt.getOptionId() + "^" + autotxt.getText().toString());
             }
 
@@ -1690,7 +1690,7 @@ public class PrintActivity extends ActivityCommon {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 Log.e("textchange ", "textchangecalled");
-                opt.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
+                opt.setOptionValue(opt.getOptionId() + "^" + charSequence.toString());
                 q.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
             }
 
@@ -1699,9 +1699,9 @@ public class PrintActivity extends ActivityCommon {
 
             }
         });
-        autotxt.setText(opt.getAnswer());
+        autotxt.setText(opt.getOptionValue());
         autotxt.setTextColor(getResources().getColor(R.color.textcolor));
-        Log.e("optans ", "optans " + opt.getAnswer());
+        Log.e("optans ", "optans " + opt.getOptionValue());
     }
 
     public void addautocompletetextviewwitbodypart(final ArrayList<Master> mdataset, final String name, final Option opt, final Questions q) {
@@ -1769,7 +1769,7 @@ public class PrintActivity extends ActivityCommon {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    JSONObject obj = new JSONObject(q.getAnswer());
+                    JSONObject obj = new JSONObject(q.getOptionValue());
                     if (name.equalsIgnoreCase("Diagnosis")) {
                         obj.put("DiagnosisId", ((Master) parent.getAdapter().getItem(position)).getCategoryid());
                         obj.put("DiagnosisName", ((Master) parent.getAdapter().getItem(position)).getName());
@@ -1777,9 +1777,9 @@ public class PrintActivity extends ActivityCommon {
                         obj.put("TreatmentProcedureId", ((Master) parent.getAdapter().getItem(position)).getCategoryid());
                         obj.put("TreatmentProcedureName", ((Master) parent.getAdapter().getItem(position)).getName());
                     }
-                    q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
-                    Log.e("ans", "ans " + q.getAnswer());
+                    q.setOptionValue(obj.toString());
+                    opt.setOptionValue(obj.toString());
+                    Log.e("ans", "ans " + q.getOptionValue());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1800,7 +1800,7 @@ public class PrintActivity extends ActivityCommon {
                     }
 
                     q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
+                    opt.setOptionValue(obj.toString());
                     Log.e("ans", "ans " + q.getAnswer());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -1811,14 +1811,14 @@ public class PrintActivity extends ActivityCommon {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    JSONObject obj = new JSONObject(q.getAnswer());
+                    JSONObject obj = new JSONObject(q.getOptionValue());
                     obj.put("ID", "");
                     obj.put("BodyPart", ((Master) parent.getAdapter().getItem(position)).getName());
 
 
-                    q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
-                    Log.e("ans", "ans " + q.getAnswer());
+                    q.setOptionValue(obj.toString());
+                    opt.setOptionValue(obj.toString());
+                    Log.e("ans", "ans " + q.getOptionValue());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1833,7 +1833,7 @@ public class PrintActivity extends ActivityCommon {
                     obj.put("ID", getId(autotxt1.getText().toString(), mdataset));
                     obj.put("BodyPart", autotxt1.getText().toString());
                     q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
+                    opt.setOptionValue(obj.toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1914,13 +1914,13 @@ public class PrintActivity extends ActivityCommon {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    JSONObject obj = new JSONObject(q.getAnswer());
+                    JSONObject obj = new JSONObject(q.getOptionValue());
 
                     obj.put("Id", ((Master) parent.getAdapter().getItem(position)).getTestId());
                     obj.put("TestName", ((Master) parent.getAdapter().getItem(position)).getName());
-                    q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
-                    Log.e("ans", "ans " + q.getAnswer());
+                    q.setOptionValue(obj.toString());
+                    opt.setOptionValue(obj.toString());
+                    Log.e("ans", "ans " + q.getOptionValue());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1940,7 +1940,7 @@ public class PrintActivity extends ActivityCommon {
                     }
                     obj.put("TestName", autotxt.getText().toString());
                     q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
+                    opt.setOptionValue(obj.toString());
                     Log.e("ans", "ans " + q.getAnswer());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -1952,13 +1952,13 @@ public class PrintActivity extends ActivityCommon {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    JSONObject obj = new JSONObject(q.getAnswer());
+                    JSONObject obj = new JSONObject(q.getOptionValue());
                     obj.put("LabId", ((Master) parent.getAdapter().getItem(position)).getLabId());
                     obj.put("LabName", ((Master) parent.getAdapter().getItem(position)).getName());
 
-                    q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
-                    Log.e("ans", "ans " + q.getAnswer());
+                    q.setOptionValue(obj.toString());
+                    opt.setOptionValue(obj.toString());
+                    Log.e("ans", "ans " + q.getOptionValue());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1979,7 +1979,7 @@ public class PrintActivity extends ActivityCommon {
                     }
                     obj.put("TestName", autotxt.getText().toString());
                     q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
+                    opt.setOptionValue(obj.toString());
                     Log.e("ans", "ans " + q.getAnswer());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -1991,12 +1991,12 @@ public class PrintActivity extends ActivityCommon {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    JSONObject obj = new JSONObject(q.getAnswer());
+                    JSONObject obj = new JSONObject(q.getOptionValue());
                     obj.put("LabId", masterdata.get(position).getCategoryid());
                     obj.put("LabName", masterdata.get(position).getName());
-                    q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
-                    Log.e("ans", "ans " + q.getAnswer());
+                    q.setOptionValue(obj.toString());
+                    opt.setOptionValue(obj.toString());
+                    Log.e("ans", "ans " + q.getOptionValue());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -2019,7 +2019,7 @@ public class PrintActivity extends ActivityCommon {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 q.setAnswer(opt.getOptionId() + "^" + data[sp.getSelectedItemPosition()]);
-                opt.setAnswer(opt.getOptionId() + "^" + data[sp.getSelectedItemPosition()]);
+                opt.setOptionValue(opt.getOptionId() + "^" + data[sp.getSelectedItemPosition()]);
             }
 
             @Override
@@ -2266,7 +2266,7 @@ public class PrintActivity extends ActivityCommon {
         }
         Gson gson = new Gson();
         String ans = gson.toJson(selectedmasterdata);
-        opt.setAnswer(ans);
+        opt.setOptionValue(ans);
         q.setAnswer(ans);
         RecyclerView mRecyclerviewcustom = new RecyclerView(PrintActivity.this);
         LinearLayoutManager mLyaoutmanager = new LinearLayoutManager(PrintActivity.this);
@@ -2282,7 +2282,7 @@ public class PrintActivity extends ActivityCommon {
     public void addcustomautocompletetextview(final Option opt, final Questions q,final String masterkey) {
 
         final ArrayList<Master> selectedmasterdata = new ArrayList<>();
-        String[] ansdata = opt.getAnswer().split("^");
+        String[] ansdata = opt.getOptionValue().split("^");
         if (ansdata.length > 1) {
             String[] ans = ansdata[1].split(",");
             for (int i = 0; i < ans.length; i++) {
@@ -2292,7 +2292,7 @@ public class PrintActivity extends ActivityCommon {
 
         Gson gson = new Gson();
         String ans = gson.toJson(selectedmasterdata);
-        opt.setAnswer(ans);
+        opt.setOptionValue(ans);
         q.setAnswer(ans);
 
         RecyclerView mRecyclerview = new RecyclerView(PrintActivity.this);
@@ -2435,11 +2435,11 @@ public class PrintActivity extends ActivityCommon {
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                    /* if(charSequence.toString().length()>0) {
-                        opt.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
-                        q.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
+                        opt.setOptionValue(opt.getOptionId() + "^" + charSequence.toString());
+                        q.setOptionValue(opt.getOptionId() + "^" + charSequence.toString());
                     }else {
-                        opt.setAnswer("");
-                        q.setAnswer("");
+                        opt.setOptionValue("");
+                        q.setOptionValue("");
                     }*/
                 }
                 @Override
@@ -2456,14 +2456,14 @@ public class PrintActivity extends ActivityCommon {
             }
 */
             layout.addView(editdoc);
-            if(opt.getAnswer().length()>0)
+            if(opt.getOptionValue().length()>0)
             {
-                String[] array=opt.getAnswer().split("^");
+                String[] array=opt.getOptionValue().split("^");
                 if(array.length>0)
                 {
                     editdoc.setText(array[1]);
                     q.setAnswer(opt.getOptionId()+"^"+array[1]);
-                    opt.setAnswer(opt.getOptionId()+"^"+array[1]);
+                    opt.setOptionValue(opt.getOptionId()+"^"+array[1]);
                 }
             }
         } catch (Exception e) {

@@ -34,6 +34,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -393,7 +394,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                             ques.get(j).setOptionType(qdata.get(k).getOptionType());
                             if (qdata.get(k).getOptionType().equalsIgnoreCase("CustomAutoComplete") || qdata.get(k).getOptionType().equalsIgnoreCase("AutoComplete") || qdata.get(k).getOptionType().equalsIgnoreCase("Life Style")) {
                                 try {
-                                    String ansdata = qdata.get(k).getAnswer();
+                                    String ansdata = qdata.get(k).getOptionValue();
                                     Gson gson = new Gson();
                                     Type type = new TypeToken<ArrayList<Master>>() {
                                     }.getType();
@@ -461,11 +462,11 @@ public class TemplateQuestionActivity extends ActivityCommon {
                                 }
                             } else {
                                 if (ans.length() == 0) {
-                                    if (qdata.get(k).getAnswer().contains("^"))
-                                        ans = qdata.get(k).getAnswer();
+                                    if (qdata.get(k).getOptionValue().contains("^"))
+                                        ans = qdata.get(k).getOptionValue();
                                 } else {
-                                    if (qdata.get(k).getAnswer().contains("^"))
-                                        ans = ans + "~" + qdata.get(k).getAnswer();
+                                    if (qdata.get(k).getOptionValue().contains("^"))
+                                        ans = ans + "~" + qdata.get(k).getOptionValue();
                                 }
 
                                 Log.e("in else ", "in elserd " + ans + " " + qdata.get(k).getOptionType());
@@ -620,7 +621,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                                     obj1.put("XmlObj", obj2.toString());
                                     array.put(obj1);
 
-                                /*    JSONObject objans = new JSONObject(ques.get(j).getAnswer());
+                                /*    JSONObject objans = new JSONObject(ques.get(j).getOptionValue());
                                     JSONObject obj = new JSONObject();
                                     obj.put("ColumnName", "Que" + ques.get(j).getQid());
                                     obj.put("Ans", "PrescriptionControl");
@@ -719,6 +720,13 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     if (!subGroups.get(i).getGroupName().equalsIgnoreCase("null"))
                         addtextviewheader(subGroups.get(i).getGroupName(), 0);
                     ArrayList<Questions> questions = subGroups.get(i).getQuestions();
+
+//                    for (int j = 0; j <questions.size() ; j++) {
+//
+//                        if (!questions.get(i).getName().equalsIgnoreCase("null"))
+//                            addtextviewheader(questions.get(i).getName(),0);
+//                    }
+
                     JSONArray array = new JSONArray();
                     array = answerobjdata.optJSONArray("QuestionData");
                     if (array == null) {
@@ -775,7 +783,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             for (int k = 0; k < qdata.size(); k++) {
                 if (qdata.get(k).getOptionType().equalsIgnoreCase("CustomAutoComplete") || qdata.get(k).getOptionType().equalsIgnoreCase("AutoComplete") || qdata.get(k).getOptionType().equalsIgnoreCase("TreatmentProcedure")) {
                     try {
-                        String ansdata = qdata.get(k).getAnswer();
+                        String ansdata = qdata.get(k).getOptionValue();
                         Gson gson = new Gson();
                         Type type = new TypeToken<ArrayList<Master>>() {
                         }.getType();
@@ -806,9 +814,9 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     }
                 } else {
                     if (ans.length() == 0)
-                        ans = qdata.get(k).getAnswer();
+                        ans = qdata.get(k).getOptionValue();
                     else
-                        ans = ans + "~" + qdata.get(k).getAnswer();
+                        ans = ans + "~" + qdata.get(k).getOptionValue();
                 }
 
                 if (qdata.get(k).getSubQuestions().size() > 0) {
@@ -1109,26 +1117,27 @@ public class TemplateQuestionActivity extends ActivityCommon {
             ArrayList<Option> optdata = questions.get(j).getOption();
             for (int k = 0; k < optdata.size(); k++) {
                 Log.e("optid1 ", "optid " + optdata.get(k).getOptionType() + " " + optdata.get(k).getOptionName() + "  " + OptionAnswer.getAnswer(optans, Integer.toString(optdata.get(k).getOptionId())));
-                optdata.get(k).setAnswer(OptionAnswer.getAnswer(optans, Integer.toString(optdata.get(k).getOptionId())));
+                optdata.get(k).setOptionValue(OptionAnswer.getAnswer(optans, Integer.toString(optdata.get(k).getOptionId())));
                 questions.get(j).setAnswer(OptionAnswer.getAnswer(optans, Integer.toString(optdata.get(k).getOptionId())));
                 if (optdata.get(k).getOptionType().equalsIgnoreCase("CheckBox")) {
-                       /* if(optdata.get(k).getAnswer().length()>0)
+                       /* if(optdata.get(k).getOptionValue().length()>0)
                         {
-                            String[] dataarray=optdata.get(k).getAnswer().split("^");
+                            String[] dataarray=optdata.get(k).getOptionValue().split("^");
                            if(dataarray.length>1)
                            {
 
                            }
                         }*/
-                    if (optdata.get(k).getOptionName().equalsIgnoreCase(optdata.get(k).getAnswer())) {
+                    if (optdata.get(k).getOptionName().equalsIgnoreCase(optdata.get(k).getOptionValue())) {
                         optdata.get(k).setIsselected(true);
                     }
                     addCheckBox(optdata.get(k));
-                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("CheckBoxList")) {
-                    Log.e("anscheckboxlist ", "" + optdata.get(k).getAnswer());
+                }
+                else if (optdata.get(k).getOptionType().equalsIgnoreCase("CheckBoxList")) {
+                    Log.e("anscheckboxlist ", "" + optdata.get(k).getOptionValue());
                     String[] ansarray = new String[0];
-                    if (optdata.get(k).getAnswer().length() > 0) {
-                        ansarray = optdata.get(k).getAnswer().split(",");
+                    if (optdata.get(k).getOptionValue().length() > 0) {
+                        ansarray = optdata.get(k).getOptionValue().split(",");
                           /*  if(dataarray.length>1)
                             {
                                 ansarray=dataarray[1].split(",");
@@ -1147,7 +1156,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                         opt.setQid(optdata.get(k).getQid());
                         opt.setOptionName(splitarray[l]);
                         opt.setSortorder(optdata.get(k).getSortorder());
-                        opt.setAnswer(optdata.get(k).getAnswer());
+                        opt.setOptionValue(optdata.get(k).getOptionValue());
                         if (ansarray != null) {
                             for (int m = 0; m < ansarray.length; m++) {
                                 Log.e("anscheckboxlist data", "data " + ansarray[m] + "" + splitarray[l]);
@@ -1168,9 +1177,9 @@ public class TemplateQuestionActivity extends ActivityCommon {
                         ArrayList<Option> optdata1 = new ArrayList<>();
                         for (int l = k; l < optdata.size(); l++) {
                             if (optdata.get(l).getOptionType().equalsIgnoreCase("RadioButton")) {
-                                optdata.get(l).setAnswer(OptionAnswer.getAnswer(optans, Integer.toString(optdata.get(l).getOptionId())));
-                                Log.e("in answer radiobutton11", "in ans " + optdata.get(l).getAnswer() + " " + questions.get(j).getAnswer() + " " + optdata.get(l).getOptionName());
-                                //   Log.e("in answer radiobutton ","in ans "+questions.get(j).getAnswer());
+                                optdata.get(l).setOptionValue(OptionAnswer.getAnswer(optans, Integer.toString(optdata.get(l).getOptionId())));
+                                Log.e("in answer radiobutton11", "in ans " + optdata.get(l).getOptionValue() + " " + questions.get(j).getAnswer() + " " + optdata.get(l).getOptionName());
+                                //   Log.e("in answer radiobutton ","in ans "+questions.get(j).getOptionValue());
                                 optdata1.add(optdata.get(l));
                             }
                         }
@@ -1190,14 +1199,18 @@ public class TemplateQuestionActivity extends ActivityCommon {
                         opt.setOptionType(optdata.get(k).getOptionType());
                         opt.setOptionList(optdata.get(k).getOptionList());
                         opt.setSubQuestions(optdata.get(k).getSubQuestions());
-                        opt.setAnswer(optdata.get(k).getAnswer());
+                        opt.setOptionValue(optdata.get(k).getOptionValue());
                         opt.setOptionName(splitarray[l]);
                         optdata1.add(opt);
                     }
                     addradioGroup(optdata1, questions.get(j), optdata.get(k));
-                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("TextBox") || optdata.get(k).getOptionType().equalsIgnoreCase("Description") || optdata.get(k).getOptionType().equalsIgnoreCase("Editor")) {
-                    addEditText(i, questions.get(j).getName(), optdata.get(k), false, questions.get(j));
-                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("NoTextBox")) {
+                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("TextBox") || optdata.get(k).getOptionType().equalsIgnoreCase("Editor")) {
+                    addEditText(i, optdata.get(k).getOptionName(), optdata.get(k), false, questions.get(j));
+                }else if ( optdata.get(k).getOptionType().equalsIgnoreCase("Description")) {
+                    addEditText(i, optdata.get(k).getOptionValue(), optdata.get(k), false, questions.get(j));
+                }
+
+                else if (optdata.get(k).getOptionType().equalsIgnoreCase("NoTextBox")) {
                     addEditText(i, questions.get(j).getName(), optdata.get(k), true, questions.get(j));
                 } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Date")) {
                     adddateview(optdata.get(k), questions.get(j));
@@ -1335,12 +1348,15 @@ public class TemplateQuestionActivity extends ActivityCommon {
                         bodypartmasterdata.addAll(dataset1);
 
                     addautocompletetextviewwitbodypartv1(masterdata, "TestWithLab", optdata.get(k), questions.get(j), bodypartmasterdata);
-                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("DropDownList")) {
+                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("DropDownList") || optdata.get(k).getOptionName().equalsIgnoreCase("null")) {
+
                     String[] arraydata = optdata.get(k).getOptionList().split(",");
                     addspinner(arraydata, optdata.get(k), questions.get(j));
-                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("FileUpload")) {
+
+                }
+                else if (optdata.get(k).getOptionType().equalsIgnoreCase("FileUpload")) {
                     filedata.clear();
-                    String ansdata = optdata.get(k).getAnswer();
+                    String ansdata = optdata.get(k).getOptionValue();
                     if (ansdata.length() > 0) {
                         String[] ansarray = ansdata.split("^");
                         if (ansarray.length > 1) {
@@ -1370,7 +1386,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     ArrayList<Master> dataset = gson.fromJson(array1.toString(), type);
                     if (dataset != null)
                         custommasterdata.addAll(dataset);
-                    addcustomautocompletetextview(optdata.get(k), questions.get(j), questions.get(j).getName(), custommasterdata);
+                            addcustomautocompletetextview(optdata.get(k), questions.get(j), questions.get(j).getName(), custommasterdata);
                 } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Doctor list")) {
                     ArrayList<Doctor> mdataset = new ArrayList<>();
                     JSONArray array1 = DatabaseHelper.getInstance(TemplateQuestionActivity.this).getdata(DatabaseHelper.TABLE_DEPARTMENT);
@@ -1595,7 +1611,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.setMargins(0, 5, 0, 10);
             txt.setLayoutParams(params);
-//            layout.addView(txt);
+            layout.addView(txt);
         } catch (Exception e) {
             e.printStackTrace();
             reporterror(tag, e.toString());
@@ -1668,20 +1684,20 @@ public class TemplateQuestionActivity extends ActivityCommon {
     private void addradioGroup(final ArrayList<Option> dataset, final Questions que, final Option opt1) {
         try {
             String ans = "";
-            Log.e("radioanswer ", " " + opt1.getAnswer() + "##" + que.getAnswer());
+            Log.e("radioanswer ", " " + opt1.getOptionValue() + "##" + que.getAnswer());
             RadioGroup rg = new RadioGroup(this);
             rg.setOrientation(LinearLayout.HORIZONTAL);
             for (int i = 0; i < dataset.size(); i++) {
-                Log.e("radioanswer ", " " + dataset.get(i).getAnswer() + "##" + que.getAnswer());
+                Log.e("radioanswer ", " " + dataset.get(i).getOptionValue() + "##" + que.getAnswer());
                 final RadioButton rdbtn = new RadioButton(this);
                 final Option opt = dataset.get(i);
                 rdbtn.setId(i);
                 rdbtn.setText(dataset.get(i).getOptionName());
-                Log.e("radioanswercheck", "radioanswer " + dataset.get(i).getOptionName() + " " + opt.getAnswer() + " " + que.getAnswer() + " " + opt1.getAnswer());
-                if (dataset.get(i).getOptionName().equalsIgnoreCase(opt.getAnswer())) {
+                Log.e("radioanswercheck", "radioanswer " + dataset.get(i).getOptionName() + " " + opt.getOptionValue() + " " + que.getAnswer() + " " + opt1.getOptionValue());
+                if (dataset.get(i).getOptionName().equalsIgnoreCase(opt.getOptionValue())) {
                     rdbtn.setChecked(true);
-                    ans = opt.getOptionId() + "^" + opt.getAnswer();
-                    dataset.get(i).setAnswer(opt.getOptionId() + "^" + opt.getAnswer());
+                    ans = opt.getOptionId() + "^" + opt.getOptionValue();
+                    dataset.get(i).setOptionValue(opt.getOptionId() + "^" + opt.getOptionValue());
                 }
                 rg.addView(rdbtn);
                 rdbtn.setOnClickListener(new View.OnClickListener() {
@@ -1693,19 +1709,19 @@ public class TemplateQuestionActivity extends ActivityCommon {
                                 dataset.get(i).setIsselected(false);
                             }
                             opt.setIsselected(((RadioButton) view).isChecked());
-                            opt1.setAnswer(opt.getOptionId() + "^" + opt.getOptionName());
+                            opt1.setOptionValue(opt.getOptionId() + "^" + opt.getOptionName());
                             que.setAnswer(opt.getOptionId() + "^" + opt.getOptionName());
                             Log.e("radioans ", "ans" + que.getAnswer());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        //  Log.e("data","data "+que.getAnswer());
+                        //  Log.e("data","data "+que.getOptionValue());
                     }
                 });
             }
-            opt1.setAnswer(ans);
+            opt1.setOptionValue(ans);
             que.setAnswer(ans);
-            Log.e("radioanswer1 ", " " + opt1.getAnswer() + "##" + que.getAnswer());
+            Log.e("radioanswer1 ", " " + opt1.getOptionValue() + "##" + que.getAnswer());
             layout.addView(rg);
         } catch (Exception e) {
             e.printStackTrace();
@@ -1715,11 +1731,21 @@ public class TemplateQuestionActivity extends ActivityCommon {
 
     private void addEditText(final int position, final String hint, final Option opt, boolean isno, final Questions q) {
         try {
-            //  Log.e("Description", "Description " + opt.getAnswer());
+            //  Log.e("Description", "Description " + opt.getOptionValue());
 
             TextInputLayout textInputLayout = new TextInputLayout(this);
             textInputLayout.setHint(hint);
             TextInputEditText editText = new TextInputEditText(textInputLayout.getContext());
+
+            if (opt.getOptionType().equalsIgnoreCase("Description")) {
+                editText.setSingleLine(false);
+                editText.setMaxLines(5);
+                editText.setText(hint);
+                editText.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
+            }else {
+                editText.setInputType(InputType.TYPE_CLASS_TEXT);
+            }
+
 
             editText.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -1731,10 +1757,10 @@ public class TemplateQuestionActivity extends ActivityCommon {
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     if (charSequence.toString().trim().length() > 0) {
                         q.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
-                        opt.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
+                        opt.setOptionValue(opt.getOptionId() + "^" + charSequence.toString());
                     } else {
                         q.setAnswer("");
-                        opt.setAnswer("");
+                        opt.setOptionValue("");
                     }
                 }
 
@@ -1778,11 +1804,11 @@ public class TemplateQuestionActivity extends ActivityCommon {
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     if (charSequence.toString().trim().length() > 0) {
-                        q.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
-                        opt.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
+                        q.setOptionValue(opt.getOptionId() + "^" + charSequence.toString());
+                        opt.setOptionValue(opt.getOptionId() + "^" + charSequence.toString());
                     } else {
-                        q.setAnswer("");
-                        opt.setAnswer("");
+                        q.setOptionValue("");
+                        opt.setOptionValue("");
                     }
                 }
 
@@ -1799,13 +1825,13 @@ public class TemplateQuestionActivity extends ActivityCommon {
                 e1.setBackground(getResources().getDrawable(R.drawable.edittextshape_grayborder));
             }*/
             layout.addView(textInputLayout);
-//            e1.setText(Html.fromHtml(opt.getAnswer()));
-            Log.e("final opt ", "final opt " + opt.getAnswer());
-           /* if(opt.getAnswer().length()>0)
+//            e1.setText(Html.fromHtml(opt.getOptionValue()));
+            Log.e("final opt ", "final opt " + opt.getOptionValue());
+           /* if(opt.getOptionValue().length()>0)
             {
-                if(opt.getAnswer().contains("^"))
+                if(opt.getOptionValue().contains("^"))
                 {
-                    String[] array=  opt.getAnswer().split("^");
+                    String[] array=  opt.getOptionValue().split("^");
                     e1.setText(array[1]);
                 }
             }*/
@@ -1843,11 +1869,11 @@ public class TemplateQuestionActivity extends ActivityCommon {
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                    /* if(charSequence.toString().length()>0) {
-                        opt.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
-                        q.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
+                        opt.setOptionValue(opt.getOptionId() + "^" + charSequence.toString());
+                        q.setOptionValue(opt.getOptionId() + "^" + charSequence.toString());
                     }else {
-                        opt.setAnswer("");
-                        q.setAnswer("");
+                        opt.setOptionValue("");
+                        q.setOptionValue("");
                     }*/
                 }
 
@@ -1865,12 +1891,12 @@ public class TemplateQuestionActivity extends ActivityCommon {
 //            }
 
             layout.addView(editdoc);
-            if (opt.getAnswer().length() > 0) {
-                String[] array = opt.getAnswer().split("^");
+            if (opt.getOptionValue().length() > 0) {
+                String[] array = opt.getOptionValue().split("^");
                 if (array.length > 0) {
                     editdoc.setText(array[1]);
                     q.setAnswer(opt.getOptionId() + "^" + array[1]);
-                    opt.setAnswer(opt.getOptionId() + "^" + array[1]);
+                    opt.setOptionValue(opt.getOptionId() + "^" + array[1]);
                 }
             }
         } catch (Exception e) {
@@ -1902,7 +1928,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    opt.setAnswer(charSequence.toString());
+                    opt.setOptionValue(charSequence.toString());
                 }
 
                 @Override
@@ -1956,10 +1982,10 @@ public class TemplateQuestionActivity extends ActivityCommon {
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     if (charSequence.toString().length() > 0) {
                         q.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
-                        opt.setAnswer(opt.getOptionId() + "^" + charSequence.toString());
+                        opt.setOptionValue(opt.getOptionId() + "^" + charSequence.toString());
                     } else {
                         q.setAnswer("");
-                        opt.setAnswer("");
+                        opt.setOptionValue("");
                     }
                 }
 
@@ -2011,7 +2037,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     }
                 }
             });
-            e1.setText(opt.getAnswer());
+            e1.setText(opt.getOptionValue());
         } catch (Exception e) {
             e.printStackTrace();
             reporterror(tag, e.toString());
@@ -2043,7 +2069,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("called ", "setOnItemSelectedListener");
                 q.setAnswer(opt.getOptionId() + "^" + autotxt.getText().toString());
-                opt.setAnswer(opt.getOptionId() + "^" + autotxt.getText().toString());
+                opt.setOptionValue(opt.getOptionValue() + "^" + autotxt.getText().toString());
             }
 
             @Override
@@ -2056,7 +2082,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("called ", "setOnItemClickListener");
                 q.setAnswer(opt.getOptionId() + "^" + autotxt.getText().toString());
-                opt.setAnswer(opt.getOptionId() + "^" + autotxt.getText().toString());
+                opt.setOptionValue(opt.getOptionId() + "^" + autotxt.getText().toString());
             }
         });
         autotxt.addTextChangedListener(new TextWatcher() {
@@ -2074,7 +2100,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             public void afterTextChanged(Editable s) {
                 Log.e("called ", "addTextChangedListener");
                 q.setAnswer(opt.getOptionId() + "^" + s.toString());
-                opt.setAnswer(opt.getOptionId() + "^" + s.toString());
+                opt.setOptionValue(opt.getOptionValue() + "^" + s.toString());
             }
         });
     }
@@ -2226,7 +2252,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
 
                     Gson gson = new Gson();
                     String ans = gson.toJson(selectedmaster);
-                    opt.setAnswer(ans);
+                    opt.setOptionValue(ans);
                     q.setAnswer(ans);
                     Log.e("answer ", "answer " + ans);
                   /*  String data = edit.getText().toString();
@@ -2267,7 +2293,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                 selectedmasteradapter.notifyDataSetChanged();
                 Gson gson = new Gson();
                 String ans = gson.toJson(selectedmaster);
-                opt.setAnswer(ans);
+                opt.setOptionValue(ans);
                 q.setAnswer(ans);
                 Log.e("ans ", "ans " + q.getQid() + "  " + q.getAnswer());
                 ((AutoCompleteTextView) anchorView).setText("");
@@ -2345,7 +2371,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             @Override
             public void onItemClick(Doctor item) {
                 ((EditText) anchorView).setText(item.getName());
-                opt.setAnswer(opt.getOptionId() + "^" + item.getName());
+                opt.setOptionValue(opt.getOptionId() + "^" + item.getName());
                 q.setAnswer(opt.getOptionId() + "^" + item.getName());
                 popWindow.dismiss();
             }
@@ -2486,7 +2512,11 @@ public class TemplateQuestionActivity extends ActivityCommon {
                                     master.setFilepath(rowarray.getJSONObject(l).getString("filepath"));
                                 selectedmasterdata.add(master);
                             }
-                        } else if (opt.getOptionType().equalsIgnoreCase("TreatmentProcedure")) {
+                        } else if (opt.getOptionType().equalsIgnoreCase("Life Style")) {
+
+                        }
+
+                        else if (opt.getOptionType().equalsIgnoreCase("TreatmentProcedure")) {
                             Log.e("in Test ", "in Test");
                             try {
                                 Log.e("row array ", "row array " + rowarray.toString());
@@ -2512,7 +2542,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
         }
         Gson gson = new Gson();
         String ans = gson.toJson(selectedmasterdata);
-        opt.setAnswer(ans);
+        opt.setOptionValue(ans);
         q.setAnswer(ans);
 
         //  mRecyclerviewdiagnosis.setAdapter(customadapter);
@@ -2524,7 +2554,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             public void onItemClick() {
                 Gson gson = new Gson();
                 String ans = gson.toJson(selectedmasterdata);
-                opt.setAnswer(ans);
+                opt.setOptionValue(ans);
                 q.setAnswer(ans);
             }
         });
@@ -2568,8 +2598,8 @@ public class TemplateQuestionActivity extends ActivityCommon {
         autotxt.setPadding(10, 10, 10, 10);
 
         final ArrayList<Master> selectedmasterdata = new ArrayList<>();
-        String[] ansdata = opt.getAnswer().split("^");
-        Log.e("testanswer ", "answer " + opt.getAnswer());
+        String[] ansdata = opt.getOptionValue().split("^");
+        Log.e("testanswer ", "answer " + opt.getOptionValue());
         if (ansdata.length > 1) {
             String[] ans = ansdata[1].split(",");
             for (int i = 0; i < ans.length; i++) {
@@ -2579,7 +2609,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
 
         Gson gson = new Gson();
         String ans = gson.toJson(selectedmasterdata);
-        opt.setAnswer(ans);
+        opt.setOptionValue(ans);
         q.setAnswer(ans);
 
         RecyclerView mRecyclerview = new RecyclerView(TemplateQuestionActivity.this);
@@ -2591,7 +2621,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             public void onItemClick() {
                 Gson gson = new Gson();
                 String ans = gson.toJson(selectedmasterdata);
-                opt.setAnswer(ans);
+                opt.setOptionValue(ans);
                 q.setAnswer(ans);
             }
         });
@@ -2632,18 +2662,18 @@ public class TemplateQuestionActivity extends ActivityCommon {
         autotxt.setLayoutParams(params);
         params.topMargin = 10;
         autotxt.setPadding(10, 10, 10, 10);
-        Log.e("custom autocomplet ", "custom autocomplete ans " + opt.getAnswer());
+        Log.e("custom autocomplet ", "custom autocomplete ans " + opt.getOptionValue());
         final ArrayList<Master> selectedmasterdata = new ArrayList<>();
-      /*  String[] ansdata = opt.getAnswer().split("^");
+      /*  String[] ansdata = opt.getOptionValue().split("^");
         if (ansdata.length > 1) {
             String[] ans = ansdata[1].split(",");
             for (int i = 0; i < ans.length; i++) {
                 selectedmasterdata.add(new Master(ans[i]));
             }
         }*/
-        // String[] ansdata = opt.getAnswer().split("^");
+        // String[] ansdata = opt.getOptionValue().split("^");
         // if (ansdata.length > 1) {
-        String[] ans1 = opt.getAnswer().split(",");
+        String[] ans1 = opt.getOptionValue().split(",");
         for (int i = 0; i < ans1.length; i++) {
             if (ans1[i].length() > 0)
                 selectedmasterdata.add(new Master(ans1[i]));
@@ -2651,7 +2681,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
         //}
         Gson gson = new Gson();
         String ans = gson.toJson(selectedmasterdata);
-        opt.setAnswer(ans);
+        opt.setOptionValue(ans);
         q.setAnswer(ans);
 
         RecyclerView mRecyclerview = new RecyclerView(TemplateQuestionActivity.this);
@@ -2663,7 +2693,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             public void onItemClick() {
                 Gson gson = new Gson();
                 String ans = gson.toJson(selectedmasterdata);
-                opt.setAnswer(ans);
+                opt.setOptionValue(ans);
                 q.setAnswer(ans);
             }
         });
@@ -2794,7 +2824,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
 
         Gson gson = new Gson();
         String ans = gson.toJson(selectedmasterdata);
-        opt.setAnswer(ans);
+        opt.setOptionValue(ans);
         q.setAnswer(ans);
 
         RecyclerView mRecyclerview = new RecyclerView(TemplateQuestionActivity.this);
@@ -2806,7 +2836,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             public void onItemClick() {
                 Gson gson = new Gson();
                 String ans = gson.toJson(selectedmasterdata);
-                opt.setAnswer(ans);
+                opt.setOptionValue(ans);
                 q.setAnswer(ans);
             }
         });
@@ -2910,7 +2940,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     }
 
                     q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
+                    opt.setOptionValue(obj.toString());
                     Log.e("ans", "ans " + q.getAnswer());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -2927,7 +2957,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     obj.put("ID", getId(autotxt1.getText().toString(), mdataset));
                     obj.put("BodyPart", autotxt1.getText().toString());
                     q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
+                    opt.setOptionValue(obj.toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -3025,13 +3055,13 @@ public class TemplateQuestionActivity extends ActivityCommon {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    JSONObject obj = new JSONObject(q.getAnswer());
+                    JSONObject obj = new JSONObject(q.getOptionValue());
 
                     obj.put("Id", ((Master) parent.getAdapter().getItem(position)).getTestId());
                     obj.put("TestName", ((Master) parent.getAdapter().getItem(position)).getName());
-                    q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
-                    Log.e("ans", "ans " + q.getAnswer());
+                    q.setOptionValue(obj.toString());
+                    opt.setOptionValue(obj.toString());
+                    Log.e("ans", "ans " + q.getOptionValue());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -3051,7 +3081,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     }
                     obj.put("TestName", autotxt.getText().toString());
                     q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
+                    opt.setOptionValue(obj.toString());
                     Log.e("ans", "ans " + q.getAnswer());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -3063,13 +3093,13 @@ public class TemplateQuestionActivity extends ActivityCommon {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    JSONObject obj = new JSONObject(q.getAnswer());
+                    JSONObject obj = new JSONObject(q.getOptionValue());
                     obj.put("LabId", ((Master) parent.getAdapter().getItem(position)).getLabId());
                     obj.put("LabName", ((Master) parent.getAdapter().getItem(position)).getName());
 
-                    q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
-                    Log.e("ans", "ans " + q.getAnswer());
+                    q.setOptionValue(obj.toString());
+                    opt.setOptionValue(obj.toString());
+                    Log.e("ans", "ans " + q.getOptionValue());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -3090,7 +3120,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     }
                     obj.put("TestName", autotxt.getText().toString());
                     q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
+                    opt.setOptionValue(obj.toString());
                     Log.e("ans", "ans " + q.getAnswer());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -3102,12 +3132,12 @@ public class TemplateQuestionActivity extends ActivityCommon {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    JSONObject obj = new JSONObject(q.getAnswer());
+                    JSONObject obj = new JSONObject(q.getOptionValue());
                     obj.put("LabId", masterdata.get(position).getCategoryid());
                     obj.put("LabName", masterdata.get(position).getName());
-                    q.setAnswer(obj.toString());
-                    opt.setAnswer(obj.toString());
-                    Log.e("ans", "ans " + q.getAnswer());
+                    q.setOptionValue(obj.toString());
+                    opt.setOptionValue(obj.toString());
+                    Log.e("ans", "ans " + q.getOptionValue());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -3131,7 +3161,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 q.setAnswer(opt.getOptionId() + "^" + data[sp.getSelectedItemPosition()]);
-                opt.setAnswer(opt.getOptionId() + "^" + data[sp.getSelectedItemPosition()]);
+                opt.setOptionValue(opt.getOptionId() + "^" + data[sp.getSelectedItemPosition()]);
             }
 
             @Override
@@ -3158,6 +3188,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     Log.e("path ", "path " + " " + filePath);
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 e.printStackTrace();
             }
         }
@@ -3531,7 +3562,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
 
     }
 
-    class upload extends AsyncTask<Void, Void, String> {
+    class upload extends AsyncTask<Void, Void, String>  {
         long stime = System.currentTimeMillis();
         String ftpServerAddress = "theclinic.techama.in";
         String userName = "theclinic";

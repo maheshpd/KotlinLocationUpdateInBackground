@@ -12,7 +12,6 @@ public class SaveAnswerdata {
     JSONObject XmlObj = new JSONObject();
 
     public SaveAnswerdata(){
-
     }
 
     public SaveAnswerdata(JSONObject obj){
