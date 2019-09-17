@@ -20,7 +20,6 @@ public class Questions {
     ArrayList<Option> Option = new ArrayList<>();
     ArrayList<Option> suboption = new ArrayList<>();
     String Layout = "";
-
     public Questions() {
 
     }

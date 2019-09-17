@@ -384,14 +384,21 @@ public class TemplateQuestionActivity extends ActivityCommon {
         JSONArray array = new JSONArray();
         for (int l = 0; l < grouparray.size(); l++) {
             if (group != null) {
+
                 ArrayList<SubGroups> subGroups = grouparray.get(l).getSubGroups();
-                for (int i = 0; i < subGroups.size(); i++) {
+
+                for (int i = 0; i <subGroups.size(); i++) {
+
                     ArrayList<Questions> ques = subGroups.get(i).getQuestions();
+
                     for (int j = 0; j < ques.size(); j++) {
                         ArrayList<Option> qdata = ques.get(j).getOption();
+
                         String ans = "";
                         for (int k = 0; k < qdata.size(); k++) {
+
                             ques.get(j).setOptionType(qdata.get(k).getOptionType());
+
                             if (qdata.get(k).getOptionType().equalsIgnoreCase("CustomAutoComplete") || qdata.get(k).getOptionType().equalsIgnoreCase("AutoComplete") || qdata.get(k).getOptionType().equalsIgnoreCase("Life Style")) {
                                 try {
                                     String ansdata = qdata.get(k).getOptionValue();
@@ -1733,7 +1740,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
         try {
             //  Log.e("Description", "Description " + opt.getOptionValue());
 
-            TextInputLayout textInputLayout = new TextInputLayout(this);
+            /*TextInputLayout textInputLayout = new TextInputLayout(this);
             textInputLayout.setHint(hint);
             TextInputEditText editText = new TextInputEditText(textInputLayout.getContext());
 
@@ -1768,15 +1775,13 @@ public class TemplateQuestionActivity extends ActivityCommon {
                 public void afterTextChanged(Editable editable) {
 
                 }
-            });
+            });*/
 
 
-            textInputLayout.addView(editText);
-
-
-          /*  EditText e1 = new EditText(getApplicationContext());
+          EditText e1 = new EditText(getApplicationContext());
             e1.setTextSize(fontsize);
             e1.setTypeface(typeface);
+            e1.setHint(hint);
             e1.setTextColor(getResources().getColor(R.color.textcolor));
             e1.setMinLines(2);
             if (opt.getOptionType().equalsIgnoreCase("editor"))
@@ -1804,10 +1809,10 @@ public class TemplateQuestionActivity extends ActivityCommon {
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     if (charSequence.toString().trim().length() > 0) {
-                        q.setOptionValue(opt.getOptionId() + "^" + charSequence.toString());
+                        q.setOptionType(opt.getOptionId() + "^" + charSequence.toString());
                         opt.setOptionValue(opt.getOptionId() + "^" + charSequence.toString());
                     } else {
-                        q.setOptionValue("");
+                        q.setOptionType("");
                         opt.setOptionValue("");
                     }
                 }
@@ -1819,22 +1824,17 @@ public class TemplateQuestionActivity extends ActivityCommon {
             });
 
             e1.setLayoutParams(params);
-            if (Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                e1.setBackgroundDrawable(getResources().getDrawable(R.drawable.edittextshape_grayborder));
-            } else {
-                e1.setBackground(getResources().getDrawable(R.drawable.edittextshape_grayborder));
-            }*/
-            layout.addView(textInputLayout);
-//            e1.setText(Html.fromHtml(opt.getOptionValue()));
+            layout.addView(e1);
+            e1.setText(Html.fromHtml(opt.getOptionValue()));
             Log.e("final opt ", "final opt " + opt.getOptionValue());
-           /* if(opt.getOptionValue().length()>0)
+            if(opt.getOptionValue().length()>0)
             {
                 if(opt.getOptionValue().contains("^"))
                 {
                     String[] array=  opt.getOptionValue().split("^");
                     e1.setText(array[1]);
                 }
-            }*/
+            }
         } catch (Exception e) {
             e.printStackTrace();
             reporterror(tag, e.toString());
