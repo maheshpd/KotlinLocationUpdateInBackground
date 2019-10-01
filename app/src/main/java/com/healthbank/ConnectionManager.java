@@ -1257,6 +1257,7 @@ public class ConnectionManager {
                                 .post(body).build();
                         Response response = client.newCall(request).execute();
                         GlobalValues.TEMP_STR = response.body().string();
+                        Log.d( "Respopnsejson: ",GlobalValues.TEMP_STR);
                         isDotNet();
                         final int code = response.code();
                         publishBroadcast(code, Connection.GetTemplateQuestionAnswer.ordinal());

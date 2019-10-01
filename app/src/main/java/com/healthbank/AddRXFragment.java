@@ -138,8 +138,8 @@ public class AddRXFragment extends Fragment {
                                     visitdata.add(0, v);
 
                                  /*   if (visitdata.size() > 1)
-                                        bt3.setVisibility(View.VISIBLE);
-                                    else bt3.setVisibility(View.GONE);*/
+                                        refitBtn.setVisibility(View.VISIBLE);
+                                    else refitBtn.setVisibility(View.GONE);*/
                                     adaptervisit = new ArrayAdapter<Visits>(getActivity(), android.R.layout.simple_dropdown_item_1line, visitdata);
                                     spinner.setAdapter(adaptervisit);
                                     if (visitdata.size() > 0)
@@ -950,9 +950,9 @@ public class AddRXFragment extends Fragment {
         dataset.add("Years");
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>
-                (getApplicationContext(), android.R.layout.simple_spinner_item,
+                (getApplicationContext(), android.R.mainLayout.simple_spinner_item,
                         dataset);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.mainLayout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);*/
         txt2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1082,8 +1082,8 @@ public class AddRXFragment extends Fragment {
                 adaptervisit = new ArrayAdapter<Visits>(getActivity(), android.R.layout.simple_dropdown_item_1line, visitdata);
                 spinner.setAdapter(adaptervisit);
               /*  if (visitdata.size() > 1)
-                    bt3.setVisibility(View.VISIBLE);
-                else bt3.setVisibility(View.GONE);*/
+                    refitBtn.setVisibility(View.VISIBLE);
+                else refitBtn.setVisibility(View.GONE);*/
             } else {
                 try {
                     Calendar cal = Calendar.getInstance();
@@ -1133,7 +1133,7 @@ public class AddRXFragment extends Fragment {
         visitdata.add(0, v);
       /*  adaptervisit.notifyDataSetChanged();
         if (visitdata.size() > 0)
-            sp2.setSelection(0);*/
+            visitSelection.setSelection(0);*/
 
         adaptervisit = new ArrayAdapter<Visits>(getActivity(), android.R.layout.simple_dropdown_item_1line, visitdata);
         spinner.setAdapter(adaptervisit);

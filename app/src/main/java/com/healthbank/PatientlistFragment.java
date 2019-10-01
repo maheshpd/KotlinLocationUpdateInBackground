@@ -167,8 +167,8 @@ public class PatientlistFragment extends Fragment {
             }.getType();
             mdataset = gson.fromJson(array.toString(), type);
             Collections.reverse(mdataset);
-            adapter = new PatientAdapter(getActivity(), mdataset);
-            mrecyclerview.setAdapter(adapter);*/
+            templateadapter = new PatientAdapter(getActivity(), mdataset);
+            mrecyclerview.setAdapter(templateadapter);*/
         } catch (Exception e) {
             e.printStackTrace();
         }

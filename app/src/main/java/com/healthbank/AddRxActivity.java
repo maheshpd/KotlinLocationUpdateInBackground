@@ -698,9 +698,9 @@ public class AddRxActivity extends ActivityCommon {
         dataset.add("Years");
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>
-                (getApplicationContext(), android.R.layout.simple_spinner_item,
+                (getApplicationContext(), android.R.mainLayout.simple_spinner_item,
                         dataset);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.mainLayout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);*/
         txt2.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -139,8 +139,8 @@ public class AddLabFragment extends Fragment {
         recyclerview = (RecyclerView) v.findViewById(R.id.recyclerview_1);
         mLayoutmanager = new LinearLayoutManager(getActivity());
         recyclerview.setLayoutManager(mLayoutmanager);
-        adapter = new LabLayoutAdapter(getActivity(), labdata, "Lab");
-        recyclerview.setAdapter(adapter); */
+        templateadapter = new LabLayoutAdapter(getActivity(), labdata, "Lab");
+        recyclerview.setAdapter(templateadapter); */
 
         DatabaseHelper.getInstance(getActivity()).getlabdata(GlobalValues.selectedpt.getPatientid(), DatabaseHelper.lab);
         txt1 = v.findViewById(R.id.textview_1);
@@ -259,14 +259,14 @@ public class AddLabFragment extends Fragment {
 
     /* public void addview() {
          try {
-             View view = LayoutInflater.from(getActivity()).inflate(R.layout.layout_addadvice, null);
+             View view = LayoutInflater.from(getActivity()).inflate(R.mainLayout.layout_addadvice, null);
           //   AutoCompleteTextView autotxt = (AutoCompleteTextView) v.findViewById(R.id.autocompletetextview_1);
              // autotxt.setAdapter(adviceadapter);
             // autotxt.setThreshold(0);
              ImageView img = (ImageView) view.findViewById(R.id.imageview_1);
 
 
-         if (layout.getChildCount() == 0) {
+         if (mainLayout.getChildCount() == 0) {
              img.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_plus));
          } else {
              img.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_minus));
@@ -281,15 +281,15 @@ public class AddLabFragment extends Fragment {
                          if (pos == 0) {
                              addview();
                          } else {
-                             layout.removeViewAt(pos);
+                             mainLayout.removeViewAt(pos);
                          }
                      } catch (Exception e) {
                          e.printStackTrace();
                      }
                  }
              });
-             img.setTag(layout.getChildCount());
-             layout.addView(view);
+             img.setTag(mainLayout.getChildCount());
+             mainLayout.addView(view);
          }catch (Exception e)
          {
              e.printStackTrace();
@@ -683,7 +683,7 @@ public class AddLabFragment extends Fragment {
                         images.add(selectedImagePath);
                         txt2.setVisibility(View.VISIBLE);
                         txt2.setText("(" + images.size() + ")");
-                        adapter.notifyDataSetChanged();
+                        templateadapter.notifyDataSetChanged();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }*/
@@ -698,7 +698,7 @@ public class AddLabFragment extends Fragment {
                         }
                         txt2.setVisibility(View.VISIBLE);
                         txt2.setText("(" + images.size() + ")");
-                        adapter.notifyDataSetChanged();
+                        templateadapter.notifyDataSetChanged();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -747,7 +747,7 @@ public class AddLabFragment extends Fragment {
                     images.add(Globals.RUNNING_IMAGE_PATH);
                     txt2.setVisibility(View.VISIBLE);
                     txt2.setText("(" + images.size() + ")");
-                    adapter.notifyDataSetChanged();
+                    templateadapter.notifyDataSetChanged();
                     break;
                 case REQUEST_GALLARY:
                     try {
@@ -762,7 +762,7 @@ public class AddLabFragment extends Fragment {
                         images.add(selectedImagePath);
                         txt2.setVisibility(View.VISIBLE);
                         txt2.setText("(" + images.size() + ")");
-                        adapter.notifyDataSetChanged();
+                        templateadapter.notifyDataSetChanged();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -777,7 +777,7 @@ public class AddLabFragment extends Fragment {
                         }
                         txt2.setVisibility(View.VISIBLE);
                         txt2.setText("(" + images.size() + ")");
-                        adapter.notifyDataSetChanged();
+                        templateadapter.notifyDataSetChanged();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

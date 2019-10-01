@@ -156,12 +156,12 @@ public class PrintActivity extends ActivityCommon {
         custommasterdata = new ArrayList<>();
         filedata = new ArrayList<>();
         prescriptiondata = new ArrayList<>();
-       /* sp1 = (Spinner) findViewById(R.id.spinner_1);
-        sp2 = (Spinner) findViewById(R.id.spinner_2);*/
+       /* templateSelection = (Spinner) findViewById(R.id.spinner_1);
+        visitSelection = (Spinner) findViewById(R.id.spinner_2);*/
         scrollView = findViewById(R.id.scrollview);
         layout = findViewById(R.id.layout_1);
         layout2 = findViewById(R.id.layout_2);
-      /*  bt1 = (Button) findViewById(R.id.button_1);
+      /*  templateQuestionSubmitBtn = (Button) findViewById(R.id.button_1);
         bt2 = (Button) findViewById(R.id.button_2);
         bt2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,11 +172,11 @@ public class PrintActivity extends ActivityCommon {
 
         mdataset = new ArrayList<>();
         refreshdata();
-       /* adapter = new ArrayAdapter<Template>(this, android.R.layout.simple_dropdown_item_1line, mdataset);
-        sp1.setAdapter(adapter);
+       /* templateadapter = new ArrayAdapter<Template>(this, android.R.mainLayout.simple_dropdown_item_1line, mdataset);
+        templateSelection.setAdapter(templateadapter);
 
-        adaptervisit = new ArrayAdapter<Visits>(this, android.R.layout.simple_dropdown_item_1line, visitdata);
-        sp2.setAdapter(adaptervisit);*/
+        adaptervisit = new ArrayAdapter<Visits>(this, android.R.mainLayout.simple_dropdown_item_1line, visitdata);
+        visitSelection.setAdapter(adaptervisit);*/
 
    /*     if (InternetUtils.getInstance(PrintActivity.this).available()) {
             try {
@@ -194,11 +194,11 @@ public class PrintActivity extends ActivityCommon {
             }
         }*/
 
-      /*  sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      /*  templateSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    layout.removeAllViews();
+                    mainLayout.removeAllViews();
                     grouparray.clear();
                     visitid = "0";
                     visitdate = gettodaysdate();
@@ -206,8 +206,8 @@ public class PrintActivity extends ActivityCommon {
                         layout2.setVisibility(View.VISIBLE);
                         try {
                             if (adaptervisit != null) {
-                                if (visitdata.size() > sp2.getSelectedItemPosition()) {
-                                    visitid = Integer.toString(visitdata.get(sp2.getSelectedItemPosition()).getVisitid());
+                                if (visitdata.size() > visitSelection.getSelectedItemPosition()) {
+                                    visitid = Integer.toString(visitdata.get(visitSelection.getSelectedItemPosition()).getVisitid());
                                     visitdate = DateUtils.parseDateNew(visitdata.get(position).getVisitdate(), "yyyy-MM-dd'T'HH:mm:ss", "yyyy-mm-dd");
                                 }
                             }
@@ -248,12 +248,12 @@ public class PrintActivity extends ActivityCommon {
         });*/
 
 /*
-        sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        visitSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 try {
                     Log.e("url click ", "click ");
-                    layout.removeAllViews();
+                    mainLayout.removeAllViews();
                     //   grouparray.clear();
                     //  visitid=((Visits)parent.getAdapter().getItem(position)).getVisit();
 
@@ -271,7 +271,7 @@ public class PrintActivity extends ActivityCommon {
                     }*//*
                     genloading("loading");
                     JSONObject obj = new JSONObject();
-                    obj.put("TemplateId", mdataset.get(sp1.getSelectedItemPosition()).getTemplateId());
+                    obj.put("TemplateId", mdataset.get(templateSelection.getSelectedItemPosition()).getTemplateId());
                     obj.put("patientid", GlobalValues.selectedpt.getPatientid());
                     obj.put("VisitNo", visitid);
                     ConnectionManager.getInstance(PrintActivity.this).GetTemplateQuestionAnswer(obj.toString());
@@ -350,7 +350,7 @@ public class PrintActivity extends ActivityCommon {
                 answerobjdata = new JSONObject(array2.getJSONObject(0).getString("jsondata"));
                 setdata();
             } else {
-              //  int tempid = mdataset.get(sp1.getSelectedItemPosition()).getTemplateId();
+              //  int tempid = mdataset.get(templateSelection.getSelectedItemPosition()).getTemplateId();
                 JSONArray array = DatabaseHelper.getInstance(PrintActivity.this).getfreshtemplatedata(templateid);
                 if (array.length() > 0) {
                     answerobjdata = new JSONObject(array.getJSONObject(0).getString("jsondata"));
@@ -534,7 +534,7 @@ public class PrintActivity extends ActivityCommon {
 
                     } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Medications")) {
                 /*    if (v != null)
-                        layout.removeView(v);*/
+                        mainLayout.removeView(v);*/
                         adddrug(true, (j + 1) + "." + questions.get(j).getName());
                     } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Drug")) {
                                         /*ArrayList<Master> masterdata = parsemaster(DatabaseHelper.getInstance(PrintActivity.this).getMasterdata("Drug"));
@@ -1138,7 +1138,7 @@ public class PrintActivity extends ActivityCommon {
                 }
             });
             cb.setTextColor(getResources().getColor(R.color.Black));
-            layout.addView(cb);
+            mainLayout.addView(cb);
         } catch (Exception e) {
             e.printStackTrace();
         }*/
@@ -1191,7 +1191,7 @@ public class PrintActivity extends ActivityCommon {
                     }
                 });
             }
-            layout.addView(rg);
+            mainLayout.addView(rg);
         } catch (Exception e) {
             e.printStackTrace();
             //   reporterror(tag, e.toString());
@@ -2138,10 +2138,10 @@ public class PrintActivity extends ActivityCommon {
     protected void onResume() {
         super.onResume();
         if (drugadapter != null) {
-            Log.e("drug", "drug adapter" + drugdata.size());
+            Log.e("drug", "drug templateadapter" + drugdata.size());
             drugadapter.notifyDataSetChanged();
         } else {
-            Log.e("drug", "drug adapter null");
+            Log.e("drug", "drug templateadapter null");
         }
 
         if (GlobalValues.selectedoctor != null && editdoc != null) {
@@ -2337,7 +2337,7 @@ public class PrintActivity extends ActivityCommon {
             mRecyclerviewdrug.setAdapter(drugadapter);
             mRecyclerviewdrug.addItemDecoration(new DividerItemDecoration(ContextCompat.getDrawable(PrintActivity.this, R.drawable.recycler_divider)));
             mRecyclerviewdrug.setPadding(30, 0, 10, 10);
-            layout.addView(mRecyclerviewdrug);
+            mainLayout.addView(mRecyclerviewdrug);
 
             Log.e("Global drug ", "Global Derug " + drugdata.size());
         } catch (Exception e) {
@@ -2379,7 +2379,7 @@ public class PrintActivity extends ActivityCommon {
         }
 
         layout3.addView(img);
-        layout.addView(layout3);*/
+        mainLayout.addView(layout3);*/
 
     /*    img.setOnClickListener(new View.OnClickListener() {
             @Override

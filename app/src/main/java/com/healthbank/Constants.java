@@ -58,6 +58,7 @@ public class Constants {
     public static final String Test = "Test";
     public static final String treatmentprocedures = "treatment procedures";
     public static final String channel="HMIS";
+    public static final String TREATMENT = "TREATMENT";
     public static String apikey = "AAAAdKIocEI:APA91bG8nKeatMzZWaCP_9JVrMBueOgNieTqihiK8ooNqPQfvl-0od6M-TTVDR4sKcU9HO887UToH-JEV9Qjx_s9D53pO43p0qItG3LsGjqvqjsAFBZ5PabByjvjO5WiiToMGUy0yQ5r";
     public static int MAXTABCOUNT = 4;
 }

@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 public class AddPathologyActivity extends ActivityCommon {
    /* AutoCompleteTextView autotxt1;
-    Button bt1;
+    Button templateQuestionSubmitBtn;
     RecyclerView mRecyclerview;
     GridLayoutManager mLayoutmanager;
     FileAdapter fileAdapter;

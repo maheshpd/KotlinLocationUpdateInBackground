@@ -1044,7 +1044,7 @@ public class AppointmentActivity extends ActivityCommon {
                         master.setTestId("0");
                         master.setLabId("0");
                         mdataset.add(master);
-                        adapter.notifyDataSetChanged();
+                        templateadapter.notifyDataSetChanged();
                         ((EditText) anchorView).setText(edit.getText().toString().trim());
                         popWindow.dismiss();
                     } else {

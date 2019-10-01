@@ -564,7 +564,7 @@ public class AddRadilogyFragment extends Fragment {
                         images.add(selectedImagePath);
                         txt2.setVisibility(View.VISIBLE);
                         txt2.setText("(" + images.size() + ")");
-                        adapter.notifyDataSetChanged();
+                        templateadapter.notifyDataSetChanged();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }*/
@@ -579,7 +579,7 @@ public class AddRadilogyFragment extends Fragment {
                         }
                         txt2.setVisibility(View.VISIBLE);
                         txt2.setText("(" + images.size() + ")");
-                        adapter.notifyDataSetChanged();
+                        templateadapter.notifyDataSetChanged();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -627,7 +627,7 @@ public class AddRadilogyFragment extends Fragment {
                     images.add(Globals.RUNNING_IMAGE_PATH);
                     txt2.setVisibility(View.VISIBLE);
                     txt2.setText("(" + images.size() + ")");
-                    adapter.notifyDataSetChanged();
+                    templateadapter.notifyDataSetChanged();
                     break;
                 case REQUEST_GALLARY:
                     try {
@@ -642,7 +642,7 @@ public class AddRadilogyFragment extends Fragment {
                         images.add(selectedImagePath);
                         txt2.setVisibility(View.VISIBLE);
                         txt2.setText("(" + images.size() + ")");
-                        adapter.notifyDataSetChanged();
+                        templateadapter.notifyDataSetChanged();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -657,7 +657,7 @@ public class AddRadilogyFragment extends Fragment {
                         }
                         txt2.setVisibility(View.VISIBLE);
                         txt2.setText("(" + images.size() + ")");
-                        adapter.notifyDataSetChanged();
+                        templateadapter.notifyDataSetChanged();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

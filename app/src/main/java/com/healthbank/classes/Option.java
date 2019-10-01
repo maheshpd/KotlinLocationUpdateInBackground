@@ -2,6 +2,8 @@ package com.healthbank.classes;
 
 import android.util.Log;
 
+import com.healthbank.model.SelectedTest;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -64,10 +66,11 @@ public class Option {
 
             if (obj.has("OptionName")) {
                 this.OptionName = obj.getString("OptionName");
+                Log.d("Option: ",OptionName);
             }
             if (obj.has("OptionValue")) {
                 this.OptionValue = obj.getString("OptionValue");
-                Log.e("OptionValue available ", this.OptionValue);
+                Log.e("OptionValue", this.OptionValue);
             } else {
                 Log.e("OptionValue not available ", this.OptionValue);
 
@@ -91,7 +94,6 @@ public class Option {
                     }
                 }
             }
-
           /* if(obj.has("XmlObj"))
            {
                this.XmlObj
@@ -215,4 +217,5 @@ public class Option {
     public void setOptionName(String optionName) {
         OptionName = optionName;
     }
+
 }

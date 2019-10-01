@@ -368,7 +368,7 @@ public class CategorisedotherReportActivity extends ActivityCommon {
                                 cursor1.
                                 listDataChild.get(this.listDataHeader.get(0)).add(displayName);
                                 listAdapter.notifyDataSetInvalidated();
-                                //  adapter.notifyDataSetChanged();
+                                //  templateadapter.notifyDataSetChanged();
                                 final Uri filePathUri = Uri.parse(displayName);
                                 File sourcefile = new File(filePathUri.getPath());
                                 File Destfile = new File(StructureClass.generate(), displayName);
@@ -874,7 +874,7 @@ public class CategorisedotherReportActivity extends ActivityCommon {
             bmp = null;
         /*    //Log.e("fori ","fori "+fori.getName()+" "+fori.getAbsolutePath());
             listAdapter.getGroup(0).add(fori.getName());
-            adapter.notifyDataSetChanged();*/
+            templateadapter.notifyDataSetChanged();*/
             listDataChild.get(this.listDataHeader.get(0)).add(fori.getName());
             for (int i=0;i<listDataChild.get(this.listDataHeader.get(0)).size();i++)
             {

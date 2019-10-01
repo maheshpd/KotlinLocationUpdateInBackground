@@ -106,6 +106,7 @@
     // DO NOT TRANSLATE
     <string name="default_notification_channel_id">my_channel_01</string>
     <string name="default_notification_channel_title">insurancealertss</string>
+    <string name="Diet_Advised_separation">\\$$</string>
 
     <string-array name="days_arrays">
         <item>Mon</item>

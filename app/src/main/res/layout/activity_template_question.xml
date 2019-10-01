@@ -19,7 +19,7 @@
         android:weightSum="1">
 
         <Button
-            android:id="@+id/button_2"
+            android:id="@+id/addNewVisitBtn"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@drawable/rounded_button"
@@ -53,13 +53,13 @@
          </LinearLayout>
 
         <Spinner
-            android:id="@+id/spinner_1"
+            android:id="@+id/templateSelection"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.7" />
 
         <Spinner
-            android:id="@+id/spinner_2"
+            android:id="@+id/visitSelection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"/>
@@ -85,7 +85,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button_3"
+            android:id="@+id/refitBtn"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="right"
@@ -95,7 +95,7 @@
             android:textColor="@color/white" />
 
         <Button
-            android:id="@+id/button_1"
+            android:id="@+id/templateQuestionSubmitBtn"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="right"
@@ -118,7 +118,7 @@
         android:padding="10dp">
 
         <LinearLayout
-            android:id="@+id/layout_1"
+            android:id="@+id/mainLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

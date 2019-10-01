@@ -40,5 +40,7 @@ public class GlobalValues {
     public static Doctor selectedoctor;
     public static boolean isappopen=false;
     public static ArrayList<Doctor> doctordata=new ArrayList<>();
-  //  public static PatientProfile profile;
+    public static String current = "Current";
+
+    //  public static PatientProfile profile;
 }

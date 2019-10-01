@@ -54,13 +54,13 @@ public class DoctorActivity extends ActivityCommon {
             adapter = new DoctorAdapter(DoctorActivity.this, mdataset);
             recyclerView.setAdapter(adapter);
 
-          /*  ArrayAdapter<Department> departmetadapter = new ArrayAdapter<Department>(this, R.layout.list_item_spinner, departmentdata);
-            sp1.setAdapter(departmetadapter);
+          /*  ArrayAdapter<Department> departmetadapter = new ArrayAdapter<Department>(this, R.mainLayout.list_item_spinner, departmentdata);
+            templateSelection.setAdapter(departmetadapter);
 
-            sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            templateSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    adapter.departmentfilter(departmentdata.get(i).getName());
+                    templateadapter.departmentfilter(departmentdata.get(i).getName());
                 }
                 @Override
                 public void onNothingSelected(AdapterView<?> adapterView) {
@@ -88,7 +88,7 @@ public class DoctorActivity extends ActivityCommon {
             /*if (GlobalValues.d != null) {
                 for (int i = 0; i < departmentdata.size(); i++) {
                     if (departmentdata.get(i).getId() == GlobalValues.d.getId()) {
-                        sp1.setSelection(i);
+                        templateSelection.setSelection(i);
                         break;
                     }
                 }

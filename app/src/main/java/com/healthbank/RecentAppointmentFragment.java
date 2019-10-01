@@ -59,12 +59,12 @@ public class RecentAppointmentFragment extends Fragment {
                         if (data.get(i).getAppointmentid().equalsIgnoreCase(mdata)) ;
                         {
                             data.get(i).setStatus("cancel");
-                            adapter.notifyItemChanged(i);
+                            templateadapter.notifyItemChanged(i);
                             break;
                         }
                     }
-                    adapter.notifyDataSetChanged();
-                    recyclerView.setAdapter(adapter);
+                    templateadapter.notifyDataSetChanged();
+                    recyclerView.setAdapter(templateadapter);
                 } else if (accesscode == Connection.Appointmentupdated.ordinal()) {
 
                 }
@@ -121,7 +121,7 @@ public class RecentAppointmentFragment extends Fragment {
                 listAdapter.filterData(editable.toString());
             }
         });
-        // setting list adapter
+        // setting list templateadapter
         listAdapter = new ExpandableListAdapter(getActivity(), mdataset);
         expListView.setAdapter(listAdapter);
 

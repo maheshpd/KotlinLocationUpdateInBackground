@@ -97,7 +97,7 @@ public class BarcodeReader extends Fragment implements View.OnTouchListener, Bar
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the mainLayout for this fragment
         View view = inflater.inflate(R.layout.fragment_barcode_reader, container, false);
         permissionStatus = getActivity().getSharedPreferences("permissionStatus", getActivity().MODE_PRIVATE);
         mPreview = view.findViewById(R.id.preview);
