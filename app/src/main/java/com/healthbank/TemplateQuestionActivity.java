@@ -1133,6 +1133,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                         }
                     }
                 }
+            //Comment
             View v;
             if (!questions.get(j).getName().equalsIgnoreCase("null"))
                 v = addtextview((j + 1) + "." + questions.get(j).getName());
