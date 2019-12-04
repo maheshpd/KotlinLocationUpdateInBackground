@@ -92,6 +92,8 @@ public class SplashActivity extends ActivityCommon {
                 data.add("occupation");
                 genloading("loading");
                 ConnectionManager.getInstance(SplashActivity.this).getMaster(data);
+
+                ConnectionManager.getInstance(SplashActivity.this).getRemaningMasterData();
             } else {
                 gotonext();
             }
@@ -182,7 +184,6 @@ public class SplashActivity extends ActivityCommon {
             for (int i = 0; i < mdataset.size(); i++) {
                 DatabaseHelper.getInstance(SplashActivity.this).savetemplatenamedata(mdataset.get(i).getContentValues(), Integer.toString(mdataset.get(i).getTemplateId()));
             }
-
             ConnectionManager.getInstance(SplashActivity.this).GetTemplateQuestionAnswerFreshdata(mdataset);
         } catch (Exception e) {
             e.printStackTrace();

@@ -68,7 +68,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class PrintActivity extends ActivityCommon {
+public class
+PrintActivity extends ActivityCommon {
     Spinner sp1, sp2;
     ArrayList<Template> mdataset;
     ArrayAdapter<Template> adapter;
@@ -342,6 +343,7 @@ public class PrintActivity extends ActivityCommon {
         }
     }
 
+
     public void refreshdata() {
         try {
             Log.e("refreshdata ", "in refreshdata ");
@@ -364,7 +366,7 @@ public class PrintActivity extends ActivityCommon {
 
     public void addquestions(ArrayList<Questions> questions, int i, JSONArray array) {
 
-        {
+
             ArrayList<SaveAnswerdata> data = new ArrayList<>();
             if (array != null) {
                 for (int j = 0; j < array.length(); j++) {
@@ -587,6 +589,7 @@ public class PrintActivity extends ActivityCommon {
                         JSONArray array1 = new JSONArray();
                         addquestions(optdata.get(k).getSubQuestions(), i, array1);
                     }
+
                     try {
                         for (int k1 = 0; k1 < data.size(); k1++) {
                             if (data.get(k1).getAns() != null)
@@ -646,7 +649,7 @@ public class PrintActivity extends ActivityCommon {
                 }
                 devider();
             }
-        }
+
 
     }
 
@@ -1611,14 +1614,24 @@ public class PrintActivity extends ActivityCommon {
 
     public void addcustomautocompletetextview(final Option opt, final Questions q, final ArrayList<Master> mdataset, final String masterkey) {
         final ArrayList<Master> selectedmasterdata = new ArrayList<>();
-        String[] ansdata = opt.getOptionValue().split("^");
+        String OptionValue = opt.getOptionValue().replace("$$", "UUID");
+
+
+        String[] ansdata = OptionValue.split("UUID");
         Log.e("testanswer ", "answer " + opt.getOptionValue());
-        if (ansdata.length > 1) {
-            String[] ans = ansdata[1].split(",");
-            for (int i = 0; i < ans.length; i++) {
-                selectedmasterdata.add(new Master(ans[i]));
-            }
+
+        for (int i = 0; i <ansdata.length; i++) {
+            selectedmasterdata.add(new Master(ansdata[i]));
         }
+
+
+
+//        if (ansdata.length > 1) {
+//            String[] ans = ansdata[1].split(",");
+//            for (int i = 0; i < ans.length; i++) {
+//                selectedmasterdata.add(new Master(ans[i]));
+//            }
+//        }
 
         Gson gson = new Gson();
         String ans = gson.toJson(selectedmasterdata);
@@ -2015,6 +2028,17 @@ public class PrintActivity extends ActivityCommon {
         sp.setAdapter(adapter);
         layout.addView(sp);
 
+        String values = opt.getOptionValue();
+
+        int spinnerPosition = adapter.getPosition(values);
+        sp.setSelection(spinnerPosition);
+
+        for (int i = 0; i <data.length ; i++) {
+            if (values.contains(data[i])) {
+                sp.setSelected(true);
+            }
+        }
+
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -2247,6 +2271,7 @@ public class PrintActivity extends ActivityCommon {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
+
                             for (int l = 0; l < rowarray.length(); l++) {
                                 Master master = new Master();
                                 master.setName(rowarray.getJSONObject(l).getString("TreatmentProcedureName"));
@@ -2282,13 +2307,22 @@ public class PrintActivity extends ActivityCommon {
     public void addcustomautocompletetextview(final Option opt, final Questions q,final String masterkey) {
 
         final ArrayList<Master> selectedmasterdata = new ArrayList<>();
-        String[] ansdata = opt.getOptionValue().split("^");
-        if (ansdata.length > 1) {
-            String[] ans = ansdata[1].split(",");
-            for (int i = 0; i < ans.length; i++) {
-                selectedmasterdata.add(new Master(ans[i]));
-            }
+
+        String ans1 = opt.getOptionValue().replace("$$","UUID");
+        String[] ans2 = ans1.split("UUID");
+
+        for (int i = 0; i <ans2.length ; i++) {
+            if (ans2[i].length()>1)
+                selectedmasterdata.add(new Master(ans2[i]));
         }
+
+//        String[] ansdata = opt.getOptionValue().split("^");
+//        if (ansdata.length > 1) {
+//            String[] ans = ansdata[1].split(",");
+//            for (int i = 0; i < ans.length; i++) {
+//                selectedmasterdata.add(new Master(ans[i]));
+//            }
+//        }
 
         Gson gson = new Gson();
         String ans = gson.toJson(selectedmasterdata);

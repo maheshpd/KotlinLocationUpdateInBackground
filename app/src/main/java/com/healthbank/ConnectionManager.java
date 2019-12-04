@@ -23,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -1064,6 +1065,7 @@ public class ConnectionManager {
                                 Log.e("DBMaster ", "DBMaster " +URLS.GET_Master(mdataset.get(i), "\"\"")+" "+ res);
                                 DatabaseHelper.getInstance(context).savemasterdata(mdataset.get(i), res);
                                 JSONArray array = new JSONObject(res).getJSONObject("root").optJSONArray("subroot");
+
                                 if (array != null) {
                                     for (int j = 0; j < array.length(); j++) {
                                         Log.e("mdataset.get(i)","data "+mdataset.get(i));
@@ -1085,7 +1087,10 @@ public class ConnectionManager {
                                             DatabaseHelper.getInstance(context).savemaster(obj.getString("Name"), obj.getString("Categoryid"), 1, mdataset.get(i));
                                         }
                                     }
-                                } else {
+                                }
+
+
+                                else {
                                     JSONObject obj = new JSONObject(res).getJSONObject("root").optJSONObject("subroot");
                                     if (mdataset.get(i).equalsIgnoreCase("Test")) {
                                         DatabaseHelper.getInstance(context).savemaster(obj.getString("Name"), obj.getString("TestId"), 1, mdataset.get(i));
@@ -1344,7 +1349,6 @@ public class ConnectionManager {
         }
     }
 
-
     public void getdepartment(final String flag) {
         if (InternetUtils.getInstance(context).available()) {
             Thread thread = new Thread(new Runnable() {
@@ -1393,6 +1397,7 @@ public class ConnectionManager {
                     Connection.NO_INTERNET.ordinal());
         }
     }
+
 
     public void getvisits(final String patientid) {
         if (InternetUtils.getInstance(context).available()) {
@@ -1670,6 +1675,40 @@ public class ConnectionManager {
         } else {
             publishBroadcast(Constants.STATUS_OK,
                     Connection.NO_INTERNET.ordinal());
+        }
+    }
+
+    public void getRemaningMasterData() {
+
+        if (InternetUtils.getInstance(context).available()) {
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Request request = new Request.Builder()
+                                .url(URLS.Get_Remaning_Master_data()).build();
+                        Response response = client.newCall(request).execute();
+                        GlobalValues.TEMP_STR = response.body().string();
+                        isDotNet();
+
+                        JSONArray array = new JSONArray(GlobalValues.TEMP_STR);
+
+                        if (array!=null) {
+                            for (int i = 0; i <array.length() ; i++) {
+                                JSONObject obj = array.getJSONObject(i);
+                                DatabaseHelper.getInstance(context).saveRemaningMasterData(obj.getString("MasterKey"), "0", "1", obj.getString("Value"));
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            thread.start();
+
+
+        } else {
+            publishBroadcast(Constants.STATUS_OK, Connection.NO_INTERNET.ordinal());
         }
     }
 }

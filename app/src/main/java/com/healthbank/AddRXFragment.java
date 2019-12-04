@@ -1214,7 +1214,10 @@ public class AddRXFragment extends Fragment {
                             obj.put("connectionid", Constants.projectid);
                            // genloading("loading...");
                             ConnectionManager.getInstance(getActivity()).AddVisit(obj.toString(), 0);
-                        } else {
+                        }
+
+                        else
+                            {
                             addcurrentvisit(myCalendar);
                           /*  Visits v = new Visits();
                             v.setPatientid(GlobalValues.selectedpt.getPatientid());

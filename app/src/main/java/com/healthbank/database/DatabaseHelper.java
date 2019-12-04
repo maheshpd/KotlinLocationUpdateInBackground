@@ -531,6 +531,40 @@ static  Context mcontext;
         return index;
     }
 
+    public  long saveRemaningMasterData(String masterKey,String catid, String issync, String value){
+       createlabmaster();
+       long index = 0;
+       try {
+           createprinttable();
+           SQLiteDatabase db = getWritableDatabase();
+           String query = "select * from " + TABLE_MASTERV1 + " where " + NAME + " = '" + value + "' AND " + MASTER_KEY + " = '" + masterKey + "' ";
+           Cursor cursor = db.rawQuery(query, null);
+           if (cursor.moveToFirst()) {
+
+           }else {
+
+               String val = value.replace("$$","UUID");
+               String[] valu = val.split("UUID");
+
+               for (int i = 0; i <value.length() ; i++) {
+
+                   String finalAnswer = valu[i];
+                   ContentValues c = new ContentValues();
+                   c.put(NAME,finalAnswer);
+                   c.put(SYNC,issync);
+                   c.put(MASTER_KEY,masterKey);
+                   c.put(CATEGORYID,catid);
+                   index = db.insertWithOnConflict(TABLE_MASTERV1,null,c,SQLiteDatabase.CONFLICT_REPLACE);
+               }
+
+
+           }
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+       return index;
+
+    }
 
     public long savemaster(String Name, String catid, int issync, String masterkey, String json) {
         createtablemaster();
@@ -1442,7 +1476,6 @@ static  Context mcontext;
                             diagnosisarray.put(diagnosis.getJSONObject(j));
                         }
                         obj.put("diagnosis", diagnosisarray);
-
 /*
                         JSONArray symptoms = new JSONArray(obj2.getString("symptoms"));
                         for (int j = 0; j < symptoms.length(); j++) {

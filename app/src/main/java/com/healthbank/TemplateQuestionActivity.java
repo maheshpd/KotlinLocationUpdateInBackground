@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
@@ -47,13 +48,13 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.healthbank.adapter.CombinedDataAdapter;
 import com.healthbank.adapter.DoctorAdapter;
@@ -76,7 +77,6 @@ import com.healthbank.classes.Template;
 import com.healthbank.classes.TestAdapter;
 import com.healthbank.classes.Visits;
 import com.healthbank.database.DatabaseHelper;
-import com.healthbank.model.SelectedTest;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -96,17 +96,18 @@ import java.util.Locale;
 public class TemplateQuestionActivity extends ActivityCommon {
 
     //widget
-    Spinner templateSelection, visitSelection;
-    LinearLayout mLayoutmanager,mainLayout,layout2;
+    Spinner templateSelection, visitSelection, refillsfromSelection;
+    LinearLayout mLayoutmanager, mainLayout;
+    RelativeLayout layout2;
     ScrollView scrollView;
     Button templateQuestionSubmitBtn;
     Button addNewVisitBtn, refitBtn;
     ImageView img1;
-    RecyclerView mRecyclerviewdrug,mRecyclerviewtest,mRecyclerviewdiagnosis;
-
+    RecyclerView mRecyclerviewdrug, mRecyclerviewtest, mRecyclerviewdiagnosis;
+    LinearLayout refillayout;
 
     //String
-    String visitid = "0",visitdate = "",cat = "";
+    String visitid = "0", visitdate = "", cat = "";
 
     //ArrayList
     ArrayList<Template> mdataset;
@@ -114,10 +115,11 @@ public class TemplateQuestionActivity extends ActivityCommon {
     ArrayList<Group> grouparray = new ArrayList<>();
     ArrayList<FileData> filedata;
     ArrayList<Visits> visitdata = new ArrayList<>();
+    ArrayList<Visits> visitdata1 = new ArrayList<>();
 
     //Adapter
     ArrayAdapter<Template> templateadapter;
-    ArrayAdapter<Visits> adaptervisit;
+    ArrayAdapter<Visits> adaptervisit, refilvistadapter;
     DrugAdapter drugadapter;
     FileAdapter fileadapter;
 
@@ -125,16 +127,16 @@ public class TemplateQuestionActivity extends ActivityCommon {
     Group group;
 
     //Int
-    int dbvisitid = 0,fontsize = 16,padding = 10,currentdbvisitid = 0,type = 0,popupheight = 600;
-
+    int dbvisitid = 0, fontsize = 16, padding = 10, currentdbvisitid = 0, type = 0, popupheight = 600;
 
     Typeface typeface;
 
     //boolean
-    boolean isrefill = false,isprint = false;
+    boolean isrefill = false, isprint = false;
 
     JSONObject answerobjdata = new JSONObject();
 
+    int index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,11 +156,12 @@ public class TemplateQuestionActivity extends ActivityCommon {
         return sdf.format(cal.getTime());
     }
 
+
     private void attachUI() {
         typeface = Fonter.getTypefaceregular(TemplateQuestionActivity.this);
         Bundle b = getIntent().getExtras();
         visitdate = gettodaysdate();
-        visitdate = gettodaysdate();
+//        visitdate = gettodaysdate();
         if (b != null) {
             visitid = b.getString("visitid");
             visitdate = b.getString("visitdate");
@@ -172,33 +175,99 @@ public class TemplateQuestionActivity extends ActivityCommon {
         prescriptiondata = new ArrayList<>();
         templateSelection = findViewById(R.id.templateSelection);
         visitSelection = findViewById(R.id.visitSelection);
+        refillsfromSelection = findViewById(R.id.refillfromSelection);
         scrollView = findViewById(R.id.scrollview);
         mainLayout = findViewById(R.id.mainLayout);
         layout2 = findViewById(R.id.layout_2);
         templateQuestionSubmitBtn = findViewById(R.id.templateQuestionSubmitBtn);
         addNewVisitBtn = findViewById(R.id.addNewVisitBtn);
         refitBtn = findViewById(R.id.refitBtn);
+        refillayout = findViewById(R.id.todays_lin);
 
         refitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    isrefill = true;
-                    currentdbvisitid = dbvisitid;
-                    Calendar cal = Calendar.getInstance();
-                    String myFormat = "yyyy-MM-dd"; //In which you need put here
-                    SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-                    JSONObject obj = new JSONObject();
-                    obj.put("VisitDate", sdf.format(cal.getTime()));
-                    obj.put("Patientid", GlobalValues.selectedpt.getPatientid());
-                    obj.put("UserId", GlobalValues.docid);
-                    obj.put("practiceid", GlobalValues.branchid);
-                    obj.put("connectionid", Constants.projectid);
-                    if (InternetUtils.getInstance(TemplateQuestionActivity.this).available()) {
-                        ConnectionManager.getInstance(TemplateQuestionActivity.this).AddVisit(obj.toString(), 0);
-                    } else {
-                        addcurrentvisit(Calendar.getInstance());
+
+                    try {
+
+                        // if (mdataset.get(templateSelection.getSelectedItemPosition()).getTemplateName().equalsIgnoreCase("Visit Record")) {
+                        layout2.setVisibility(View.VISIBLE);
+
+                        try {
+                            if (InternetUtils.getInstance(TemplateQuestionActivity.this).available()) {
+                                JSONObject obj = new JSONObject();
+                                obj.put("TemplateId", mdataset.get(templateSelection.getSelectedItemPosition()).getTemplateId());
+                                obj.put("Patientid", GlobalValues.selectedpt.getPatientid());
+                                obj.put("VisitNo", String.valueOf(visitdata.get(refillsfromSelection.getSelectedItemPosition()).getVisitid()));
+                                obj.put("VisitFlag", GlobalValues.current);
+                                obj.put("connectionid", Constants.projectid);
+                                ConnectionManager.getInstance(TemplateQuestionActivity.this).GetTemplateQuestionAnswer(obj.toString());
+                            } else {
+                                JSONArray array2 = DatabaseHelper.getInstance(TemplateQuestionActivity.this).gettemplatedata(Integer.toString(visitdata.get(refillsfromSelection.getSelectedItemPosition()).getVisitid()), Integer.toString(GlobalValues.selectedpt.getId()), Integer.toString(mdataset.get(templateSelection.getSelectedItemPosition()).getTemplateId()));
+                                if (array2.length() > 0) {
+                                    answerobjdata = new JSONObject(array2.getJSONObject(0).getString("jsondata"));
+                                    setdata();
+                                } else {
+                                    int tempid = mdataset.get(templateSelection.getSelectedItemPosition()).getTemplateId();
+                                    JSONArray array = DatabaseHelper.getInstance(TemplateQuestionActivity.this).getfreshtemplatedata(Integer.toString(tempid));
+                                    if (array.length() > 0) {
+                                        answerobjdata = new JSONObject(array.getJSONObject(0).getString("jsondata"));
+                                        setdata();
+                                    }
+                                }
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+
+
+
+
+                        //refreshdata();
                     }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//                    Calendar cal = Calendar.getInstance();
+//                    String myFormat = "yyyy-MM-dd"; //In which you need put here
+//                    SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+//                    JSONObject obj = new JSONObject();8
+//                    obj.put("VisitDate", sdf.format(cal.getTime()));
+//                    obj.put("Patientid", GlobalValues.selectedpt.getPatientid());
+//                    obj.put("UserId", GlobalValues.docid);
+//                    obj.put("practiceid", GlobalValues.branchid);
+//                    obj.put("connectionid", Constants.projectid);
+//
+//                    if (InternetUtils.getInstance(TemplateQuestionActivity.this).available()) {
+//                        ConnectionManager.getInstance(TemplateQuestionActivity.this).AddVisit(obj.toString(), 0);
+//                    } else {
+//                        addcurrentvisit(Calendar.getInstance());
+//                    }
+
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -209,8 +278,12 @@ public class TemplateQuestionActivity extends ActivityCommon {
         mdataset = new ArrayList<>();
         templateadapter = new ArrayAdapter<Template>(this, android.R.layout.simple_spinner_item, mdataset);
         templateSelection.setAdapter(templateadapter);
+
         adaptervisit = new ArrayAdapter<Visits>(this, android.R.layout.simple_spinner_item, visitdata);
         visitSelection.setAdapter(adaptervisit);
+
+        refilvistadapter = new ArrayAdapter<Visits>(this, android.R.layout.simple_spinner_item, visitdata);
+        refillsfromSelection.setAdapter(refilvistadapter);
 
         if (InternetUtils.getInstance(TemplateQuestionActivity.this).available()) {
             ConnectionManager.getInstance(TemplateQuestionActivity.this).getvisits(Integer.toString(GlobalValues.selectedpt.getPatientid()));
@@ -235,7 +308,6 @@ public class TemplateQuestionActivity extends ActivityCommon {
             }
         });
 
-
         img1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -254,6 +326,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             }
         });
 
+
         templateSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -265,11 +338,12 @@ public class TemplateQuestionActivity extends ActivityCommon {
                         visitdate = gettodaysdate();
                         // if (((Template) parent.getAdapter().getItem(position)).getTemplateName().equalsIgnoreCase("Visit Record")) {
                         layout2.setVisibility(View.VISIBLE);
+
                         try {
                             if (adaptervisit != null) {
                                 if (visitdata.size() > visitSelection.getSelectedItemPosition()) {
                                     visitid = Integer.toString(visitdata.get(visitSelection.getSelectedItemPosition()).getVisitid());
-                                    dbvisitid = visitdata.get(visitSelection.getSelectedItemPosition()).getId();
+//                                    dbvisitid = visitdata.get(refillsfromSelection.getSelectedItemPosition()).getId();
                                     visitdate = DateUtils.parseDateNew(visitdata.get(visitSelection.getSelectedItemPosition()).getVisitdate(), "yyyy-MM-dd'T'HH:mm:ss", "yyyy-MM-dd");
                                 }
                             }
@@ -353,6 +427,35 @@ public class TemplateQuestionActivity extends ActivityCommon {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+
+//        visitSelection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                try {
+//                    try {
+//                        currentdbvisitid = visitdata.get(visitSelection.getSelectedItemPosition()).getVisitid();
+//                        JSONArray array2 = DatabaseHelper.getInstance(TemplateQuestionActivity.this).gettemplatedata(Integer.toString(currentdbvisitid), Integer.toString(GlobalValues.selectedpt.getId()), Integer.toString(mdataset.get(templateSelection.getSelectedItemPosition()).getTemplateId()));
+//                        if (array2.length() > 0) {
+//                            answerobjdata = new JSONObject(array2.getJSONObject(0).getString("jsondata"));
+//                            setdata();
+//                        }
+//
+//                        refreshdata();
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//            }
+//        });
+
         JSONArray templatearray = DatabaseHelper.getInstance(TemplateQuestionActivity.this).gettemplatenamedata(cat);
         if (templatearray.length() > 0) {
             parsetemplatenames(templatearray, false);
@@ -395,7 +498,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
 
                 ArrayList<SubGroups> subGroups = grouparray.get(l).getSubGroups();
 
-                for (int i = 0; i <subGroups.size(); i++) {
+                for (int i = 0; i < subGroups.size(); i++) {
 
                     ArrayList<Questions> ques = subGroups.get(i).getQuestions();
 
@@ -407,7 +510,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
 
                             ques.get(j).setOptionType(qdata.get(k).getOptionType());
 
-                            if (qdata.get(k).getOptionType().equalsIgnoreCase("CustomAutoComplete") || qdata.get(k).getOptionType().equalsIgnoreCase("AutoComplete") || qdata.get(k).getOptionType().equalsIgnoreCase("Life Style") || qdata.get(k).getOptionType().equalsIgnoreCase("Test")) {
+                            if (qdata.get(k).getOptionType().equalsIgnoreCase("CustomAutoComplete") || qdata.get(k).getOptionType().equalsIgnoreCase("AutoComplete") || qdata.get(k).getOptionType().equalsIgnoreCase("Life Style")) {
                                 try {
                                     String ansdata = qdata.get(k).getOptionValue();
                                     Gson gson = new Gson();
@@ -423,7 +526,6 @@ public class TemplateQuestionActivity extends ActivityCommon {
                                                 data = mdataset.get(m).getName();
                                         }
                                     }
-
                                     if (data.length() > 0)
                                         ans = qdata.get(k).getOptionId() + "^" + data;
 
@@ -431,6 +533,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
+
                             } else if (qdata.get(k).getOptionType().equalsIgnoreCase("CheckBox")) {
                                 if (qdata.get(k).isIsselected()) {
                                     if (ans.length() == 0)
@@ -695,7 +798,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                 String array2 = mainobj.getString("data");
 
 
-                Log.d("submitdata",mainobj.toString());
+                Log.d("submitdata", mainobj.toString());
                 // DatabaseHelper.getInstance(TemplateQuestionActivity.this).savetemplatedata(visitid, Integer.toString(GlobalValues.selectedpt.getPatientid()), Integer.toString(GlobalValues.selectedpt.getId()), answerobjdata.toString(), 1, GlobalValues.selectedpt.getId(), dbvisitid, Integer.toString(mdataset.get(templateSelection.getSelectedItemPosition()).getTemplateId()));
 
           /*      Log.e("datachk  ", "datachk " + array1.toString());
@@ -758,7 +861,6 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     addquestions(questions, i, array);
                 }
 
-
             } else {
                 JSONArray array = answerobjdata.optJSONArray("AnswerData");
                 if (array != null) {
@@ -789,6 +891,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     }
                 }
             }
+
             if (isrefill)
                 submitdata();
         } catch (Exception e) {
@@ -844,6 +947,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     getobj(qdata.get(k).getSubQuestions());
                 }
             }
+
 
             try {
                 if (ques.get(j).getOptionType().equalsIgnoreCase("MedicationsWithBodypart") || ques.get(j).getOptionType().equalsIgnoreCase("Medications")) {
@@ -954,10 +1058,12 @@ public class TemplateQuestionActivity extends ActivityCommon {
                 mdataset = new ArrayList<>();
             templateadapter = new ArrayAdapter<Template>(this, android.R.layout.simple_dropdown_item_1line, mdataset);
             templateSelection.setAdapter(templateadapter);
+
             if (isonline)
                 for (int i = 0; i < mdataset.size(); i++) {
                     DatabaseHelper.getInstance(TemplateQuestionActivity.this).savetemplatenamedata(mdataset.get(i).getContentValues(), Integer.toString(mdataset.get(i).getTemplateId()));
                 }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1023,11 +1129,16 @@ public class TemplateQuestionActivity extends ActivityCommon {
 
                                 visitdata.add(0, v);
 
-                                if (visitdata.size() > 1)
+                                if (visitdata.size() > 1) {
+                                    refilvistadapter = new ArrayAdapter<Visits>(this, android.R.layout.simple_dropdown_item_1line, visitdata);
+                                    refillsfromSelection.setAdapter(refilvistadapter);
                                     refitBtn.setVisibility(View.VISIBLE);
+                                }
                                 else refitBtn.setVisibility(View.GONE);
-                                adaptervisit = new ArrayAdapter<Visits>(this, android.R.layout.simple_dropdown_item_1line, visitdata);
-                                visitSelection.setAdapter(adaptervisit);
+
+
+
+
                                 if (visitdata.size() > 0)
                                     visitSelection.setSelection(0);
 
@@ -1061,16 +1172,36 @@ public class TemplateQuestionActivity extends ActivityCommon {
                         visitdata.get(i).setId(id);
                         Log.e("dbid ", "dbid " + id);
                     }
-                } else {
-
                 }
+
                 adaptervisit.notifyDataSetChanged();
-                adaptervisit = new ArrayAdapter<Visits>(this, android.R.layout.simple_dropdown_item_1line, visitdata);
-                visitSelection.setAdapter(adaptervisit);
-                if (visitdata.size() > 1)
+                refilvistadapter.notifyDataSetChanged();
+
+                refilvistadapter = new ArrayAdapter<Visits>(this, android.R.layout.simple_spinner_item, visitdata);
+                refillsfromSelection.setAdapter(refilvistadapter);
+
+                visitdata1 = new ArrayList<>(visitdata);
+                if (visitdata.size() > 1) {
+
+                    adaptervisit = new ArrayAdapter<Visits>(this, android.R.layout.simple_dropdown_item_1line, visitdata);
+                    visitSelection.setAdapter(adaptervisit);
+
+                    visitdata1 = new ArrayList<>(visitdata);
+                    refilvistadapter = new ArrayAdapter<Visits>(this, android.R.layout.simple_dropdown_item_1line, visitdata1);
+                    refillsfromSelection.setAdapter(refilvistadapter);
+                }
+
+//                refilvistadapter = new ArrayAdapter<Visits>(this, android.R.layout.simple_dropdown_item_1line, visitdata);
+//                visitSelection.setAdapter(refilvistadapter);
+                if (visitdata.size() > 1) {
                     refitBtn.setVisibility(View.VISIBLE);
-                else refitBtn.setVisibility(View.GONE);
-            } else {
+                    refillayout.setVisibility(View.VISIBLE);
+                } else {
+                    refitBtn.setVisibility(View.GONE);
+                    refillayout.setVisibility(View.GONE);
+                }
+            }
+            else {
                 try {
                     Calendar cal = Calendar.getInstance();
                     String myFormat = "yyyy-MM-dd"; //In which you need put here
@@ -1115,7 +1246,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             if (ans != null)
                 if (!ans.equalsIgnoreCase("null") || !ans.equalsIgnoreCase("")) {
                     Log.e("data ", "data " + ans + " " + questions.get(j).getAnswer());
-                    String[] optanswers = ans.split("~");
+                    String[] optanswers = ans.split("^");
                     for (int k = 0; k < optanswers.length; k++) {
 
 //                        String OptionValue = opt.getOptionValue().replace("$$","UUID");
@@ -1238,11 +1369,9 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     addradioGroup(optdata1, questions.get(j), optdata.get(k));
                 } else if (optdata.get(k).getOptionType().equalsIgnoreCase("TextBox") || optdata.get(k).getOptionType().equalsIgnoreCase("Editor")) {
                     addEditText(i, optdata.get(k).getOptionName(), optdata.get(k), false, questions.get(j));
-                }else if ( optdata.get(k).getOptionType().equalsIgnoreCase("Description")) {
+                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Description")) {
                     addEditText(i, optdata.get(k).getOptionValue(), optdata.get(k), false, questions.get(j));
-                }
-
-                else if (optdata.get(k).getOptionType().equalsIgnoreCase("NoTextBox")) {
+                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("NoTextBox")) {
                     addEditText(i, questions.get(j).getName(), optdata.get(k), true, questions.get(j));
                 } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Date")) {
                     adddateview(optdata.get(k), questions.get(j));
@@ -1386,8 +1515,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     String[] arraydata = optdata.get(k).getOptionList().split(",");
                     addspinner(arraydata, optdata.get(k), questions.get(j));
 
-                }
-                else if (optdata.get(k).getOptionType().equalsIgnoreCase("FileUpload")) {
+                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("FileUpload")) {
                     filedata.clear();
                     String ansdata = optdata.get(k).getOptionValue();
                     if (ansdata.length() > 0) {
@@ -1422,7 +1550,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                     if (dataset != null)
                         custommasterdata.addAll(dataset);
 
-                            addcustomautocompletetextview(optdata.get(k), questions.get(j), questions.get(j).getName(), custommasterdata);
+                    addcustomautocompletetextview(optdata.get(k), questions.get(j), questions.get(j).getName(), custommasterdata);
 
                 } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Doctor list")) {
                     ArrayList<Doctor> mdataset = new ArrayList<>();
@@ -1672,7 +1800,6 @@ public class TemplateQuestionActivity extends ActivityCommon {
 
     private void addCheckBox(final Option qopt) {
         try {
-
             HorizontalScrollView mScrollView = new HorizontalScrollView(getApplicationContext());
             mScrollView.setLayoutParams(new ViewGroup.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT));
             mScrollView.setFillViewport(true);
@@ -1808,15 +1935,20 @@ public class TemplateQuestionActivity extends ActivityCommon {
             });*/
 
 
-          EditText e1 = new EditText(getApplicationContext());
+            EditText e1 = new EditText(getApplicationContext());
             e1.setTextSize(fontsize);
             e1.setTypeface(typeface);
-            e1.setHint(hint);
+
+            if (hint.equalsIgnoreCase("null")) {
+                e1.setHint("");
+            } else {
+
+            }
             e1.setTextColor(getResources().getColor(R.color.textcolor));
             e1.setMinLines(2);
             if (opt.getOptionType().equalsIgnoreCase("editor"))
-                e1.setMinLines(4);
-            e1.setPadding(10, 10, 10, 10);
+                e1.setMinLines(2);
+            e1.setPadding(10, 2, 10, 2);
             e1.setGravity(Gravity.TOP);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             params.bottomMargin = 5;
@@ -1853,17 +1985,25 @@ public class TemplateQuestionActivity extends ActivityCommon {
                 }
             });
 
+
             e1.setLayoutParams(params);
             mainLayout.addView(e1);
             e1.setText(Html.fromHtml(opt.getOptionValue()));
             Log.e("final opt ", "final opt " + opt.getOptionValue());
-            if(opt.getOptionValue().length()>0)
-            {
-                if(opt.getOptionValue().contains("^"))
-                {
-                    String[] array=  opt.getOptionValue().split("^");
-                    e1.setText(array[1]);
-                }
+            if (opt.getOptionValue().length() > 0) {
+
+                String array = opt.getOptionValue().replace("^", "UUID");
+
+                String[] ans = array.split("UUID");
+
+                e1.setText(ans[1]);
+
+//                if (opt.getOptionValue().contains("^")) {
+//                    String[] array = opt.getOptionValue().split("\\^");
+//                    String arrayD = array[1];
+////                    e1.setText(array[1]);
+//                    e1.setText(arrayD);
+//                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -2315,6 +2455,24 @@ public class TemplateQuestionActivity extends ActivityCommon {
         RecyclerView mRecyclerview = inflatedView.findViewById(R.id.recyclerview_1);
         mRecyclerview.setLayoutManager(mLinearLayoutManager);
 
+//        ArrayList<String> mdatasets = new ArrayList<>();
+//
+//        for (int i = 0; i <mdataset.size() ; i++) {
+//            String values = mdataset.get(i).getName();
+//
+//            String valuesss = values.replace("$$","UUID");
+//
+//            String[] valued = valuesss.split("UUID");
+//
+//            for (int j = 0; j <valued.length ; j++) {
+//
+//                String ans = valued[j];
+//                mdatasets.add(ans);
+//
+//            }
+//
+//        }
+
         final MasterAdapter adapter = new MasterAdapter(TemplateQuestionActivity.this, mdataset, new MasterAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Master item) {
@@ -2330,6 +2488,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             }
         });
         mRecyclerview.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
         edit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -2384,6 +2543,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
             }
         });
     }
+
 
     public void ShowPopupdoctor(final View anchorView, final ArrayList<Doctor> mdataset, final Option opt, final Questions q) {
         hideKeypad();
@@ -2543,10 +2703,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                                     master.setFilepath(rowarray.getJSONObject(l).getString("filepath"));
                                 selectedmasterdata.add(master);
                             }
-                        }
-
-
-                        else if (opt.getOptionType().equalsIgnoreCase("TreatmentProcedure")) {
+                        } else if (opt.getOptionType().equalsIgnoreCase("TreatmentProcedure")) {
                             Log.e("in Test ", "in Test");
                             try {
                                 Log.e("row array ", "row array " + rowarray.toString());
@@ -2631,8 +2788,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
         final ArrayList<Master> selectedmasterdata = new ArrayList<>();
 //        String[] ansdata = opt.getOptionValue().split(String.valueOf(R.string.Diet_Advised_separation));
 
-            String OptionValue = opt.getOptionValue().replace("$$","UUID");
-
+        String OptionValue = opt.getOptionValue().replace("$$", "UUID");
 
         String[] ansdata = OptionValue.split("UUID");
         for (int i = 0; i < ansdata.length; i++) {
@@ -2716,10 +2872,14 @@ public class TemplateQuestionActivity extends ActivityCommon {
         // String[] ansdata = opt.getOptionValue().split("^");
         // if (ansdata.length > 1) {
 
-        String[] ans1 = opt.getOptionValue().split("\\$$");
-        for (int i = 0; i < ans1.length; i++) {
-            if (ans1[i].length() > 1)
-                selectedmasterdata.add(new Master(ans1[i]));
+//        String[] ans1 = opt.getOptionValue().split("\\$$");
+        String ans1 = opt.getOptionValue().replace("$$", "UUID");
+        String[] ans2 = ans1.split("UUID");
+
+
+        for (int i = 0; i < ans2.length; i++) {
+            if (ans2[i].length() > 1)
+                selectedmasterdata.add(new Master(ans2[i]));
         }
         //}
         Gson gson = new Gson();
@@ -2757,7 +2917,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
         });
     }
 
-       public void addautocompletetextviewwitbodypartv1(final ArrayList<Master> mdataset, final String name, final Option opt, final Questions q, final ArrayList<Master> secondmater) {
+    public void addautocompletetextviewwitbodypartv1(final ArrayList<Master> mdataset, final String name, final Option opt, final Questions q, final ArrayList<Master> secondmater) {
         final AutoCompleteTextView autotxt = new AutoCompleteTextView(this);
         autotxt.setFocusable(false);
         autotxt.setMinLines(2);
@@ -2921,6 +3081,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
 //        } else {
 //            autotxt.setBackground(getResources().getDrawable(R.drawable.edittextshape_grayborder));
 //        }
+
         final ArrayAdapter<Master> adapterggeneric = new ArrayAdapter<Master>(TemplateQuestionActivity.this, android.R.layout.simple_list_item_1, mdataset);
         autotxt.setAdapter(adapterggeneric);
         autotxt.setThreshold(0);
@@ -3201,6 +3362,19 @@ public class TemplateQuestionActivity extends ActivityCommon {
         sp.setAdapter(adapter);
         mainLayout.addView(sp);
 
+        String values = opt.getOptionValue();
+
+        int spinnerPosition = adapter.getPosition(values);
+        sp.setSelection(spinnerPosition);
+
+
+        for (int i = 0; i < data.length; i++) {
+            if (values.contains(data[i])) {
+                sp.setSelected(true);
+            }
+        }
+
+
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -3422,14 +3596,14 @@ public class TemplateQuestionActivity extends ActivityCommon {
         if (visitdata.size() > 0)
             visitSelection.setSelection(0);*/
 
-        adaptervisit = new ArrayAdapter<Visits>(this, android.R.layout.simple_dropdown_item_1line, visitdata);
-        visitSelection.setAdapter(adaptervisit);
+//        adaptervisit = new ArrayAdapter<Visits>(this, android.R.layout.simple_dropdown_item_1line, visitdata);
+//        visitSelection.setAdapter(adaptervisit);
         if (visitdata.size() > 0)
-            visitSelection.setSelection(0);
+//            visitSelection.setSelection(0);
 
-        if (visitdata.size() > 1)
-            refitBtn.setVisibility(View.VISIBLE);
-        else refitBtn.setVisibility(View.GONE);
+            if (visitdata.size() > 1)
+                refitBtn.setVisibility(View.VISIBLE);
+            else refitBtn.setVisibility(View.GONE);
 
     }
 
@@ -3509,6 +3683,7 @@ public class TemplateQuestionActivity extends ActivityCommon {
                             ConnectionManager.getInstance(TemplateQuestionActivity.this).AddVisit(obj.toString(), 0);
                         } else {
                             addcurrentvisit(myCalendar);
+
                           /*  Visits v = new Visits();
                             v.setPatientid(GlobalValues.selectedpt.getPatientid());
                             v.setDBPatientid(GlobalValues.selectedpt.getId());
@@ -3603,9 +3778,6 @@ public class TemplateQuestionActivity extends ActivityCommon {
         }
     }
 
-    public void addfollowup() {
-
-    }
 
     class upload extends AsyncTask<Void, Void, String> {
         long stime = System.currentTimeMillis();

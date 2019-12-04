@@ -67,6 +67,10 @@ public class URLS {
         return BASE_URL + "GetSearchEmrMaster/" + master + "/" + search+"/"+Constants.projectid;
     }
 
+    public static String Get_Remaning_Master_data() {
+        return BASE_URL + "GetCustomMasters";
+    }
+
     public static String SaveRx() {
         return BASE_URL + "saverx";
     }

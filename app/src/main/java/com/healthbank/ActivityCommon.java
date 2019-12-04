@@ -10,6 +10,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -24,14 +28,21 @@ import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintDocumentInfo;
 import android.print.PrintManager;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+
+import com.MyFooter;
+import com.google.android.gms.clearcut.ClearcutLogger;
 import com.google.android.material.snackbar.Snackbar;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -68,20 +79,28 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Header;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.ColumnText;
+import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -98,8 +117,12 @@ import java.util.Date;
 
 import static com.healthbank.LogUtils.LOGE;
 import static com.healthbank.StructureClass.getSecondaryStorage;
+import static com.itextpdf.text.html.HtmlTags.SRC;
+import static com.itextpdf.text.pdf.PdfName.DEST;
 
 public class ActivityCommon extends AppCompatActivity {
+
+
     // Storage Permissions
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
@@ -123,6 +146,11 @@ public class ActivityCommon extends AppCompatActivity {
     Context mContext;
     Font.FontFamily fontmily = Font.FontFamily.valueOf("TIMES_ROMAN");
     int font = Font.ITALIC;
+
+    PdfWriter pdfWriter;
+
+    String imageUrl;
+
     private BroadcastReceiver responseRec = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -162,6 +190,8 @@ public class ActivityCommon extends AppCompatActivity {
         super.onCreate(savedInstanceState, persistentState);
         StructureClass.defineContext(this);
         mContext = this;
+
+        imageUrl = "https://i2.wp.com/www.positive-solutions.co.uk/wp-content/uploads/2018/09/bl-page-header.jpg";
     }
 
     public void initializefonts() {
@@ -392,7 +422,7 @@ public class ActivityCommon extends AppCompatActivity {
         try {
             if (!this.isFinishing()) {
                 dialog = ProgressDialog.show(this, msg, "Please wait");
-                dialog.setCancelable(false);
+                dialog.setCanceledOnTouchOutside(false);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -568,7 +598,7 @@ public class ActivityCommon extends AppCompatActivity {
     }
 
     public void gotonext(String s) {
-        Log.e("selected data ","selected data "+s);
+        Log.e("selected data ", "selected data " + s);
         if (s.equalsIgnoreCase("Lab Details")) {
             Intent intentlab = new Intent(this, PathalogyActivity.class);
             intentlab.putExtra("flag", "Pathology");
@@ -614,9 +644,9 @@ public class ActivityCommon extends AppCompatActivity {
             Intent intentlab = new Intent(this, PathalogyActivity.class);
             intentlab.putExtra("flag", "Pathology");
             startActivity(intentlab);
-        } */else if (s.equalsIgnoreCase("Initial Assessment")) {
+        } */ else if (s.equalsIgnoreCase("Initial Assessment")) {
             Intent intenttemplate = new Intent(this, TemplateQuestionActivity.class);
-            intenttemplate.putExtra("category","Initial Assessment");
+            intenttemplate.putExtra("category", "Initial Assessment");
             startActivity(intenttemplate);
         }/* else if (s.equalsIgnoreCase("Immunization")) {
             Intent intentlab = new Intent(this, PathalogyActivity.class);
@@ -638,14 +668,13 @@ public class ActivityCommon extends AppCompatActivity {
             Intent intentlab = new Intent(this, PathalogyActivity.class);
             intentlab.putExtra("flag", "Pathology");
             startActivity(intentlab);
-        }*/
-        else if (s.equalsIgnoreCase("Ros")) {
+        }*/ else if (s.equalsIgnoreCase("Ros")) {
             Intent intenttemplate = new Intent(this, TemplateQuestionActivity.class);
-            intenttemplate.putExtra("category","Ros");
+            intenttemplate.putExtra("category", "Ros");
             startActivity(intenttemplate);
-        }else {
+        } else {
             Intent intenttemplate = new Intent(this, TemplateQuestionActivity.class);
-            intenttemplate.putExtra("category",s);
+            intenttemplate.putExtra("category", s);
             startActivity(intenttemplate);
         }
        /* else if (s.equalsIgnoreCase("Notes")) {
@@ -765,16 +794,13 @@ public class ActivityCommon extends AppCompatActivity {
     }
 
     public void setmaterialDesign() {
-        try {
-            tag = "ActivityCommon";
-            toolbar = findViewById(R.id.toolbar);
-            toolbar.setTitleTextColor(getResources().getColor(R.color.White));
-            setSupportActionBar(toolbar);
-            LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(responseRec, new IntentFilter(Constants.BROADCAST_WIZARD));
-            context = this;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        tag = "ActivityCommon";
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.White));
+        setSupportActionBar(toolbar);
+        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(responseRec, new IntentFilter(Constants.BROADCAST_WIZARD));
+        context = this;
+
     }
 
     public void registerreceiver() {
@@ -794,18 +820,14 @@ public class ActivityCommon extends AppCompatActivity {
     }
 
     protected void back() {
-        try {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -1427,6 +1449,7 @@ public class ActivityCommon extends AppCompatActivity {
                 document.add(new Chunk(lineSeparator));
                 document.add(new Paragraph(""));
             }
+
             document.close();
             if (type == 1) {
                 FileUtils.openFile(this, new File(dest));
@@ -1774,7 +1797,6 @@ public class ActivityCommon extends AppCompatActivity {
                             return;
                         }
                     }
-
                     PrintDocumentInfo pdi = new PrintDocumentInfo.Builder(filename).setContentType(PrintDocumentInfo.CONTENT_TYPE_DOCUMENT).build();
 
                     callback.onLayoutFinished(pdi, true);
@@ -1962,6 +1984,8 @@ public class ActivityCommon extends AppCompatActivity {
            }
        }
    */
+
+
     protected void hideKeypad() {
         View view = this.getCurrentFocus();
         if (view != null) {
@@ -1995,11 +2019,24 @@ public class ActivityCommon extends AppCompatActivity {
 
     public void addanswertext(Document document, String text) {
         try {
-            Chunk headerchunk = new Chunk(text, normalFont);
-            Paragraph TitleParagraph = new Paragraph(headerchunk);
-            TitleParagraph.setAlignment(Element.ALIGN_LEFT);
-            TitleParagraph.setIndentationLeft(20);
-            document.add(TitleParagraph);
+//            Chunk headerchunk = new Chunk(text, normalFont);
+//            Paragraph TitleParagraph = new Paragraph(headerchunk);
+//            TitleParagraph.setAlignment(Element.ALIGN_LEFT);
+//            TitleParagraph.setIndentationLeft(20);
+
+
+            PdfPTable table = new PdfPTable(new float[]{1});
+            table.setWidthPercentage(100.0f);
+            table.getDefaultCell().setPadding(10);
+            table.setSpacingBefore(20);
+            table.addCell(text);
+//            for (int i = 0; i <text.length() ; i++) {
+//
+//            }
+            document.add(table);
+            document.add(new Paragraph(""));
+            document.add(lineSeparator);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2079,184 +2116,426 @@ public class ActivityCommon extends AppCompatActivity {
 
             document.add(table);
             document.add(new Paragraph(""));
-            document.add(new Chunk(lineSeparator));
+//            document.add(new Chunk(lineSeparator));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void addquestions(Document document, ArrayList<Questions> questions, JSONArray array) {
-        try {
-            ArrayList<SaveAnswerdata> data = new ArrayList<>();
-            for (int j = 0; j < array.length(); j++) {
-                try {
-                    data.add(new SaveAnswerdata(array.getJSONObject(j)));
-                    Log.e("data1", "data1" + array.getJSONObject(j).toString());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+        ArrayList<SaveAnswerdata> data = new ArrayList<>();
+        for (int m = 0; m < array.length(); m++) {
+            try {
+                data.add(new SaveAnswerdata(array.getJSONObject(m)));
+                Log.e("data1", "data1" + array.getJSONObject(m).toString());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+        }
 
-            for (int j = 0; j < questions.size(); j++) {
-                int isprint = DatabaseHelper.getInstance(this).isprint(Integer.toString(questions.get(j).getQid()), Integer.toString(questions.get(j).getTemplateId()));
-                Log.e("isprint reply", "" + isprint + " " + questions.get(j).getName());
-                if (isprint == 1) {
-                    boolean isqadded = false;
-                    String ans = SaveAnswerdata.getAnswer(data, Integer.toString(questions.get(j).getQid()));
-                    ArrayList<OptionAnswer> optans = new ArrayList<>();
-                    if (ans != null)
-                        if (!ans.equalsIgnoreCase("null") || !ans.equalsIgnoreCase("")) {
+        for (int j = 0; j < questions.size(); j++) {
 
-                            String[] optanswers = ans.split("~");
-                            for (int k = 0; k < optanswers.length; k++) {
-                                try {
-                                    Log.e("id11 ", "data " + optanswers[k]);
-                                    String[] suboptans = optanswers[k].split("\\^");
-                                    if (suboptans.length > 1) {
-                                        if (!isqadded) {
-                                            isqadded = true;
-                                            addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
-                                        }
-                                        addanswertext(document, suboptans[1]);
-                                        OptionAnswer opt = new OptionAnswer(suboptans[0], suboptans[1]);
-                                        optans.add(opt);
-                                    }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
+            int isprint = DatabaseHelper.getInstance(this).isprint(Integer.toString(questions.get(j).getQid()), Integer.toString(questions.get(j).getTemplateId()));
+
+
+            if (isprint == 1) {
+
+                boolean isqadded = false;
+
+                String ans = SaveAnswerdata.getAnswer(data, Integer.toString(questions.get(j).getQid()));
+
+                ArrayList<OptionAnswer> optans = new ArrayList<>();
+
+                if (ans != null) {
+
+                    if (!ans.equalsIgnoreCase("null") || !ans.equalsIgnoreCase("")) {
+
+                        String[] optanswers = ans.split("\\^");
+                        for (int k = 1; k < optanswers.length; k++) {
+                            Log.e("id11 ", "data " + optanswers[k]);
+
+                            String name = optanswers[k].replace("$$", "UUID");
+                            String[] suboptans = name.split("UUID");
+                            if (suboptans.length > 1) {
+                                if (!isqadded) {
+                                    isqadded = true;
+                                    addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+                                }
+                                for (int i = 0; i < suboptans.length; i++) {
+                                    addanswertext(document, suboptans[i]);
+//                                        OptionAnswer opt = new OptionAnswer(suboptans[0], suboptans[i]);
+//                                        optans.add(opt);
+                                }
+
+                            } else {
+                                if (!isqadded) {
+                                    isqadded = true;
+                                    addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+                                }
+                                for (int i = 0; i < suboptans.length; i++) {
+                                    addanswertext(document, suboptans[i]);
+//                                        OptionAnswer opt = new OptionAnswer(suboptans[i]);
+//                                        optans.add(opt);
                                 }
                             }
                         }
+                    }
+//                    } else {
+
                     ArrayList<Option> optdata = questions.get(j).getOption();
                     for (int k = 0; k < optdata.size(); k++) {
-                        try {
-                            for (int k1 = 0; k1 < data.size(); k1++) {
-                                if (data.get(k1).getAns() != null)
-                                    if (data.get(k1).getAns().equalsIgnoreCase("PrescriptionControl")) {
-                                        Log.e("in PrescriptionControl ", "in PrescriptionControl " + data.get(k1).getOptionType());
-                                        JSONObject obj = data.get(k1).getXmlObj();
-                                        if (obj != null) {
-                                            Log.e("obj nt null", "info" + obj.toString());
-                                            if (obj.has("row")) {
-                                                Log.e("obj has row ", "info");
-                                                JSONObject rowobj = obj.optJSONObject("row");
-                                                if (rowobj != null) {
-                                                    Log.e("rowobj nt null", "info " + optdata.get(k).getOptionType());
-                                                    if (optdata.get(k).getOptionType().equalsIgnoreCase("Medications") && data.get(k1).getOptionType().equalsIgnoreCase("Medications")) {
-                                                        ArrayList<Drug> drugdata = new ArrayList<>();
-                                                        Log.e("in Medication ", "in Medication");
-                                                        Gson gson1 = new Gson();
-                                                        Type type1 = new TypeToken<Drug>() {
-                                                        }.getType();
-                                                        Drug d = gson1.fromJson(rowobj.toString(), type1);
-                                                        drugdata.add(d);
-                                                        if (drugdata.size() > 0) {
-                                                            addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
-                                                            adddrug(document, drugdata);
-                                                        }
 
-                                                    } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Diagnosis") && data.get(k1).getOptionType().equalsIgnoreCase("Diagnosis")) {
-                                                        Log.e("in Diagnosis ", "in Diagnosis");
-                                                        ArrayList<Master> diagnosis = new ArrayList<>();
-                                                        try {
-                                                            Master master = new Master();
-                                                            master.setCategoryid(rowobj.getString("DiagnosisId"));
-                                                            master.setName(rowobj.getString("DiagnosisName"));
-                                                            diagnosis.add(master);
-                                                            if (diagnosis.size() > 0) {
-                                                                addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
-                                                                addMaster(document, diagnosis);
-                                                            }
-                                                        } catch (Exception e) {
-                                                            e.printStackTrace();
-                                                        }
-                                                    } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Test") && data.get(k1).getOptionType().equalsIgnoreCase("Test")) {
-                                                        Log.e("in Diagnosis ", "in Diagnosis");
-                                                        ArrayList<Master> test = new ArrayList<>();
-                                                        try {
-                                                            Master master = new Master();
-                                                            master.setName(rowobj.getString("TestName"));
-                                                            master.setTestId(rowobj.getString("TestId"));
-                                                            master.setLabId(rowobj.getString("LabId"));
-                                                            test.add(master);
-                                                            if (test.size() > 0) {
-                                                                addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
-                                                                addMaster(document, test);
-                                                            }
-                                                        } catch (Exception e) {
-                                                            e.printStackTrace();
-                                                        }
+                        for (int k1 = 0; k1 < data.size(); k1++) {
+
+
+                            if (data.get(k1).getAns() != null) {
+
+
+                                if (data.get(k1).getAns().equalsIgnoreCase("PrescriptionControl")) {
+                                    Log.e("in PrescriptionControl ", "in PrescriptionControl " + data.get(k1).getOptionType());
+                                    JSONObject obj = data.get(k1).getXmlObj();
+
+
+                                    if (obj != null) {
+                                        Log.e("obj nt null", "info" + obj.toString());
+
+
+                                        if (obj.has("row")) {
+                                            Log.e("obj has row ", "info");
+                                            JSONObject rowobj = obj.optJSONObject("row");
+
+
+                                            if (rowobj != null) {
+                                                Log.e("rowobj nt null", "info " + optdata.get(k).getOptionType());
+
+
+                                                if (optdata.get(k).getOptionType().equalsIgnoreCase("Medications") && (data.get(k1).getQid().equals(String.valueOf(questions.get(j).getQid())))) {
+                                                    ArrayList<Drug> drugdata = new ArrayList<>();
+                                                    Log.e("in Medication ", "in Medication");
+                                                    Gson gson1 = new Gson();
+                                                    Type type1 = new TypeToken<Drug>() {
+                                                    }.getType();
+                                                    Drug d = gson1.fromJson(rowobj.toString(), type1);
+                                                    drugdata.add(d);
+                                                    if (drugdata.size() > 0) {
+                                                        addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+                                                        adddrug(document, drugdata);
                                                     }
 
-                                                } else {
-                                                    JSONArray rowarray = obj.optJSONArray("row");
-                                                    if (optdata.get(k).getOptionType().equalsIgnoreCase("Medications") && data.get(k1).getOptionType().equalsIgnoreCase("Medications")) {
-                                                        ArrayList<Drug> drugdata = new ArrayList<>();
-                                                        Log.e("in Medication1 ", "in Medication1");
-                                                        Gson gson1 = new Gson();
-                                                        Type type1 = new TypeToken<ArrayList<Drug>>() {
-                                                        }.getType();
-                                                        drugdata = gson1.fromJson(rowarray.toString(), type1);
-                                                        if (drugdata.size() > 0) {
+                                                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Diagnosis") && (data.get(k1).getQid().equals(String.valueOf(questions.get(j).getQid())))) {
+                                                    Log.e("in Diagnosis ", "in Diagnosis");
+                                                    ArrayList<Master> diagnosis = new ArrayList<>();
+                                                    try {
+                                                        Master master = new Master();
+                                                        master.setCategoryid(rowobj.getString("DiagnosisId"));
+                                                        master.setName(rowobj.getString("DiagnosisName"));
+                                                        diagnosis.add(master);
+                                                        if (diagnosis.size() > 0) {
                                                             addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
-                                                            adddrug(document, drugdata);
+                                                            addMaster(document, diagnosis);
                                                         }
-
-                                                    } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Diagnosis") && data.get(k1).getOptionType().equalsIgnoreCase("Diagnosis")) {
-                                                        Log.e("in Diagnosis ", "in Diagnosis");
-                                                        ArrayList<Master> diagnosis = new ArrayList<>();
-                                                        try {
-                                                            for (int l = 0; l < rowarray.length(); l++) {
-                                                                Master master = new Master();
-                                                                master.setCategoryid(rowarray.getJSONObject(l).getString("DiagnosisId"));
-                                                                master.setName(rowarray.getJSONObject(l).getString("DiagnosisName"));
-                                                                diagnosis.add(master);
-                                                            }
-                                                            if (diagnosis.size() > 0) {
-                                                                addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
-                                                                addMaster(document, diagnosis);
-                                                            }
-                                                        } catch (Exception e) {
-                                                            e.printStackTrace();
+                                                    } catch (Exception e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Test") && (data.get(k1).getQid().equals(String.valueOf(questions.get(j).getQid())))) {
+                                                    Log.e("in Diagnosis ", "in Diagnosis");
+                                                    ArrayList<Master> test = new ArrayList<>();
+                                                    try {
+                                                        Master master = new Master();
+                                                        master.setName(rowobj.getString("TestName"));
+                                                        master.setTestId(rowobj.getString("TestId"));
+                                                        master.setLabId(rowobj.getString("LabId"));
+                                                        test.add(master);
+                                                        if (test.size() > 0) {
+                                                            addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+                                                            addMaster(document, test);
                                                         }
-                                                    } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Test") && data.get(k1).getOptionType().equalsIgnoreCase("Test")) {
-                                                        Log.e("in Test ", "in Test");
-                                                        ArrayList<Master> test = new ArrayList<>();
-                                                        try {
-                                                            for (int l = 0; l < rowarray.length(); l++) {
-                                                                Master master = new Master();
-                                                                master.setName(rowarray.getJSONObject(l).getString("TestName"));
-                                                                master.setTestId(rowarray.getJSONObject(l).getString("TestId"));
-                                                                master.setLabId(rowarray.getJSONObject(l).getString("LabId"));
-                                                                test.add(master);
-                                                            }
-                                                            if (test.size() > 0) {
-                                                                addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
-                                                                addMaster(document, test);
-                                                            }
-                                                        } catch (Exception e) {
-                                                            e.printStackTrace();
-                                                        }
+                                                    } catch (Exception e) {
+                                                        e.printStackTrace();
                                                     }
                                                 }
                                             } else {
-                                                Log.e("obj not row ", "info");
-                                            }
-                                        }
-                                    } else {
-                                        Log.e("obj  null", "info");
-                                    }
-                            }
+                                                JSONArray rowarray = obj.optJSONArray("row");
+                                                if (optdata.get(k).getOptionType().equalsIgnoreCase("Medications") && (data.get(k1).getQid().equals(String.valueOf(questions.get(j).getQid())))) {
+                                                    ArrayList<Drug> drugdata = new ArrayList<>();
+                                                    Log.e("in Medication1 ", "in Medication1");
+                                                    Gson gson1 = new Gson();
+                                                    Type type1 = new TypeToken<ArrayList<Drug>>() {
+                                                    }.getType();
+                                                    drugdata = gson1.fromJson(rowarray.toString(), type1);
+                                                    if (drugdata.size() > 0) {
+                                                        addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+                                                        adddrug(document, drugdata);
+                                                    }
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                                                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Diagnosis") && (data.get(k1).getQid().equals(String.valueOf(questions.get(j).getQid())))) {
+                                                    Log.e("in Diagnosis ", "in Diagnosis");
+                                                    ArrayList<Master> diagnosis = new ArrayList<>();
+                                                    try {
+                                                        for (int l = 0; l < rowarray.length(); l++) {
+                                                            Master master = new Master();
+                                                            master.setCategoryid(rowarray.getJSONObject(l).getString("DiagnosisId"));
+                                                            master.setName(rowarray.getJSONObject(l).getString("DiagnosisName"));
+                                                            diagnosis.add(master);
+                                                        }
+                                                        if (diagnosis.size() > 0) {
+                                                            addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+                                                            addMaster(document, diagnosis);
+
+                                                        } else {
+                                                            break;
+                                                        }
+                                                    } catch (Exception e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Test") && (data.get(k1).getQid().equals(String.valueOf(questions.get(j).getQid())))) {
+                                                    ArrayList<Master> test = new ArrayList<>();
+                                                    try {
+
+                                                        for (int i = 0; i < rowarray.length(); i++) {
+                                                            Master master = new Master();
+                                                            master.setName(rowarray.getJSONObject(i).getString("TestName"));
+                                                            master.setTestId(rowarray.getJSONObject(i).getString("TestId"));
+                                                            master.setLabId(rowarray.getJSONObject(i).getString("LabId"));
+                                                            test.add(master);
+                                                        }
+                                                        if (test.size() > 0) {
+                                                            addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+                                                            addMaster(document, test);
+
+                                                        } else {
+                                                            if (questions.size() > 0) {
+                                                                j++;
+                                                                addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+                                                            } else {
+                                                                addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+                                                            }
+                                                            addMaster(document, test);
+                                                        }
+
+                                                    } catch (Exception e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                } else if (optdata.get(k).getOptionType().equalsIgnoreCase("TreatmentProcedure") && (data.get(k1).getQid().equals(String.valueOf(questions.get(j).getQid())))) {
+                                                    Log.e("in TreatmentProcedure ", "in TreatmentProcedure");
+                                                    ArrayList<Master> test = new ArrayList<>();
+
+                                                    try {
+                                                        for (int i = 0; i < rowarray.length(); i++) {
+                                                            Master master = new Master();
+                                                            master.setName(rowarray.getJSONObject(i).getString("TreatmentProcedureName"));
+                                                            master.setCategoryid(rowarray.getJSONObject(i).getString("TreatmentProcedureId"));
+                                                            test.add(master);
+                                                        }
+
+                                                        if (test.size() > 0) {
+
+                                                            addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+                                                            addMaster(document, test);
+
+                                                        } else {
+                                                            if (questions.size() > 0) {
+                                                                j++;
+                                                                addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+                                                            } else {
+                                                                addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+                                                            }
+                                                            addMaster(document, test);
+                                                        }
+                                                    } catch (Exception e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                } else {
+
+                                                }
+                                            }
+
+                                        } else {
+
+//                                            Log.e("obj not row ", "info");
+                                        }
+                                    }
+
+                                } else {
+                                    Log.e("obj  null", "info");
+                                }
+                            } else {
+                                Log.e("obj  null", "info");
+                            }
                         }
                     }
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
+
+
+//    public void addquestions(Document document, ArrayList<Questions> questions, JSONArray array) {
+//
+//        ArrayList<SaveAnswerdata> data = new ArrayList<>();
+//        for (int m = 0; m < array.length(); m++) {
+//            try {
+//                data.add(new SaveAnswerdata(array.getJSONObject(m)));
+//                Log.e("data1", "data1" + array.getJSONObject(m).toString());
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        for (int j = 0; j < questions.size(); j++) {
+//
+//            int isprint = DatabaseHelper.getInstance(this).isprint(Integer.toString(questions.get(j).getQid()), Integer.toString(questions.get(j).getTemplateId()));
+//
+//
+//            if (isprint == 1) {
+//
+//                boolean isqadded = false;
+//
+//                String ans = SaveAnswerdata.getAnswer(data, Integer.toString(questions.get(j).getQid()));
+//
+//                ArrayList<OptionAnswer> optans = new ArrayList<>();
+//
+//                if (ans != null) {
+//
+//                    if (!ans.equalsIgnoreCase("null") || !ans.equalsIgnoreCase("")) {
+//
+//                        String[] optanswers = ans.split("\\^");
+//                        for (int k = 1; k < optanswers.length; k++) {
+//                            Log.e("id11 ", "data " + optanswers[k]);
+//
+//                            String name = optanswers[k].replace("$$", "UUID");
+//                            String[] suboptans = name.split("UUID");
+//                            if (suboptans.length > 1) {
+//                                if (!isqadded) {
+//                                    isqadded = true;
+//                                    addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+//                                }
+//                                for (int i = 0; i < suboptans.length; i++) {
+//                                    addanswertext(document, suboptans[i]);
+////                                        OptionAnswer opt = new OptionAnswer(suboptans[0], suboptans[i]);
+////                                        optans.add(opt);
+//                                }
+//
+//                            } else {
+//                                if (!isqadded) {
+//                                    isqadded = true;
+//                                    addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+//                                }
+//                                for (int i = 0; i < suboptans.length; i++) {
+//                                    addanswertext(document, suboptans[i]);
+////                                        OptionAnswer opt = new OptionAnswer(suboptans[i]);
+////                                        optans.add(opt);
+//                                }
+//                            }
+//                        }
+//                    }
+////                    } else {
+//
+//                    ArrayList<Option> optdata = questions.get(j).getOption();
+//
+//                    for (int k = 0; k < optdata.size(); k++) {
+//                        for (int i = 0; i < data.size(); i++) {
+//
+//                            if (data.get(i).getAns() != null) {
+//
+//
+//                                if (data.get(i).getAns().equalsIgnoreCase("PrescriptionControl")) {
+//                                    JSONObject object = data.get(i).getXmlObj();
+//
+//                                    if (object != null) {
+//
+//                                        if (object.has("row")) {
+//                                            JSONObject rowobj = object.optJSONObject("row");
+//
+//                                            if (rowobj != null) {
+//
+//                                            } else {
+//
+//                                            }
+//
+//                                            JSONArray rowarray = object.optJSONArray("row");
+//
+//                                            if (optdata.get(k).getOptionType().equals("TreatmentProcedure") && (data.get(i).getQid().equals(String.valueOf(questions.get(j).getQid())))) {
+//                                                Log.e("in TreatmentProcedure ", "in TreatmentProcedure");
+//                                                ArrayList<Master> test = new ArrayList<>();
+//                                                try {
+//                                                    for (int l = 0; l < rowarray.length(); l++) {
+//                                                        Master master = new Master();
+//                                                        master.setName(rowarray.getJSONObject(l).getString("TreatmentProcedureName"));
+//                                                        master.setCategoryid(rowarray.getJSONObject(i).getString("TreatmentProcedureId"));
+//                                                        test.add(master);
+//                                                    }
+//
+//                                                    if (test.size() > 0) {
+//                                                        addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+//                                                        addMaster(document, test);
+//                                                    }
+//                                                } catch (JSONException e) {
+//                                                    e.printStackTrace();
+//                                                }
+//                                            } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Test") && data.get(i).getOptionType().equalsIgnoreCase("Test")) {
+//                                                ArrayList<Master> test = new ArrayList<>();
+//                                                try {
+//
+//
+//                                                    for (int l = 0; l < rowarray.length(); l++) {
+//                                                        Master master = new Master();
+//                                                        master.setName(rowarray.getJSONObject(i).getString("TestName"));
+//                                                        master.setTestId(rowarray.getJSONObject(i).getString("TestId"));
+//                                                        master.setLabId(rowarray.getJSONObject(i).getString("LabId"));
+//                                                        test.add(master);
+//                                                    }
+//                                                    if (test.size() > 0) {
+//                                                        addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+//                                                        addMaster(document, test);
+//
+//                                                    }
+//                                                } catch (Exception e) {
+//                                                    e.printStackTrace();
+//                                                }
+//                                            } else if (optdata.get(k).getOptionType().equalsIgnoreCase("Diagnosis") && data.get(i).getOptionType().equalsIgnoreCase("Diagnosis")) {
+//                                                Log.e("in Diagnosis ", "in Diagnosis");
+//                                                ArrayList<Master> diagnosis = new ArrayList<>();
+//                                                try {
+//                                                    for (int l = 0; l < rowarray.length(); l++) {
+//                                                        Master master = new Master();
+//                                                        master.setCategoryid(rowarray.getJSONObject(l).getString("DiagnosisId"));
+//                                                        master.setName(rowarray.getJSONObject(l).getString("DiagnosisName"));
+//                                                        diagnosis.add(master);
+//                                                    }
+//                                                    if (diagnosis.size() > 0) {
+//                                                        addquestiontext(document, (j + 1) + "." + questions.get(j).getName());
+//                                                        addMaster(document, diagnosis);
+//
+//                                                    } else {
+//
+//                                                    }
+//                                                } catch (Exception e) {
+//                                                    e.printStackTrace();
+//                                                }
+//                                            } else {
+//
+//                                            }
+//                                        } else {
+//                                            Log.e("no row  obj", "info");
+//                                        }
+//                                    } else {
+//                                        Log.e("obj  null", "info");
+//                                    }
+//                                } else {
+//
+//                                    Log.e("pres", "Prescription else statement");
+//                                }
+//                            }
+////                            break;
+//
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     public void createvisitdataPdf(String visitdate, int type, JSONObject answerobjdata) {
 
@@ -2265,28 +2544,63 @@ public class ActivityCommon extends AppCompatActivity {
         if (f.exists()) {
             f.delete();
         }
+
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(dest));
+            PdfWriter writer = PdfWriter.getInstance(document,new FileOutputStream(dest));
+
+            MyFooter footerEvent = new MyFooter(ActivityCommon.this);
+            writer.setPageEvent(footerEvent);
+
             document.open();
 
             document.setPageSize(PageSize.A4);
             document.addCreationDate();
 
-            Chunk TitleChunk = new Chunk(GlobalValues.selectedpt.getFirstName().toUpperCase(), TitleFont);
-            Paragraph TitleParagraph = new Paragraph(TitleChunk);
-            TitleParagraph.setAlignment(Element.ALIGN_CENTER);
-            document.add(TitleParagraph);
             PdfPTable tableheader = new PdfPTable(new float[]{1});
-            tableheader.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
+            tableheader.setWidthPercentage(100);
             tableheader.getDefaultCell().setBorder(PdfPCell.NO_BORDER);
-            Chunk msrnoChunk = new Chunk("\nSr.No. " + GlobalValues.selectedpt.getSrno(), normalFont);
-            Phrase srno = new Phrase(msrnoChunk);
-            tableheader.addCell(srno);
 
-            Chunk dateChunk = new Chunk(visitdate, normalFont);
-            Phrase date = new Phrase(dateChunk);
-            tableheader.addCell(date);
+
+            try {
+                Drawable d = getResources().getDrawable(R.drawable.head);
+                BitmapDrawable bitDw = ((BitmapDrawable) d);
+                Bitmap bmp = bitDw.getBitmap();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                Image image = Image.getInstance(stream.toByteArray());
+                image.scaleAbsoluteWidth(600);
+                image.scaleAbsoluteHeight(50);
+                document.add(image);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            // add header and footer
+            MyFooter event = new MyFooter(ActivityCommon.this);
+            writer.setPageEvent(event);
+
+            // write to document
+            document.open();
+            document.add(new Paragraph("Adding a header to PDF Document using iText."));
+            document.newPage();
+            document.add(new Paragraph("Adding a footer to PDF Document using iText."));
+            document.close();
+
+//            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+////            Document document = new Document(PageSize.A4, 20, 20, 50, 25);
+//            PdfWriter writer = PdfWriter.getInstance(document, bos);
+//            MyFooter event = new MyFooter();
+//            writer.setPageEvent(event);
+
+            tableheader.addCell(getCell(GlobalValues.selectedpt.getFirstName().toUpperCase(),PdfPCell.ALIGN_LEFT));
+            tableheader.addCell(getCell("\nSr.No. " + GlobalValues.selectedpt.getSrno(),PdfPCell.ALIGN_LEFT));
+            tableheader.addCell(getCell("Age. " + "12/F",PdfPCell.ALIGN_RIGHT));
+            tableheader.addCell(getCell("Date. " + "11/11/2019",PdfPCell.ALIGN_RIGHT));
+
+
             document.add(tableheader);
 
             try {
@@ -2299,12 +2613,15 @@ public class ActivityCommon extends AppCompatActivity {
                     for (int i = 0; i < subGroups.size(); i++) {
                         if (!subGroups.get(i).getGroupName().equalsIgnoreCase("null"))
                             addheader(document, subGroups.get(i).getGroupName());
+
                         ArrayList<Questions> questions = subGroups.get(i).getQuestions();
                         JSONArray array = new JSONArray();
                         array = answerobjdata.optJSONArray("QuestionData");
                         addquestions(document, questions, array);
                     }
-                } else {
+                }
+
+                else {
                     JSONArray array = answerobjdata.optJSONArray("AnswerData");
                     Log.e("array111111 ", "array " + array.toString());
                     if (array != null) {
@@ -2328,6 +2645,8 @@ public class ActivityCommon extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+
          /*   if (prescription.getMdataset().size() > 0) {
                 Chunk mdrugChunk = new Chunk("Rx:", headingFont);
                 Paragraph mdrugParagraph = new Paragraph(mdrugChunk);
@@ -2366,6 +2685,8 @@ public class ActivityCommon extends AppCompatActivity {
                 document.add(new Chunk(lineSeparator));
 
             }*/
+
+
             document.close();
 
             if (type == 1) {
@@ -2383,9 +2704,6 @@ public class ActivityCommon extends AppCompatActivity {
         }
     }
 
-    public void sendnotification() {
-
-    }
 
     public void gotogroupvideocall(String channel) {
         Log.e("channel ", "channel " + channel);
@@ -2399,6 +2717,7 @@ public class ActivityCommon extends AppCompatActivity {
         i.putExtra(ConstantApp.ACTION_KEY_ENCRYPTION_MODE, getResources().getStringArray(R.array.encryption_mode_values)[AGApplication.mVideoSettings.mEncryptionModeIndex]);
         startActivity(i);
     }
+
 
     private class DownloadFile extends AsyncTask<String, Void, Void> {
         @Override
