@@ -2594,6 +2594,7 @@ public class ActivityCommon extends AppCompatActivity {
 //            PdfWriter writer = PdfWriter.getInstance(document, bos);
 //            MyFooter event = new MyFooter();
 //            writer.setPageEvent(event);
+            //commit
 
             tableheader.addCell(getCell(GlobalValues.selectedpt.getFirstName().toUpperCase(),PdfPCell.ALIGN_LEFT));
             tableheader.addCell(getCell("\nSr.No. " + GlobalValues.selectedpt.getSrno(),PdfPCell.ALIGN_LEFT));
