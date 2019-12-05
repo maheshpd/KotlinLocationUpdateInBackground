@@ -2550,8 +2550,8 @@ public class ActivityCommon extends AppCompatActivity {
             PdfWriter.getInstance(document, new FileOutputStream(dest));
             PdfWriter writer = PdfWriter.getInstance(document,new FileOutputStream(dest));
 
-            MyFooter footerEvent = new MyFooter(ActivityCommon.this);
-            writer.setPageEvent(footerEvent);
+//            MyFooter footerEvent = new MyFooter(ActivityCommon.this);
+//            writer.setPageEvent(footerEvent);
 
             document.open();
 
@@ -2578,16 +2578,16 @@ public class ActivityCommon extends AppCompatActivity {
             }
 
 
-            // add header and footer
-            MyFooter event = new MyFooter(ActivityCommon.this);
-            writer.setPageEvent(event);
-
-            // write to document
-            document.open();
-            document.add(new Paragraph("Adding a header to PDF Document using iText."));
-            document.newPage();
-            document.add(new Paragraph("Adding a footer to PDF Document using iText."));
-            document.close();
+//            // add header and footer
+//            MyFooter event = new MyFooter(ActivityCommon.this);
+//            writer.setPageEvent(event);
+//
+//            // write to document
+//            document.open();
+//            document.add(new Paragraph("Adding a header to PDF Document using iText."));
+//            document.newPage();
+//            document.add(new Paragraph("Adding a footer to PDF Document using iText."));
+//            document.close();
 
 //            ByteArrayOutputStream bos = new ByteArrayOutputStream();
 ////            Document document = new Document(PageSize.A4, 20, 20, 50, 25);

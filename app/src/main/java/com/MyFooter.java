@@ -50,45 +50,45 @@ public class MyFooter extends PdfPageEventHelper {
 
     @Override
     public void onEndPage(PdfWriter writer, Document document) {
-        addHeader(writer);
-        addFooter(writer);
+//        addHeader(writer);
+//        addFooter(writer);
     }
 
-    private void addHeader(PdfWriter writer){
-        PdfPTable header = new PdfPTable(2);
-        try {
-            // set defaults
-            header.setWidths(new int[]{2, 24});
-            header.setTotalWidth(527);
-            header.setLockedWidth(true);
-            header.getDefaultCell().setFixedHeight(40);
-            header.getDefaultCell().setBorder(Rectangle.BOTTOM);
-            header.getDefaultCell().setBorderColor(BaseColor.LIGHT_GRAY);
-
-            // add image
-
-//            Drawable d = context.getResources().getDrawable(R.drawable.head);
-//            BitmapDrawable bitDw = ((BitmapDrawable) d);
-//            Bitmap bmp = bitDw.getBitmap();
-//            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//            Image image = Image.getInstance(stream.toByteArray());
-//            image.scaleAbsoluteWidth(600);
-//            image.scaleAbsoluteHeight(50);
-
-//            Image logo = Image.getInstance(("http://www.fivenumber.com/wp-content/uploads/2017/08/Header.png"));
-            Drawable logo = context.getResources().getDrawable(R.drawable.head);
-            BitmapDrawable bitDw = ((BitmapDrawable)logo);
-            Bitmap bmp = bitDw.getBitmap();
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            Image image = Image.getInstance(stream.toByteArray());
-            image.scaleAbsoluteWidth(600);
-            image.scaleAbsoluteHeight(50);
-            header.addCell(image);
-
-
-            // add text
+//    private void addHeader(PdfWriter writer){
+//        PdfPTable header = new PdfPTable(2);
+//        try {
+//            // set defaults
+//            header.setWidths(new int[]{2, 24});
+//            header.setTotalWidth(527);
+//            header.setLockedWidth(true);
+//            header.getDefaultCell().setFixedHeight(40);
+//            header.getDefaultCell().setBorder(Rectangle.BOTTOM);
+//            header.getDefaultCell().setBorderColor(BaseColor.LIGHT_GRAY);
+//
+//            // add image
+//
+////            Drawable d = context.getResources().getDrawable(R.drawable.head);
+////            BitmapDrawable bitDw = ((BitmapDrawable) d);
+////            Bitmap bmp = bitDw.getBitmap();
+////            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+////            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+////            Image image = Image.getInstance(stream.toByteArray());
+////            image.scaleAbsoluteWidth(600);
+////            image.scaleAbsoluteHeight(50);
+//
+////            Image logo = Image.getInstance(("http://www.fivenumber.com/wp-content/uploads/2017/08/Header.png"));
+////            Drawable logo = context.getResources().getDrawable(R.drawable.head);
+////            BitmapDrawable bitDw = ((BitmapDrawable)logo);
+////            Bitmap bmp = bitDw.getBitmap();
+////            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+////            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+////            Image image = Image.getInstance(stream.toByteArray());
+////            image.scaleAbsoluteWidth(600);
+////            image.scaleAbsoluteHeight(50);
+////            header.addCell(image);
+//
+//
+//             add text
 //            PdfPCell text = new PdfPCell();
 //            text.setPaddingBottom(15);
 //            text.setPaddingLeft(10);
@@ -97,17 +97,17 @@ public class MyFooter extends PdfPageEventHelper {
 //            text.addElement(new Phrase("iText PDF Header Footer Example", new Font(Font.FontFamily.HELVETICA, 12)));
 //            text.addElement(new Phrase("https://memorynotfound.com", new Font(Font.FontFamily.HELVETICA, 8)));
 //            header.addCell(text);
-
-            // write content
-            header.writeSelectedRows(0, -1, 34, 803, writer.getDirectContent());
-        } catch(DocumentException de) {
-            throw new ExceptionConverter(de);
-        } catch (MalformedURLException e) {
-            throw new ExceptionConverter(e);
-        } catch (IOException e) {
-            throw new ExceptionConverter(e);
-        }
-    }
+//
+////            // write content
+////            header.writeSelectedRows(0, -1, 34, 803, writer.getDirectContent());
+////        } catch(DocumentException de) {
+////            throw new ExceptionConverter(de);
+////        } catch (MalformedURLException e) {
+////            throw new ExceptionConverter(e);
+////        } catch (IOException e) {
+////            throw new ExceptionConverter(e);
+////        }
+//    }
     private void addFooter(PdfWriter writer){
         PdfPTable footer = new PdfPTable(3);
         try {
@@ -142,12 +142,12 @@ public class MyFooter extends PdfPageEventHelper {
         }
     }
 
-    public void onCloseDocument(PdfWriter writer, Document document) {
-        int totalLength = String.valueOf(writer.getPageNumber()).length();
-        int totalWidth = totalLength * 5;
-        document.close();
-        ColumnText.showTextAligned(t, Element.ALIGN_RIGHT,
-                new Phrase(String.valueOf(writer.getPageNumber()), new Font(Font.FontFamily.HELVETICA, 8)),
-                totalWidth, 6, 0);
-    }
+//    public void onCloseDocument(PdfWriter writer, Document document) {
+//        int totalLength = String.valueOf(writer.getPageNumber()).length();
+//        int totalWidth = totalLength * 5;
+//        document.close();
+//        ColumnText.showTextAligned(t, Element.ALIGN_RIGHT,
+//                new Phrase(String.valueOf(writer.getPageNumber()), new Font(Font.FontFamily.HELVETICA, 8)),
+//                totalWidth, 6, 0);
+//    }
 }
