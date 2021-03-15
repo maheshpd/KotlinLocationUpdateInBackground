@@ -68,8 +68,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class
-PrintActivity extends ActivityCommon {
+public class PrintActivity extends ActivityCommon {
     Spinner sp1, sp2;
     ArrayList<Template> mdataset;
     ArrayAdapter<Template> adapter;
